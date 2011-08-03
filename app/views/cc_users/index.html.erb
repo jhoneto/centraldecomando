@@ -1,0 +1,32 @@
+<div id="list">
+<div id="indexpanel">
+  <%= link_to "Home", root_path%> |
+  <%= link_to "Criar novo usuário", new_cc_user_path %>
+</div>
+<br>
+<br>
+<table width=400>
+  <tr>
+    <th align=left colspan=3>Usuários</th>
+  </tr>
+
+<% @users.each do |cc_user| %>
+  <tr>
+	<td width="40%"><%= cc_user.username%></td>
+	<td width="40%"><%= cc_user.email%></td>
+    <td><%= link_to "Editar", edit_cc_user_path(cc_user) %></td></tr>
+<% end %>
+</table>
+
+<br />
+
+</div>
+
+<script>
+  $(document).ready(function(){
+	$("tr:odd").addClass("odd");
+	$("tr:even").addClass("even");
+	});
+</script
+
+

@@ -1,0 +1,32 @@
+<%= form_for(@ticket) do |f| %>
+  <% if @ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label :ticket_type_id %>
+  <%= f.select :ticket_type_id, options_from_collection_for_select(TicketType.all, "id", "name", @ticket.ticket_type_id), :style => "width: 300px"%>
+  <br>
+  <%= f.label :project %>
+  <%= f.select :project_id, options_from_collection_for_select(Project.find_all_by_account_id(current_user.account_id), "id", "name", @ticket.project_id), {:include_blank => true}, :style => "width: 300px"%>
+  <br>
+  <%= f.label :client %>
+  <%= f.select :client_id, options_from_collection_for_select(Client.find_all_by_account_id(current_user.account_id), "id", "name", @ticket.client_id), {:include_blank => true}, :style => "width: 300px"%>
+  <br>
+  <%= f.label :title %>
+  <%= f.text_field :title, :style => "width: 300px" %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description, :style => "width: 300px; heigth: 100px" %>
+  <br>
+  
+  <div class="actions">
+    <%= f.submit "Salvar"%>
+  </div>
+<% end %>

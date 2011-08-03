@@ -1,0 +1,36 @@
+<div id="form">
+  <div id="toppanel">
+	<label>Ticket: <%=@ticket.id%></label>|
+	<%= link_to 'Voltar', tickets_path %>
+  </div>
+  <div id="ticket_panel_left">
+	 <h3>Dados gerais</h3>
+	 <p><label>Projeto:</label><%=@ticket.project.name%></p>
+     <p><label>Código:</label><%=@ticket.id%></p>
+     <p><label>Tipo:</label><%=@ticket.ticket_type.name unless @ticket.ticket_type.nil?%></p>
+     <p><label>Cliente:</label><%=@ticket.client.name unless @ticket.client.nil?%></p>
+     <h3>Acompanhamento</h3>
+     <p><label>Status:</label><%=@ticket.ticket_status.name  unless @ticket.ticket_status.nil?%></p>
+     <p><label>Cadastrado por:</label><%=@ticket.user_registration.name%></p>
+	 <p><label>Cadastrado em:</label><%=@ticket.date_of_registration%></p>
+	 <p><label>Responsável:</label><%=@ticket.user_owner.name%></p>
+	
+  </div>
+  <div id="ticket_panel_right">
+	<div class = "title">
+		<p><label>Título:</label><%=@ticket.title%></p>
+	</div>
+	<div class = "description">
+		<p><label>Descrição:</label></p>
+		<p><%=@ticket.description%></p>
+	</div>
+	<div class = "actions_tickets">
+		<%= link_to("Editar", edit_ticket_path(@ticket))%>
+		<%= link_to(@ticket.ticket_status.prior_status.name, :action => "change_status", :id => @ticket, :status => @ticket.ticket_status.prior_status.id) unless @ticket.ticket_status.prior_status.nil? %> 
+		<%= link_to(@ticket.ticket_status.next_status.name, :action => "change_status", :id => @ticket, :status => @ticket.ticket_status.next_status.id) unless @ticket.ticket_status.next_status.nil? %>
+	</div>
+	
+	 
+  </div>
+  
+</div>

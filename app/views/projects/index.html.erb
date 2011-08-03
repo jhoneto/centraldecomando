@@ -1,0 +1,32 @@
+<div id="list">
+<div id="indexpanel">
+  <%= link_to "Home", root_path%> |
+  <%= link_to "Criar novo projeto", new_project_path %>
+</div>
+<br>
+<br>
+<table width=400>
+  <tr>
+    <th align=left colspan=3>Projetos</th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+	<td width="80%"><%= project.name%></td>
+    <td><%= link_to "Editar", edit_project_path(project) %></td>
+    <td><%= link_to "Excluir", project, :confirm => 'Tem certeza que deseja excluir esse projeto?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+</div>
+
+<script>
+  $(document).ready(function(){
+	$("tr:odd").addClass("odd");
+	$("tr:even").addClass("even");
+	});
+</script
+

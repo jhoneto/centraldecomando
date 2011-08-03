@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>Código</th>
+    <th>Título</th>
+    <th>Projeto</th>
+    <th>Cliente</th>
+    <th>Status</th>
+  </tr>
+
+<% @tickets.each do |ticket| %>
+  <tr>
+	<td><%= link_to ticket.id, ticket_path(ticket) %></td>
+	<td><%= ticket.title %></td>
+	<td><%= ticket.project.name %></td>
+	<td><%= ticket.client.name %></td>
+	<td><%= ticket.ticket_status.name%>
+    
+  </tr>
+<% end %>
+</table>

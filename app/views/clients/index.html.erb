@@ -1,0 +1,36 @@
+<div id="list">
+	<div id="indexpanel">
+		<%= link_to 'Home', root_path%>	
+	  	<%= link_to 'Cadastrar novo cliente', new_client_path %>
+	</div>
+	<br>
+	<br>
+	
+	<table width=400>
+	  <tr>
+	    <th align=left colspan=3>Clientes</th>
+	  </tr>
+
+	<% @clients.each do |client| %>
+	  <tr>
+		<td width="80%"><%= client.name %>
+	    <td><%= link_to 'Editar', edit_client_path(client) %></td>
+	    <td><%= link_to 'Excluir', client, :confirm => 'Tem certeza que deseja excluir esse cliente?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+	<br />
+</div>
+
+<script>
+  $(document).ready(function(){
+	$("tr:odd").addClass("odd");
+	$("tr:even").addClass("even");
+	});
+</script
+
+
+
+
+
+
