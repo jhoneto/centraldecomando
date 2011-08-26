@@ -12,7 +12,7 @@
 	<td><%= link_to ticket.id, ticket_path(ticket) %></td>
 	<td><%= ticket.title %></td>
 	<td><%= ticket.project.name %></td>
-	<td><%= ticket.client.name %></td>
+	<td><%= ticket.client.name unless ticket.client.nil?%></td>
 	<td><%= ticket.ticket_status.name%>
     
   </tr>

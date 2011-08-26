@@ -31,5 +31,9 @@ en:
               description: "Descrição"
               project: "Projeto"
               client: "Cliente"
-              ticket_type_id: "Tipo"
+              ticket_type: "Tipo"
+              ticket_status: "Status"
+              solicitant: "Solicitante"
+              user_registration: "Cadastrado por"
+              user_owner: "Responsável"
         

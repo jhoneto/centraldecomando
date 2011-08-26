@@ -1,0 +1,42 @@
+<div id="list">
+<div id="indexpanel">
+  <%= link_to "Projetos", projects_path%> |
+  <%= link_to "Adicionar novo sprint",  new_sprint_path %>
+</div>
+<br>
+<br>
+<table width=400>
+  <tr>
+    <th align=left>Status</th>
+    <th align=left>Sprint</th>
+    <th align=left>Início</th>
+    <th align=left>Fim</th>
+    <th align=left>Capacidade</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sprints.each do |sprint| %>
+  <tr>
+	<td><%= sprint.status%></td>
+	<td><%= sprint.sequence%></td>
+	<td><%= sprint.date_of_beginning%></td>
+	<td><%= sprint.date_of_end%></td>
+	<td><%= sprint.capacity%></td>
+    <td><%= link_to "Editar", edit_sprint_path(sprint) %></td>
+    <td><%= link_to "Excluir", sprint, :confirm => 'Tem certeza que deseja excluir esse projeto?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+</div>
+
+<script>
+  $(document).ready(function(){
+	$("tr:odd").addClass("odd");
+	$("tr:even").addClass("even");
+	});
+</script>
+

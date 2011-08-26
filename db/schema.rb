@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110730004303) do
+ActiveRecord::Schema.define(:version => 20110819005106) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :null => false
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(:version => 20110730004303) do
     t.datetime "updated_at"
   end
 
+  create_table "sprints", :force => true do |t|
+    t.integer  "project_id",        :null => false
+    t.string   "sequence",          :null => false
+    t.date     "date_of_beginning", :null => false
+    t.date     "date_of_end",       :null => false
+    t.integer  "status",            :null => false
+    t.integer  "capacity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ticket_status", :force => true do |t|
     t.string   "name",            :limit => 100,                    :null => false
     t.integer  "account_id",                                        :null => false
@@ -41,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20110730004303) do
     t.integer  "status_next_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "initial"
   end
 
   create_table "ticket_types", :force => true do |t|
@@ -52,7 +64,6 @@ ActiveRecord::Schema.define(:version => 20110730004303) do
   create_table "tickets", :force => true do |t|
     t.string   "title",                :limit => 500, :null => false
     t.text     "description"
-    t.integer  "status",                              :null => false
     t.integer  "project_id"
     t.integer  "client_id"
     t.date     "date_of_registration",                :null => false
@@ -65,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20110730004303) do
     t.integer  "account_id"
     t.integer  "ticket_type_id"
     t.integer  "ticket_status_id"
+    t.string   "solicitant",           :limit => 100
   end
 
   create_table "users", :force => true do |t|

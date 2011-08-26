@@ -1,36 +1,87 @@
+
+<script>
+$(function() {
+	$("#editar", ".actions_tickets" ).button();
+});
+
+$(function() {
+	$( "#rerun" )
+	.button()
+	.click(function() {
+		alert( "Running the last action" );
+	})
+	.next()
+	.button({
+		text: false,
+		icons: {
+			primary: "ui-icon-triangle-1-s"
+		}
+	})
+	.click(function() {
+		var menu = $( this ).parent().next().show().position({
+			my: "left top",
+			at: "left bottom",
+			of: this
+		});
+		$( document ).one( "click", function() {
+			menu.hide();
+		});
+		return false;
+	})
+	.parent()
+	.buttonset()
+	.next()
+	.hide()
+	.menu();
+});
+
+</script>
+
+
+
 <div id="form">
-  <div id="toppanel">
-	<label>Ticket: <%=@ticket.id%></label>|
-	<%= link_to 'Voltar', tickets_path %>
-  </div>
-  <div id="ticket_panel_left">
-	 <h3>Dados gerais</h3>
-	 <p><label>Projeto:</label><%=@ticket.project.name%></p>
-     <p><label>Código:</label><%=@ticket.id%></p>
-     <p><label>Tipo:</label><%=@ticket.ticket_type.name unless @ticket.ticket_type.nil?%></p>
-     <p><label>Cliente:</label><%=@ticket.client.name unless @ticket.client.nil?%></p>
-     <h3>Acompanhamento</h3>
-     <p><label>Status:</label><%=@ticket.ticket_status.name  unless @ticket.ticket_status.nil?%></p>
-     <p><label>Cadastrado por:</label><%=@ticket.user_registration.name%></p>
-	 <p><label>Cadastrado em:</label><%=@ticket.date_of_registration%></p>
-	 <p><label>Responsável:</label><%=@ticket.user_owner.name%></p>
-	
-  </div>
-  <div id="ticket_panel_right">
-	<div class = "title">
-		<p><label>Título:</label><%=@ticket.title%></p>
+	<div id              = "toppanel">
+		<label>Ticket: <%=@ticket.id%></label>|
+		<%= link_to 'Voltar', tickets_path %>
 	</div>
-	<div class = "description">
-		<p><label>Descrição:</label></p>
-		<p><%=@ticket.description%></p>
+	<div id              = "ticket_panel_left">
+		<h3>Dados gerais</h3>
+		<p><label>Projeto:</label><%=@ticket.project.name%></p>
+		<p><label>Código:</label><%=@ticket.id%></p>
+		<p><label>Tipo:</label><%=@ticket.ticket_type.name unless @ticket.ticket_type.nil?%></p>
+		<p><label>Cliente:</label><%=@ticket.client.name unless @ticket.client.nil?%></p>
+		<p><label>Cadastrado por:</label><%=@ticket.user_registration.name%></p>
+		<p><label>Cadastrado em:</label><%=@ticket.date_of_registration%></p>
+		<h3>Alterar status</h3>
+		<% @status.each do |s|%>
+		<p><%= link_to s.name, :action => "change_status", :id => @ticket, :status => s.id%></p>
+		<% end %>
+		<h3>Ações</h3>
+		<p>	<%= link_to("Editar", edit_ticket_path(@ticket), :id => "editar")%></p>
 	</div>
-	<div class = "actions_tickets">
-		<%= link_to("Editar", edit_ticket_path(@ticket))%>
-		<%= link_to(@ticket.ticket_status.prior_status.name, :action => "change_status", :id => @ticket, :status => @ticket.ticket_status.prior_status.id) unless @ticket.ticket_status.prior_status.nil? %> 
-		<%= link_to(@ticket.ticket_status.next_status.name, :action => "change_status", :id => @ticket, :status => @ticket.ticket_status.next_status.id) unless @ticket.ticket_status.next_status.nil? %>
+	<div id              = "ticket_panel_center">
+		<table border         = 1 width="100%">
+			<tr>
+				<td width           = "70%"><label>Título: </label><%=@ticket.title%></p></td>
+				<td width           = "30%"><label>Status: </label><%=@ticket.ticket_status.name  unless @ticket.ticket_status.nil?%></p></td>
+			</tr>
+			<tr height           = 200px>
+				<td width           = "100%" colspan=2 valign="top">
+					<p><label>Descrição:</label></p>
+					<textarea readonly = true style = "width:100%; height: 250px; background-color: #FCF0AD; border: 0;">
+						<%=@ticket.description%>
+					</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td width           = "50%"><label>Resp.: </label><%=@ticket.user_owner.name%></td>
+				<td><label>Estimativa: </label></td>
+			</tr>
+		</table>
+
+
+
+
 	</div>
-	
-	 
-  </div>
-  
+
 </div>

@@ -8,6 +8,8 @@ gem 'rails', '3.0.9'
 gem 'mysql2', '~> 0.2.6'
 gem 'clearance', '~> 0.12.0'
 gem "jquery-rails", "~> 1.0.12"
+gem "formtastic", "~> 1.2.4"
+gem "cancan", "~> 1.6.5"
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -7,7 +7,7 @@
 <br>
 <table width=400>
   <tr>
-    <th align=left colspan=3>Projetos</th>
+    <th align=left colspan=4>Projetos</th>
   </tr>
 
 <% @projects.each do |project| %>
@@ -15,6 +15,7 @@
 	<td width="80%"><%= project.name%></td>
     <td><%= link_to "Editar", edit_project_path(project) %></td>
     <td><%= link_to "Excluir", project, :confirm => 'Tem certeza que deseja excluir esse projeto?', :method => :delete %></td>
+    <td><%= link_to "Sprints", :controller => :sprints, :action => :index, :project_id => project.id%></td>
   </tr>
 <% end %>
 </table>

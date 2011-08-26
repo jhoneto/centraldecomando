@@ -1,4 +1,6 @@
 Centraldecomando::Application.routes.draw do
+  resources :sprints
+
   resources :tickets
 
   resources :clients

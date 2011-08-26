@@ -32,6 +32,8 @@ class TicketsController < ApplicationController
   # GET /tickets/1.xml
   def show
     @ticket = Ticket.find(params[:id])
+    
+    @status = TicketStatus.get_next_status(@ticket, current_user.account_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -59,11 +61,10 @@ class TicketsController < ApplicationController
   # POST /tickets.xml
   def create
     @ticket = Ticket.new(params[:ticket])
-    @ticket.status = 1
     @ticket.user_registration_id = current_user.id
     @ticket.user_owner_id = current_user.id
     @ticket.account_id = current_user.account_id
-    @ticket.ticket_type_id = 1
+    @ticket.ticket_status = TicketStatus.get_initial_status(current_user.account_id)
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to(@ticket, :notice => 'Ticket was successfully created.') }
