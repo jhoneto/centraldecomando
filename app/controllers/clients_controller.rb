@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.xml
   def index
-    @clients = Client.find_all_by_account_id(current_user.account_id)
+    @clients = Client.where("account_id = ?", current_user.account_id).paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb

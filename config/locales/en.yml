@@ -2,6 +2,18 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  web-app-theme: 
+        save: Salvar
+        cancel: Cancelar
+        list: Lista
+        edit: Editar
+        new: Novo
+        show: Mostrar
+        delete: Excluir
+        confirm: Deseja realmente excluir esse registro?
+        created_at: Criado em
+        all: Todos
+        login: Entrar    
   new: "Novo"
   edit: "Editar"
   destroy: "Excluir"
@@ -30,10 +42,21 @@ en:
               title: "Título"
               description: "Descrição"
               project: "Projeto"
+              project_id: "Projeto"
               client: "Cliente"
+              client_id: "Cliente"
               ticket_type: "Tipo"
               ticket_status: "Status"
               solicitant: "Solicitante"
               user_registration: "Cadastrado por"
               user_owner: "Responsável"
+              ticket_type_id: "Tipo"
+          sprint:
+              project: Projeto
+              project_id: Projeto
+              sequence: Versão
+              date_of_beginning: Data de início
+              date_of_end: Data de fim
+              status: Status
+              capacity: Capacidade
         

@@ -4,12 +4,42 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.find_all_by_account_id(current_user.account_id)
-
+    @projects = Project.where("account_id = ?", current_user.account_id).paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @projects }
+      format.xml  { render :xml => @projects}
+      
+      format.js do
+        # What is the first line of the result set we want ? (due to pagination. 0 = first)
+        offset = (params["page"].to_i-1)*params["rp"].to_i if params["page"] and params["rp"]
+
+        # Conditions passed by flexigrid
+        conditions = [params["qtype"]+"=?", params["query"]] if params["query"] and params["query"].strip!=""
+        project = Project.where(conditions)
+
+        # Total count of lines, before paginating
+        total = project.count
+
+        # People from the page
+        project_per_page = project
+        .order([params["sortname"], params["sortorder"]].join(" "))
+        .offset(offset)
+        .limit(params["rp"]).all
+
+        # Juste an ugly trick to add a bouton (button) method to the class, to use it in the Flexigrid
+        
+
+        # Rendering
+        render :json => {
+          :rows=>project_per_page.collect{|r| {:id=>r.id, :cell=>[r.id, r.name]}}, 
+          :page=>params["page"],
+          :total=>total
+          }.to_json
+
+      end #format.js
     end
+    
+    
   end
 
   # GET /projects/1

@@ -1,36 +1,47 @@
-<div id="list">
-	<div id="indexpanel">
-		<%= link_to 'Home', root_path%>	
-	  	<%= link_to 'Cadastrar novo cliente', new_client_path %>
-	</div>
-	<br>
-	<br>
-	
-	<table width=400>
-	  <tr>
-	    <th align=left colspan=3>Clientes</th>
-	  </tr>
-
-	<% @clients.each do |client| %>
-	  <tr>
-		<td width="80%"><%= client.name %>
-	    <td><%= link_to 'Editar', edit_client_path(client) %></td>
-	    <td><%= link_to 'Excluir', client, :confirm => 'Tem certeza que deseja excluir esse cliente?', :method => :delete %></td>
-	  </tr>
-	<% end %>
-	</table>
-	<br />
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", clients_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_client_path %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title">Clientes</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.client.name", :default => t("activerecord.labels.name", :default => "Name")) %>
+          </th>
+                    
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @clients.each do |client| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= client.id %>
+          </td>
+                    <td>
+            <%= link_to client.name, client_path(client) %>
+          </td>
+                    
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_client_path(client) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", client_path(client), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= will_paginate @clients  %>
+        
+      </div>
+    </div>
+  </div>
 </div>
 
-<script>
-  $(document).ready(function(){
-	$("tr:odd").addClass("odd");
-	$("tr:even").addClass("even");
-	});
-</script
-
-
-
-
-
-
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

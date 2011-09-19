@@ -1,45 +1,50 @@
-<div id="list">
-  <div id="indexpanel">
-    <%= link_to "Home", root_path%> |
-    <%= link_to "Cadastrar novo ticket", new_ticket_path %>
-  </div>
-
-  <br>
-  <br>
-  <div id="panel">
-	<%= form_tag tickets_path, :method => :get do %>
-	  <%=label_tag "Status: "%>
-	  <%= select_tag :ticket_status_id, options_from_collection_for_select(TicketStatus.find_all_by_account_id(current_user.account_id), "id", "name", @ticket_status_id), {:include_blank => true, :class => 'select'}%>
-	  <%=label_tag "Tipo: "%>
-	  <%= select_tag :ticket_type_id, options_from_collection_for_select(TicketType.all, "id", "name", @ticket_type_id), {:include_blank => true, :class => 'select'}%>
-	  <br />
-	  <%=label_tag "Projeto: "%>
-	  <%= select_tag :project_id, options_from_collection_for_select(Project.find_all_by_account_id(current_user.account_id), "id", "name", @project_id), {:include_blank => true, :class => 'select'}%>
-	  <%=label_tag "Título: "%>
-	  <%= text_field_tag :title, @title, :class => "input_txt"%>
-      
-	  <br />
-	  <%= label_tag "Cliente: "%>
-	  <%= select_tag :client_id, options_from_collection_for_select(Client.find_all_by_account_id(current_user.account_id), "id", "name", @client_id), {:include_blank => true, :class => 'select'}%>
-	  <%=label_tag "Descrição: "%>
-	  <%= text_field_tag :description, @description, :class => "input_txt"%>
-	  <%= submit_tag "Buscar"%>
-	<% end %>
-
-	<%= render 'list' %>
-
-	<br />
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", tickets_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_ticket_path %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Tickets</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.ticket.title", :default => t("activerecord.labels.title", :default => "Title")) %>
+          </th>
+                    <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @tickets.each do |ticket| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= ticket.id %>
+          </td>
+                    <td>
+            <%= link_to ticket.title, ticket_path(ticket) %>
+          </td>
+                    <td>
+            <%= ticket.created_at %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", ticket_path(ticket) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_ticket_path(ticket) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", ticket_path(ticket), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= will_paginate @tickets  %>
+        
+      </div>
+    </div>
   </div>
 </div>
 
-
-
-
-
-
-<script>
-  $(document).ready(function(){
-	$("tr:odd").addClass("odd");
-	$("tr:even").addClass("even");
-	});
-</script
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

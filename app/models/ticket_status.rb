@@ -3,9 +3,10 @@ class TicketStatus < ActiveRecord::Base
   belongs_to :prior_status, :class_name => "TicketStatus", :foreign_key => "status_prior_id"
   
   
-  def self.get_first_status(account_id)
-    busca = where("account_id = ? and initial = true", account_id)
+  def self.get_initial_status(account_id)
+    busca = TicketStatus.where("account_id = ? and initial = ?", account_id, true)
     busca.first
+    
   end
   
   def self.get_next_status(ticket, account_id)

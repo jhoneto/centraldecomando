@@ -3,8 +3,15 @@ class SprintsController < ApplicationController
   # GET /sprints
   # GET /sprints.xml
   def index
-    @sprints = Sprint.where("project_id = ?", params[:project_id]).all
-
+    
+    if params[:project_id].nil?
+      @project = Project.find(session[:project])
+    else
+      @project = Project.find(params[:project_id])
+    end
+    
+    @sprints = Sprint.where("project_id = ?", @project.id).paginate(:page => params[:page], :per_page => 10)
+    session[:project] = @project.id
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @sprints }
@@ -26,7 +33,7 @@ class SprintsController < ApplicationController
   # GET /sprints/new.xml
   def new
     @sprint = Sprint.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @sprint }
@@ -42,10 +49,12 @@ class SprintsController < ApplicationController
   # POST /sprints.xml
   def create
     @sprint = Sprint.new(params[:sprint])
+    @sprint.project_id = session[:project]
+    @sprint.status = 1 #Aberto
 
     respond_to do |format|
       if @sprint.save
-        format.html { redirect_to(@sprint, :notice => 'Sprint was successfully created.') }
+        format.html { redirect_to(sprint_path, :notice => 'Sprint was successfully created.') }
         format.xml  { render :xml => @sprint, :status => :created, :location => @sprint }
       else
         format.html { render :action => "new" }

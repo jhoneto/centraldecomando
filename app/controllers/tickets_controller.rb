@@ -4,28 +4,13 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.xml
   def index
-    @project_id = params[:project_id]
-    @client_id = params[:client_id]
-    @title = params[:title]
-    @description = params[:description]
-    @ticket_status_id = params[:ticket_status_id]
-    @ticket_type_id = params[:ticket_type_id]
-    
-    @tickets = Ticket.get_tickets({
-      :account_id => current_user.account_id,
-      :project_id => params[:project_id],
-      :client_id => params[:client_id],
-      :title => params[:title],
-      :description => params[:description],
-      :ticket_status_id => params[:ticket_status_id],
-      :ticket_type_id => params[:ticket_type_id]
-    })
+    @tickets = Ticket.paginate(:page => params[:page])
     
 
-    #respond_to do |format|
-    #  format.html # index.html.erb
-    #  format.xml  { render :xml => @tickets }
-    #end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @tickets }
+    end
   end
 
   # GET /tickets/1
@@ -64,6 +49,7 @@ class TicketsController < ApplicationController
     @ticket.user_registration_id = current_user.id
     @ticket.user_owner_id = current_user.id
     @ticket.account_id = current_user.account_id
+    @ticket.date_of_registration = Time.now
     @ticket.ticket_status = TicketStatus.get_initial_status(current_user.account_id)
     respond_to do |format|
       if @ticket.save

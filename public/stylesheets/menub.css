@@ -1,0 +1,58 @@
+/* CSS Document */
+/*Credits: santosh setty */
+/*URL: http://webdesigninfo.wordpress.com */
+.menub{
+	position:relative;
+	padding:0 0 0 34px;
+	margin:0 auto 0 auto;
+	background:url(images/menub_bg.png) repeat-x;
+	*background:url(images/menub_bg.gif) repeat-x;/* for IE browser due to png hacks */
+	height:46px;
+	list-style:none;
+	width:70%;
+}
+.menub li{
+	float:left;
+}
+.menub li a{
+	float:left;
+	display:block;
+	color:#000;
+	text-decoration:none;
+	font-family:sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	padding:0 0 0 18px;
+	height:46px;
+	line-height:46px;
+	text-align:center;
+	cursor:pointer;	
+}
+.menub li a b{
+	float:left;
+	display:block;
+	padding:0 36px 0 18px;
+}
+.menub li.current a{
+	color:#fff;
+	background:url(images/menub_hover_left.png) no-repeat;	
+	*background:url(images/menub_hover_left.gif) no-repeat;/* for IE browser due to png hacks */
+	background-position:left;
+}
+.menub li.current a b{
+	color:#fff;
+	background:url(images/menub_hover_right.png) no-repeat right top;	
+	*background:url(images/menub_hover_right.gif) no-repeat right top;/* for IE browser due to png hacks */
+}
+.menub li a:hover{
+	color:#fff;
+	background:url(images/menub_hover_left.png) no-repeat;
+	*background:url(images/menub_hover_left.gif) no-repeat;/* for IE browser due to png hacks */
+	background-position:left;
+}
+.menub li a:hover b{
+	color:#fff;
+	background:url(images/menub_hover_right.png) no-repeat right top;
+	*background:url(images/menub_hover_right.gif) no-repeat right top;/* for IE browser due to png hacks */
+}
+

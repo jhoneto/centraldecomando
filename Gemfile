@@ -5,11 +5,17 @@ gem 'rails', '3.0.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '~> 0.2.6'
+#gem 'mysql2', '~> 0.2.6'
+gem 'pg', '~>0.11.0'
 gem 'clearance', '~> 0.12.0'
 gem "jquery-rails", "~> 1.0.12"
 gem "formtastic", "~> 1.2.4"
 gem "cancan", "~> 1.6.5"
+gem "jqgrid_for_rails", "~> 1.0.1"
+gem "will_paginate", "~> 3.0.0"
+group :development, :test do
+  gem 'web-app-theme', '>= 0.7.0'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'

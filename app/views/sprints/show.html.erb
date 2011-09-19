@@ -1,5 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", sprints_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_sprint_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", sprint_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.sprint.project_id", :default => t("activerecord.labels.project_id", :default => "Project")) %>:</b>
+          <%= @sprint.project_id %>
+        </p>
 
+        <p>
+          <b><%= t("activerecord.attributes.sprint.sequence", :default => t("activerecord.labels.sequence", :default => "Sequence")) %>:</b>
+          <%= @sprint.sequence %>
+        </p>
 
-<%= link_to 'Edit', edit_sprint_path(@sprint) %> |
-<%= link_to 'Back', sprints_path %>
+        <p>
+          <b><%= t("activerecord.attributes.sprint.date_of_beginning", :default => t("activerecord.labels.date_of_beginning", :default => "Date of beginning")) %>:</b>
+          <%= @sprint.date_of_beginning %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.sprint.date_of_end", :default => t("activerecord.labels.date_of_end", :default => "Date of end")) %>:</b>
+          <%= @sprint.date_of_end %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.sprint.status", :default => t("activerecord.labels.status", :default => "Status")) %>:</b>
+          <%= @sprint.status %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.sprint.capacity", :default => t("activerecord.labels.capacity", :default => "Capacity")) %>:</b>
+          <%= @sprint.capacity %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_sprint_path(@sprint), :class => "button" %> 
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), sprint_path(@sprint), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

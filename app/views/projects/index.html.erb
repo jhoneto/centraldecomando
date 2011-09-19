@@ -1,33 +1,47 @@
-<div id="list">
-<div id="indexpanel">
-  <%= link_to "Home", root_path%> |
-  <%= link_to "Criar novo projeto", new_project_path %>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", projects_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_project_path %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title">Projetos</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.project.name", :default => t("activerecord.labels.name", :default => "Name")) %>
+          </th>
+                    
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @projects.each do |project| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= project.id %>
+          </td>
+                    <td>
+            <%= link_to project.name, project_path(project) %>
+          </td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_project_path(project) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", project_path(project), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %> |
+            <%= link_to "Sprints", :controller => :sprints, :action => :index, :project_id => project.id%>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= will_paginate @projects  %>
+        
+      </div>
+    </div>
+  </div>
 </div>
-<br>
-<br>
-<table width=400>
-  <tr>
-    <th align=left colspan=4>Projetos</th>
-  </tr>
 
-<% @projects.each do |project| %>
-  <tr>
-	<td width="80%"><%= project.name%></td>
-    <td><%= link_to "Editar", edit_project_path(project) %></td>
-    <td><%= link_to "Excluir", project, :confirm => 'Tem certeza que deseja excluir esse projeto?', :method => :delete %></td>
-    <td><%= link_to "Sprints", :controller => :sprints, :action => :index, :project_id => project.id%></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-</div>
-
-<script>
-  $(document).ready(function(){
-	$("tr:odd").addClass("odd");
-	$("tr:even").addClass("even");
-	});
-</script
-
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
