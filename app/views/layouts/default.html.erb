@@ -48,24 +48,19 @@
       
 
       <div id="sidebar">
-	    <div class="block">
-		  <h3>Menu</h3>
-		  <ul class = "navigation">
-			<li><%= link_to "Projetos", projects_path%></li>
-			<li><%= link_to "Clientes", clients_path%></li>
-			<li><%= link_to "Tickets", tickets_path%></li>
-		  </ul>
-        </div>
+	    <%= yield :sidebar%>
       </div>
     
       
 
     </div>
+    <!--
     <div id="footer">
         <div class="block">
           <p>Copyright &copy; <%= Time.now.year %> Web App.</p>
         </div>      
     </div>    
+   -->
   </div>
 </body>
 </html>

@@ -30,7 +30,6 @@
           </td>
           <td class="last">
             <%= link_to "#{t("web-app-theme.show", :default => "Show")}", ticket_path(ticket) %> |
-            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_ticket_path(ticket) %> |
             <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", ticket_path(ticket), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
           </td>
         </tr>          
@@ -47,4 +46,3 @@
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>

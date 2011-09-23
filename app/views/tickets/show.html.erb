@@ -8,77 +8,30 @@
   </div>          
   <div class="content">
     <div class="inner">
-      
         <p>
-          <b><%= t("activerecord.attributes.ticket.title", :default => t("activerecord.labels.title", :default => "Title")) %>:</b>
+          <b><%= t("activerecord.attributes.ticket.ticket_type_id", :default => t("activerecord.labels.ticket_type_id", :default => "Ticket type")) %></b><br>
+          <%= @ticket.ticket_type.name %>
+        </p>
+        <p>
+          <b><%= t("activerecord.attributes.ticket.solicitant", :default => t("activerecord.labels.solicitant", :default => "Solicitant")) %>:</b><br>
+          <%= @ticket.solicitant %>
+        </p>
+        <p>
+          <b><%= t("activerecord.attributes.ticket.title", :default => t("activerecord.labels.title", :default => "Title")) %>:</b><br>
           <%= @ticket.title %>
         </p>
 
         <p>
-          <b><%= t("activerecord.attributes.ticket.description", :default => t("activerecord.labels.description", :default => "Description")) %>:</b>
-          <%= @ticket.description %>
+          <b><%= t("activerecord.attributes.ticket.description", :default => t("activerecord.labels.description", :default => "Description")) %>:</b><br>
+          <textarea readonly = true style = "width:100%; height: 250px; background-color: #F7F7F8; border: 0;"><%=@ticket.description%>
+		  </textarea>
         </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.project_id", :default => t("activerecord.labels.project_id", :default => "Project")) %>:</b>
-          <%= @ticket.project_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.client_id", :default => t("activerecord.labels.client_id", :default => "Client")) %>:</b>
-          <%= @ticket.client_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.date_of_registration", :default => t("activerecord.labels.date_of_registration", :default => "Date of registration")) %>:</b>
-          <%= @ticket.date_of_registration %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.cancellation_date", :default => t("activerecord.labels.cancellation_date", :default => "Cancellation date")) %>:</b>
-          <%= @ticket.cancellation_date %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.closing_date", :default => t("activerecord.labels.closing_date", :default => "Closing date")) %>:</b>
-          <%= @ticket.closing_date %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.user_registration_id", :default => t("activerecord.labels.user_registration_id", :default => "User registration")) %>:</b>
-          <%= @ticket.user_registration_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.user_owner_id", :default => t("activerecord.labels.user_owner_id", :default => "User owner")) %>:</b>
-          <%= @ticket.user_owner_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.account_id", :default => t("activerecord.labels.account_id", :default => "Account")) %>:</b>
-          <%= @ticket.account_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.ticket_type_id", :default => t("activerecord.labels.ticket_type_id", :default => "Ticket type")) %>:</b>
-          <%= @ticket.ticket_type_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.ticket_status_id", :default => t("activerecord.labels.ticket_status_id", :default => "Ticket status")) %>:</b>
-          <%= @ticket.ticket_status_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.solicitant", :default => t("activerecord.labels.solicitant", :default => "Solicitant")) %>:</b>
-          <%= @ticket.solicitant %>
-        </p>
+        
+    
       <div class="wat-cf">
-        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_ticket_path(@ticket), :class => "button" %> 
-        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), ticket_path(@ticket), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
       </div>      
     </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => 'sidebarshow') -%>
