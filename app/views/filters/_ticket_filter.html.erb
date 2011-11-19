@@ -1,0 +1,29 @@
+<fieldset id="" class="fieldset_group">
+	<div class="group">
+	  <%= label_tag :project, "Projeto", :class => :label %>
+      <%= select_tag :with_project, options_from_collection_for_select(Project.find_all_by_account_id(current_user.account_id), "id", "name", (f[:with_project] unless f.nil?)), {:include_blank => true}%>
+	</div>
+	<div class="group">
+	  <%= label_tag :client, "Cliente", :class => :label %>
+	  <%= select_tag :with_client, options_from_collection_for_select(Client.find_all_by_account_id(current_user.account_id), "id", "name", (f[:with_client] unless f.nil?)), {:include_blank => true}%>
+	</div>
+	<div class="group">
+	  <%= label_tag :type, "Tipo", :class => :label %>
+	  <%= select_tag :with_type, options_from_collection_for_select(TicketType.all, "id", "name", (f["with_type"] unless f.nil?)), {:include_blank => true}%>
+    </div>
+	<div class="group">
+	  <%= label_tag :status, "Status", :class => :label %>
+	  <%= select_tag :with_status, options_from_collection_for_select(TicketStatus.find_all_by_account_id(current_user.account_id),         "id", "name", (f[:with_status] unless f.nil?)), {:include_blank => true}%>
+	</div>
+	
+</fieldset>
+
+<fieldset id="_colunas_" class="">
+	<legend> Colunas </legend>
+	<%= check_box_tag :column_id, "id" %> Código (ID)<br>
+	<%= check_box_tag :column_title, "title"%> Título <br>
+	<%= check_box_tag :column_client_name, "client.name"%> Cliente (Nome)<br>
+	
+</fieldset>
+
+    

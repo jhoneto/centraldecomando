@@ -6,7 +6,7 @@
     </ul>
   </div>          
   <div class="content">          
-    <h2 class="title">Clientes</h2>
+    <h2 class="title"><%= t("web-app-theme.list_of") %> <%= t("activerecord.models.clients")%></h2>
     <div class="inner">
       <table class="table">
         <tr>             
@@ -23,7 +23,7 @@
             <%= client.id %>
           </td>
                     <td>
-            <%= link_to client.name, client_path(client) %>
+            <%= link_to client.name, edit_client_path(client) %>
           </td>
                     
           <td class="last">

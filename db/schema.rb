@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110819005106) do
+ActiveRecord::Schema.define(:version => 20111116222348) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :null => false
@@ -23,6 +23,26 @@ ActiveRecord::Schema.define(:version => 20110819005106) do
     t.integer  "account_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "comment_type", :null => false
+    t.text     "comment",      :null => false
+    t.integer  "user_id",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "process_id",   :null => false
+  end
+
+  create_table "filters", :force => true do |t|
+    t.string   "name",       :limit => 50,   :null => false
+    t.string   "model",      :limit => 100,  :null => false
+    t.integer  "user_id",                    :null => false
+    t.string   "where",      :limit => 500,  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "account_id"
+    t.string   "columns",    :limit => 1000
   end
 
   create_table "projects", :force => true do |t|
@@ -39,6 +59,27 @@ ActiveRecord::Schema.define(:version => 20110819005106) do
     t.date     "date_of_end",       :null => false
     t.integer  "status",            :null => false
     t.integer  "capacity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stories", :force => true do |t|
+    t.string   "as_a",       :limit => 100, :null => false
+    t.text     "i_want_to",                 :null => false
+    t.text     "so_that_i"
+    t.integer  "project_id",                :null => false
+    t.integer  "complexity"
+    t.integer  "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "account_id"
+    t.text     "acceptance"
+  end
+
+  create_table "stories_sprints", :force => true do |t|
+    t.integer  "story_id",                      :null => false
+    t.integer  "sprint_id",                     :null => false
+    t.boolean  "closed",     :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,6 +118,14 @@ ActiveRecord::Schema.define(:version => 20110819005106) do
     t.integer  "ticket_type_id"
     t.integer  "ticket_status_id"
     t.string   "solicitant",           :limit => 100
+  end
+
+  create_table "tickets_sprints", :force => true do |t|
+    t.integer  "ticket_id",                     :null => false
+    t.integer  "sprint_id",                     :null => false
+    t.boolean  "closed",     :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

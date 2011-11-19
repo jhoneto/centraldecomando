@@ -1,0 +1,44 @@
+
+<script>
+	$(function() {
+		$( "#add-story" )
+			.button()
+			.click(function() {
+				$.ajax({
+                    url: '/sprints_add_story?story=' + $("#story_id").val()+'&sprint=' + $("#sprint_id").val(),
+                    type: 'post',
+                    beforeSend: function(xhr){
+                        // do something unusual
+                    }
+
+                });
+                jQuery("#stories_sprints_list").jqGrid('setGridParam',{url:"/sprints/get_stories/"+ $("#sprint_id").val(),page:1}).trigger("reloadGrid");
+			});
+	});
+</script>
+<div class="block">
+  <div class="content">          
+    <h2 class="title"><%= @sprint.sequence%> </h2>
+    <div class="inner">
+	  <div>
+        <table id="stories_sprints_list"></table>
+        <div id="stories_sprints_pager"></div>
+        <%= raw(stories_sprints_jqgrid(@sprint.id))%>
+        <button id="add-story"><%= image_tag("web-app-theme/icons/add.png", :alt => "Buscar") %> </button>
+        <%= render 'stories/find_stories'%>
+      </div>
+      <br>
+      <br>
+      <div>
+        <table id="tickets_sprints_list"></table>
+        <div id="tickets_sprints_pager"></div>
+        <%= raw(tickets_sprints_jqgrid(@sprint.id))%>
+        <%= render 'tickets/find_tickets'%>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<%= hidden_field_tag :sprint_id, @sprint.id%>

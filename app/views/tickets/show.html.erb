@@ -1,3 +1,12 @@
+<script>
+  tinyMCE.init({
+        mode : "exact",
+        elements: "description",
+        theme : "advanced",
+        width: "100%",
+        readonly : true
+});
+</script>
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
@@ -23,13 +32,15 @@
 
         <p>
           <b><%= t("activerecord.attributes.ticket.description", :default => t("activerecord.labels.description", :default => "Description")) %>:</b><br>
-          <textarea readonly = true style = "width:100%; height: 250px; background-color: #F7F7F8; border: 0;"><%=@ticket.description%>
-		  </textarea>
+          <textarea id="description" style="width=300px"> <%= @ticket.description %> </textarea>
         </p>
         
     
       <div class="wat-cf">
-      </div>      
+      </div>
+      <div id="comments">
+      	<%= render :partial => "/comments/form", :locals => {:f => @comment, :id => @ticket.id, :type => 1}%>  
+      </div>
     </div>
   </div>
 </div>

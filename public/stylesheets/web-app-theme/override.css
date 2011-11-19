@@ -1,1 +1,20 @@
 /* Override here any style defined by web-app-theme */
+
+.form .group_search {
+  margin-bottom: 5px;
+}
+
+.form label.label_search {
+  padding-bottom: 2px;  
+  font-weight: bold;
+  display: inline-block;
+  width: 75px;
+}
+
+.field_search_id{
+	width: 30px;
+}
+
+.form .fieldset_group {
+  padding: 10px;
+}

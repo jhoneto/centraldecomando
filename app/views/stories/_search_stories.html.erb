@@ -1,0 +1,11 @@
+<%= form_tag stories_path, :method => :get,  :class => :form do %>
+  	<div class="group_search">	 
+		<label class="label_search">Projeto: </label>
+      <%= select_tag :with_project, options_from_collection_for_select(Project.find_all_by_account_id(current_user.account_id), "id", "name", @project_id), {:include_blank => true, :class => 'select'}%>
+  </div>
+
+  	<div class="group navform wat-cf">
+	  <button class="button" type="submit">
+		<%= image_tag("web-app-theme/icons/filter.png", :alt => "Buscar") %> Buscar
+	</div>
+<% end %>

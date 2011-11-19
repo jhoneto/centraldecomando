@@ -54,7 +54,7 @@ class SprintsController < ApplicationController
 
     respond_to do |format|
       if @sprint.save
-        format.html { redirect_to(sprint_path, :notice => 'Sprint was successfully created.') }
+        format.html { redirect_to(sprints_path, :notice => 'Sprint was successfully created.') }
         format.xml  { render :xml => @sprint, :status => :created, :location => @sprint }
       else
         format.html { render :action => "new" }
@@ -89,5 +89,27 @@ class SprintsController < ApplicationController
       format.html { redirect_to(sprints_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def planning
+    puts "planejamento"
+    @sprint = Sprint.find(params[:id])
+  end
+  
+  def get_stories
+    sprint = Sprint.find(params[:id])
+    @columns = ['id', 'as_a', 'i_want_to']
+    @stories = sprint.stories.paginate(:page => params[:page], :per_page => params[:rows])
+    if request.xhr?
+      render :json => json_for_jqgrid(@stories, @columns)
+    end
+        
+  end
+  
+  def add_story
+    ss = StorySprint.new
+    ss.story_id = params[:story]
+    ss.sprint_id = params[:sprint]
+    ss.save
   end
 end

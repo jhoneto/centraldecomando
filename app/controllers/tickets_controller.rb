@@ -4,12 +4,20 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.xml
   def index
-    @tickets = Ticket.paginate(:page => params[:page])
+    @columns = ['id', 'title']
     
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @tickets }
+    @filter = Filter.find(2)
+    @filter.where = params
+    @filter.save
+    @tickets = Ticket.search(params, current_user.account_id).paginate(:page => params[:page])
+    
+    if request.xhr?
+      render :json => json_for_jqgrid(@tickets, @columns)
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @tickets }
+      end
     end
   end
 
@@ -19,6 +27,8 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     
     @status = TicketStatus.get_next_status(@ticket, current_user.account_id)
+    
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb

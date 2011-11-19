@@ -1,0 +1,78 @@
+
+
+	<script>
+		$(function() {
+			// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+			$( "#dialog:ui-dialog" ).dialog( "destroy" );
+
+
+			$( "#search_form_stories" ).dialog({
+				autoOpen: false,
+				height: 450,
+				width: 800,
+				modal: true,
+				buttons: {
+					"Selecionar": function() {
+						var row = jQuery("#stories_list").jqGrid('getGridParam', 'selrow');
+						if(row){
+							var data = jQuery("#stories_list").jqGrid('getRowData', row);
+							//alert('/sprints_add_story?story=' + data.id +'&sprint=' + $("#sprint_id").val());
+							$("#story_id").val(data.id);
+				            $("#story_i_want_to").val(data.i_want_to);
+				            $( this ).dialog( "close" );
+						} else {
+							alert("Selecione um registro");
+						}
+
+						//$.ajax({
+	                    //    url: '/sprints_add_story?story=' + data.id +'&sprint=' + $("#sprint_id").val(),
+	                    //    type: 'post',
+	                    //    beforeSend: function(xhr){
+	                            // do something unusual
+	                    //    }
+
+	                    //});
+						},
+					Cancelar: function() {
+						$( this ).dialog( "close" );
+					}
+				},
+				close: function() {
+					allFields.val( "" ).removeClass( "ui-state-error" );
+				}
+			});
+
+			$( "#create-user" )
+				.button()
+				.click(function() {
+					$( "#search_form_stories" ).dialog( "open" );
+				});
+		});
+
+		function gridReload(){
+			jQuery("#stories_list").jqGrid('setGridParam',{url:"/stories?with_i_want_to=nova",page:1}).trigger("reloadGrid");
+		}
+
+		</script>
+<div id="fields">
+	<%= text_field_tag :story_id, '', :size => 5 %>
+	<button id="create-user"><%= image_tag("web-app-theme/icons/filter.png", :alt => "Buscar") %> </button>
+	<%= text_field_tag :story_i_want_to, '', :size => 50%>
+</div>
+	
+<div id="search_form_stories" title="Consulta stories">
+	<div>
+	<label>Projetos</label>
+	<%= select_tag :with_project, options_from_collection_for_select(Project.find_all_by_account_id(current_user.account_id), "id", "name", @project_id), {:include_blank => true, :class => 'select'}%>
+	<label>Descrição</label>
+	<%= text_field_tag :with_i_want_to%>
+	</div>
+	<button onclick="gridReload()" id="submitButton" style="margin-left:30px;">Buscar</button>
+	<form>
+	<fieldset>
+		<table id="stories_list"></table>
+		<div id="stories_pager"></div>
+		<%= raw(search_stories_jqgrid)%>
+	</fieldset>
+	</form>
+</div>

@@ -1,0 +1,36 @@
+<div class="block">
+  	<div class="secondary-navigation">
+	   <ul class="wat-cf">
+	     <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", filters_path  %></li>
+	     <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_filter_path %></li>
+	   </ul>
+	</div>
+	<div class="content"> 
+		<h2 class="title"><%= t("web-app-theme.list_of", :default => "List of")  %> <%= t("activerecord.models.filters")%></h2>
+		<div class="inner">
+			
+			<table class="table">
+				<tr>
+				  <% @columns.each do |col| %>
+				    <th><%= col %></th>
+				  <% end %>	             
+		          
+		        </tr>
+		        <%  @result.each do |f| -%>
+		        <tr class="<%= cycle("odd", "even") %>">
+		          <% @columns.each do |col| %>
+				    <td><%= f.client.name unless f.client.nil? %></td>
+				  <% end %>
+		        </tr>          
+		        <% end -%>
+			</table>
+			<div class="actions-bar wat-cf">
+		        <div class="actions">
+		        </div>
+
+		        <%= will_paginate @result  %>
+
+		      </div>
+		</div>
+	</div>
+</div>

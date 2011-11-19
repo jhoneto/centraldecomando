@@ -1,0 +1,44 @@
+<div class="block">
+  	<div class="secondary-navigation">
+	   <ul class="wat-cf">
+	     <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", filters_path  %></li>
+	     <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_filter_path %></li>
+	   </ul>
+	</div>
+	<div class="content"> 
+		<h2 class="title"><%= t("web-app-theme.list_of", :default => "List of")  %> <%= t("activerecord.models.filters")%></h2>
+		<div class="inner">
+			
+			<table class="table">
+				<tr>             
+		          <th class="first">ID</th>
+		                    <th>
+		            <%= t("activerecord.attributes.filter.name", :default => t("activerecord.labels.title", :default => "Nome")) %>
+		          </th>
+		          <th>WHERE</th>
+		          <th class="last">&nbsp;</th>
+		        </tr>
+		        <%  @filters.each do |f| -%>
+		        <tr class="<%= cycle("odd", "even") %>">
+		          <td><%= f.id %></td>
+		          <td><%= link_to f.name, edit_filter_path(f) %></td>
+		          <td><%= f.where%></td>         
+		          <td class="last">
+			        <%= link_to "Executar", execute_filter_path(f) %> | 
+		            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_filter_path(f) %> |
+		            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", filter_path(f), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+		          </td>
+		        </tr>          
+		        <% end -%>
+			</table>
+			<div class="actions-bar wat-cf">
+		        <div class="actions">
+		        </div>
+
+		        <%= will_paginate @filters  %>
+
+		      </div>
+		</div>
+	</div>
+</div>
+

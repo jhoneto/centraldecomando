@@ -1,48 +1,51 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", tickets_path  %></li>
-      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_ticket_path %></li>
-    </ul>
-  </div>          
-  <div class="content">          
-    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Tickets</h2>
-    <div class="inner">
-      <table class="table">
-        <tr>             
-          <th class="first">ID</th>
-                    <th>
-            <%= t("activerecord.attributes.ticket.title", :default => t("activerecord.labels.title", :default => "Title")) %>
-          </th>
-                    <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
-          <th class="last">&nbsp;</th>
-        </tr>
-        <% @tickets.each do |ticket| -%>
-        <tr class="<%= cycle("odd", "even") %>">
-          <td>
-            <%= ticket.id %>
-          </td>
-                    <td>
-            <%= link_to ticket.title, ticket_path(ticket) %>
-          </td>
-                    <td>
-            <%= ticket.created_at %>
-          </td>
-          <td class="last">
-            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", ticket_path(ticket) %> |
-            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", ticket_path(ticket), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
-          </td>
-        </tr>          
-        <% end -%>
-      </table>
-      <div class="actions-bar wat-cf">
-        <div class="actions">
-        </div>
-        
-        <%= will_paginate @tickets  %>
-        
-      </div>
-    </div>
-  </div>
+  	<div class="secondary-navigation">
+	   <ul class="wat-cf">
+	     <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", tickets_path  %></li>
+	     <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_ticket_path %></li>
+	   </ul>
+	</div>
+	<div class="content"> 
+		<h2 class="title"><%= t("web-app-theme.list_of", :default => "List ofr")  %> <%= t("activerecord.models.tickets")%></h2>
+		<div class="inner">
+			<%= render 'search_ticket'%>
+			<table class="table">
+				<tr>             
+		          <th class="first">ID</th>
+		                    <th>
+		            <%= t("activerecord.attributes.ticket.title", :default => t("activerecord.labels.title", :default => "Title")) %>
+		          </th>
+		                    <th><%= t("activerecord.attributes.ticket.status", :default => "Status")  %></th>
+		          <th class="last">&nbsp;</th>
+		        </tr>
+		        <%  @tickets.each do |ticket| -%>
+		        <tr class="<%= cycle("odd", "even") %>">
+		          <td>
+		            <%= ticket.id %>
+		          </td>
+		                    <td>
+		            <%= link_to ticket.title, ticket_path(ticket) %>
+		          </td>
+		                    <td>
+		            <%= ticket.ticket_status.name %>
+		          </td>
+		          <td class="last">
+		            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", ticket_path(ticket) %> |
+		            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", ticket_path(ticket), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+		          </td>
+		        </tr>          
+		        <% end -%>
+			</table>
+			<div class="actions-bar wat-cf">
+		        <div class="actions">
+		        </div>
+
+		        <%= will_paginate @projects  %>
+
+		      </div>
+		</div>
+	</div>
 </div>
+
+ 
 

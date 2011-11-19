@@ -1,0 +1,55 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", stories_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_story_path %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Stories</h2>
+    <div class="inner">
+	  <%= render 'search_stories'%>
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+                    <th>
+            <%= t("activerecord.attributes.story.as_a", :default => t("activerecord.labels.as_a", :default => "As_a")) %>
+          </th>
+                    <th><%=t("activerecord.attributes.story.i_want_to", :default => t("activerecord.labels.so_that_i", :default => "i_want_to")) %></th>
+                    <th><%=t("activerecord.attributes.story.so_that_i", :default => t("activerecord.labels.so_that_i", :default => "so_that_i")) %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @stories.each do |story| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td>
+            <%= link_to story.id, story_path(story) %>
+          </td>
+                    <td>
+            <%=  story.as_a 	%>
+          </td>
+                    <td>
+            <%=  story.i_want_to %>
+          </td>
+			<td>
+  <%=  story.so_that_i%>
+</td>
+          <td class="last">
+            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", story_path(story) %> |
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_story_path(story) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", story_path(story), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+        <%= will_paginate @stories  %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

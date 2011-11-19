@@ -15,6 +15,23 @@ class Ticket < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :project
   
+  scope :with_title_or_description, lambda {|parameter| where("upper(title) like upper(?) or upper(description) like upper(?)", "%#{parameter}%", "%#{parameter}%")}
+  scope :with_project, lambda{|parameter| where("project_id = ?", parameter)}
+  scope :with_status, lambda{|parameter| where("ticket_status_id = ?", parameter)}
+  scope :with_type, lambda{|parameter| where("ticket_type_id = ?", parameter)}
+  scope :with_client, lambda{|parameter| where("client_id = ?", parameter)}
+  
+  def self.search(parameters, account)
+    ticket_query = self.scoped
+    ticket_query =  ticket_query.where('account_id = ?', account)
+    parameters.each do |parameter, value|
+      if not value.empty? and ticket_query.respond_to? parameter
+        ticket_query = ticket_query.send(parameter, value)
+      end
+    end
+    ticket_query
+  end
+  
   def set_date_of_registration
     self.date_of_registration = Time.now
   end

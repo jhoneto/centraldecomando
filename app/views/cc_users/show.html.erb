@@ -1,0 +1,64 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", cc_users_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_cc_user_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", cc_user_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.cc_user.email", :default => t("activerecord.labels.email", :default => "Email")) %>:</b>
+          <%= @user.email %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.cc_user.username", :default => t("activerecord.labels.username", :default => "Username")) %>:</b>
+          <%= @user.username %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.cc_user.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
+          <%= @user.name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.cc_user.encrypted_password", :default => t("activerecord.labels.encrypted_password", :default => "Encrypted password")) %>:</b>
+          <%= @user.encrypted_password %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.cc_user.salt", :default => t("activerecord.labels.salt", :default => "Salt")) %>:</b>
+          <%= @user.salt %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.cc_user.confirmation_token", :default => t("activerecord.labels.confirmation_token", :default => "Confirmation token")) %>:</b>
+          <%= @user.confirmation_token %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.cc_user.remember_token", :default => t("activerecord.labels.remember_token", :default => "Remember token")) %>:</b>
+          <%= @user.remember_token %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.cc_user.account_id", :default => t("activerecord.labels.account_id", :default => "Account")) %>:</b>
+          <%= @user.account_id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.cc_user.admin", :default => t("activerecord.labels.admin", :default => "Admin")) %>:</b>
+          <%= @user.admin %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_cc_user_path(@user), :class => "button" %> 
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), cc_user_path(@user), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

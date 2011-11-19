@@ -1,0 +1,50 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", stories_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_story_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", story_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+        <p>
+          <b><%= t("activerecord.attributes.story.project_id", :default => t("activerecord.labels.project_id", :default => "Projetc")) %>:</b>
+          <%= @story.project.name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.story.as_a", :default => t("activerecord.labels.as_a", :default => "As a")) %>:</b>
+          <%= @story.as_a %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.story.i_want_to", :default => t("activerecord.labels.i_want_to", :default => "I want to")) %>:</b>
+          <%= @story.i_want_to %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.story.so_that_i", :default => t("activerecord.labels.so_that_i", :default => "So that i")) %>:</b>
+          <%= @story.so_that_i %>
+        </p>
+
+        
+
+        <p>
+          <b><%= t("activerecord.attributes.story.complexity", :default => t("activerecord.labels.complexity", :default => "Complexity")) %>:</b>
+          <%= @story.complexity %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.story.priority", :default => t("activerecord.labels.priority", :default => "Priority")) %>:</b>
+          <%= @story.priority %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_story_path(@story), :class => "button" %> 
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), story_path(@story), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
