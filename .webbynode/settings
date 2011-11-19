@@ -1,0 +1,3 @@
+rails3_adapter=mysql2
+engine=rails3
+dns_alias='www.centraldecomando.com.br'
