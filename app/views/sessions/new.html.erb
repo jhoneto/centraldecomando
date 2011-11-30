@@ -2,74 +2,65 @@
 <html>
 <head>
 	<title>Central de comando</title>
-	<%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/Djime-Cerulean/style", "web-app-theme/override", :cache => true %>
+	<%= stylesheet_link_tag "bootstrap.css", :cache => true %>
 	<%= javascript_include_tag :defaults, :cache => true %>
 	<%= csrf_meta_tag %>
 </head>
-<body>
-
-	<div id="header">
-		<h1><a href="/">Central de comando</a></h1>
-		<div id="user-navigation">
-			<ul class="wat-cf">
-				<!--
-				<li><a href="#"><%= t("web-app-theme.profile", :default => "Profile") %></a></li>
-				<li><a href="#"><%= t("web-app-theme.settings", :default => "Settings") %></a></li>
-				<li><%= link_to t("web-app-theme.logout", :default => "Logout") , session_path, :method => :delete %></li>
-				-->
-			</ul>
-		</div>
-
-	</div>    
-
-
-	<div id="box">
-
-
-		<div class="block" id="block-login">
-			<h2>Acessar</h2>
-			<div class="content login">
-				<br>
-				<%= form_for :session, :html => {:class => "form login"}, :url => session_path do |form| %>
-				<div class="group wat-cf">
-					<div class="left">
-						<label class="label right">Login</label>
-					</div>
-					<div class="right">
-						<%= form.text_field :username, :type => "username", :value => "-your name-", :class => "text_field"%>
-					</div>
-				</div>
-				<div class="group wat-cf">
-					<div class="left">
-						<label class="label right">Password</label>
-					</div>
-					<div class="right">
-						<%= form.password_field :password, :value => "-password-", :class => "text_field" %>
-					</div>
-				</div>
-				<div class="group navform wat-cf">
-					<div class="right">
-						<button class="button" type="submit">
-							<%= image_tag("web-app-theme/icons/key.png", :alt => "#{t("web-app-theme.login", :default => "Login")}") %> <%= t("web-app-theme.login", :default => "Login") %>
-						</button>
-					</div>
-				</div>
-				<% end %>
-				<%= link_to "Cadastra-se agora", sign_up_path%>
-			</div>
-		</div>
-
-	</div>
+<body> 
 	
-	<div id="space">
-		
-	</div>
+	<div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">Central de comando</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#contact">Contato</a></li>
+          </ul>  
+          <%= form_for :session, :html => {:class => "pull-right"}, :url => session_path do |form| %>       
+            <%= form.text_field :username, :type => "username",  :class => "input-small"%> 
+            <%= form.password_field :password, 	 :class => "input-small" %>
+            <button class="btn" type="submit">Sign in</button>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-	<div id="footer">
-		<div class="block">
-			<p>Todos os direitos reservado &copy; <%= Time.now.year %> Web App.</p>
-		</div>      
-	</div>
+	
+     	<div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Central de Comando</h1>
+        <p>Controle seus projetos de maneira simples. Cadastre atividades, crie sprints e veja a evolução do projeto.</p>
+        <p><a class="btn primary large">Leia mais &raquo;</a></p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span-one-third">
+          <h2>Acompanhe</h2>
+          <p>Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+          <p><a class="btn" href="#">Detalhes &raquo;</a></p>
+        </div>
+        <div class="span-one-third">
+          <h2>Scrum</h2>
+           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">Detalhes &raquo;</a></p>
+       </div>
+        <div class="span-one-third">
+          <h2>Indicadores</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn" href="#">Detalhes &raquo;</a></p>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; Central de comando 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+	
 
 
 </body>

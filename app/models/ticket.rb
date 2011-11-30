@@ -21,9 +21,17 @@ class Ticket < ActiveRecord::Base
   scope :with_type, lambda{|parameter| where("ticket_type_id = ?", parameter)}
   scope :with_client, lambda{|parameter| where("client_id = ?", parameter)}
   
+  # Scope para filtro dinamico
+  scope :dinamic_filter, lambda{ 
+    {
+      :select => "tickets.*, clients.name client_name, projects.name project_name, ticket_types.name ticket_type_name, ticket_status.name ticket_status_name",
+      :joins => ("left outer join clients on clients.id = client_id inner join projects on projects.id = project_id inner join ticket_types on ticket_types.id = ticket_type_id inner join ticket_status on ticket_status.id = ticket_status_id")
+    }
+  }
+  
   def self.search(parameters, account)
     ticket_query = self.scoped
-    ticket_query =  ticket_query.where('account_id = ?', account)
+    ticket_query =  ticket_query.where('tickets.account_id = ?', account)
     parameters.each do |parameter, value|
       if not value.empty? and ticket_query.respond_to? parameter
         ticket_query = ticket_query.send(parameter, value)

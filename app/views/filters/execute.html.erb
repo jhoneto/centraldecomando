@@ -19,7 +19,7 @@
 		        <%  @result.each do |f| -%>
 		        <tr class="<%= cycle("odd", "even") %>">
 		          <% @columns.each do |col| %>
-				    <td><%= f.client.name unless f.client.nil? %></td>
+				    <td><%= f[col] %></td>
 				  <% end %>
 		        </tr>          
 		        <% end -%>

@@ -76,13 +76,19 @@ class FiltersController < ApplicationController
     @filter = Filter.find(params[:id])
     
     where = Hash.new
+    columns = []
     params.each do |param, value|
       if  (param.include?('with_')) && (!value.nil?)
         where[param] = value
       end  
+      
+      if (param.include?('column_')) && (!value.nil?)
+        columns << "#{value}"
+      end
     end
 
-    @filter.where = where
+    @filter.where = where 
+    @filter.columns = "'#{columns.join(",")}'"
 
     respond_to do |format|
       if @filter.update_attributes(params[:filter])
@@ -98,7 +104,7 @@ class FiltersController < ApplicationController
   
   def execute
     @filter = Filter.find(params[:id])
-    @result = @filter.model.constantize.search(@filter.where, current_user.account_id).paginate(:page => params[:page])
+    @result = @filter.model.constantize.dinamic_filter.search(@filter.where, current_user.account_id).paginate(:page => params[:page]) #search(@filter.where, current_user.account_id).paginate(:page => params[:page])
     @columns = @filter.columns[1..-2].split(',')
     
     @resultado = json_for_jqgrid(@result, @columns)
