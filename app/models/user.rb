@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   include Clearance::User
   
   before_save :create_account
+  after_create :send_welcome_email
   
   def email_optional?
-    true
+    false
   end
 
   def self.authenticate(username, password) 
@@ -22,6 +23,9 @@ class User < ActiveRecord::Base
       self.admin = true
     end
   end
-  
+       
+  def send_welcome_email 
+    CentralMailer.welcome(self).deliver
+  end
   
 end

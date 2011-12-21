@@ -1,0 +1,29 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", user_profiles_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_user_profile_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", user_profile_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.user_profile.user_id", :default => t("activerecord.labels.user_id", :default => "User")) %>:</b>
+          <%= @user_profile.user_id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.user_profile.number_columns_portlet", :default => t("activerecord.labels.number_columns_portlet", :default => "Number columns portlet")) %>:</b>
+          <%= @user_profile.number_columns_portlet %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_user_profile_path(@user_profile), :class => "button" %> 
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), user_profile_path(@user_profile), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

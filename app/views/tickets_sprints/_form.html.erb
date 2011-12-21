@@ -1,0 +1,48 @@
+<fieldset id="" style="padding: 5px">
+
+
+	<%= form_tag( save_ticket_sprint_path(@sprint.id), :method => :post, :remote => true, :class => :form ) do %>   
+	  <%= hidden_field_tag :sprint_id,  @sprint.id, :class => 'text_field' %>  
+	  <%= hidden_field_tag :id,  @ticket_sprint.id, :class => 'text_field' %>         
+	  <div class="columns wat-cf">
+		<div class="column left">
+			<div class="group">
+			    <%= label_tag :ticket_id, "Item backlog", :class => :label %>   
+			    <%= raw(generic_search_window_tag({:name => "ticket_find", 
+						                            :url => "tickets", 
+						                            :search => "/tickets/search_fields", 
+						                            :caption => "Itens de backlog",  
+						                            :columns => [ {:name => 'id', :index => 'id', :width => '50'}, 
+							                                      {:name => 'title', :index => 'title', :width => '500'}], 
+							                        :captions => ['ID', 'Título'], 
+							                        :id => 'id', 
+							                        :description => 'title',
+							                        :field_id => :ticket_id,
+							                        :field_text => :ticket_title, 
+							                        :value_id  => @ticket_sprint.ticket_id,
+							                        :value_text => @ticket_sprint.ticket_title,
+							                        :text_readonly => true}))%>
+			    <span class="description">Click duas vezes para selecionar um item de backlog</span>
+			  </div>
+		</div>
+		<div class="column right"> 
+			<div class="group">
+			    <%= label_tag :estimate, "Estimativa", :class => :label %>
+			    <%= text_field_tag :estimate, @ticket_sprint.estimate, :class => 'text_field' %> 
+			  </div>
+		</div>
+	  </div>
+	   
+      
+	                          
+
+	  <div class="group navform wat-cf">
+		  <button class="button" type="submit">
+		    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+		  </button>
+		  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+			<%= link_to t("web-app-theme.cancel", :default => "Cancel"), sprints_path, :class => "text_button_padding link_button" %>
+	  </div>
+	<% end %>                    
+
+</fieldset> 

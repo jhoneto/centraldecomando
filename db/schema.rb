@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116222348) do
+ActiveRecord::Schema.define(:version => 20111219221749) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :null => false
@@ -35,21 +35,35 @@ ActiveRecord::Schema.define(:version => 20111116222348) do
   end
 
   create_table "filters", :force => true do |t|
-    t.string   "name",       :limit => 50,   :null => false
-    t.string   "model",      :limit => 100,  :null => false
-    t.integer  "user_id",                    :null => false
-    t.string   "where",      :limit => 500,  :null => false
+    t.string   "name",       :limit => 50,                      :null => false
+    t.string   "model",      :limit => 100,                     :null => false
+    t.integer  "user_id",                                       :null => false
+    t.string   "where",      :limit => 500,                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
     t.string   "columns",    :limit => 1000
+    t.boolean  "show",                       :default => false
+  end
+
+  create_table "project_members", :force => true do |t|
+    t.integer  "project_id",                               :null => false
+    t.integer  "user_id",                                  :null => false
+    t.integer  "role",                                     :null => false
+    t.decimal  "week_hours", :precision => 5, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "name",       :null => false
-    t.integer  "account_id", :null => false
+    t.string   "name",             :null => false
+    t.integer  "account_id",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "qty_sprint_days"
+    t.integer  "start_sprint"
+    t.boolean  "include_saturday"
+    t.boolean  "include_sunday"
   end
 
   create_table "sprints", :force => true do |t|
@@ -121,9 +135,17 @@ ActiveRecord::Schema.define(:version => 20111116222348) do
   end
 
   create_table "tickets_sprints", :force => true do |t|
-    t.integer  "ticket_id",                     :null => false
-    t.integer  "sprint_id",                     :null => false
-    t.boolean  "closed",     :default => false, :null => false
+    t.integer  "ticket_id",                                                   :null => false
+    t.integer  "sprint_id",                                                   :null => false
+    t.boolean  "closed",                                   :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "estimate",   :precision => 5, :scale => 2
+  end
+
+  create_table "user_profiles", :force => true do |t|
+    t.integer  "user_id",                               :null => false
+    t.integer  "number_columns_portlet", :default => 1, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,39 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", project_project_members_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_project_project_member_path(@project) %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title"><%= t("activerecord.models.project", :default => "Project")  %>: <%= @project.name%></h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID usuário</th>
+          <th>Membro</th>
+          <th>Função</th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @project_members.each do |project_member| -%>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td><%= project_member.user_id %></td>
+          <td><%= link_to project_member.user.name,  edit_project_project_member_path(@project, project_member) %></td>
+          <td><%= Role::ROLE[project_member.role] %></td>
+          <td class="last">                                                                                
+            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_project_project_member_path(@project, project_member) %> |
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", project_project_member_path(@project, project_member), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

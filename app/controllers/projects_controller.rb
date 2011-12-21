@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  layout "default"
+  layout "bootstrap_full_content"
   
   # GET /projects
   # GET /projects.xml
@@ -79,7 +79,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to(projects_path, :notice => 'Project was successfully created.') }
         format.xml  { render :xml => @project, :status => :created, :location => @project }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :error => 'Erro' }
         format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
       end
     end

@@ -12,7 +12,8 @@ gem "jquery-rails", "~> 1.0.12"
 gem "formtastic", "~> 1.2.4"
 gem "cancan", "~> 1.6.5"
 gem "jqgrid_for_rails", "~> 1.0.1"
-gem "will_paginate", "~> 3.0.0"
+gem "will_paginate", "~> 3.0.0"     
+gem 'lazy_high_charts'
 group :development, :test do
   gem 'web-app-theme', '>= 0.7.0'
 end

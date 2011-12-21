@@ -1,0 +1,30 @@
+      	<table class="table">
+	        <tr>             
+	          <th class="first">ID Ticket</th>
+	          <th>Título</th>
+	          <th>Status</th>
+	          <th>Estimativa</th>
+	          <th>Responsável</th>
+	          <th class="last">&nbsp;</th>
+	        </tr>
+	        <% for ts in @tickets_sprints -%>
+	        <tr class="<%= cycle("odd", "even") %>">
+	          <td><%= ts.ticket_id %></td>
+	          <td><%= ts.ticket.title %></td>
+	          <td><%= ts.ticket.ticket_status.name%></td> 
+	          <td><%= ts.estimate%></td>
+		      <td><%= ts.ticket.user_owner.name%></td>                    
+	          <td class="last">
+                <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_sprint_ticket_sprint_path(@sprint, ts), :remote => true %> |
+                <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", sprint_ticket_sprint_path(@sprint, ts), :remote => true, :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %> 
+	          </td>
+	        </tr>          
+	        <% end -%>
+	      </table>
+	      <div class="actions-bar wat-cf">
+	        <div class="actions">
+	        </div>
+
+	        <%= will_paginate @tickets_sprints  %>
+
+	      </div>

@@ -36,8 +36,8 @@ en:
           clients: "Clientes"
           user: "Usuário"
           users: "Usuários"
-          ticket: "Tarefa"
-          tickets: "Tarefas"
+          ticket: "Backlog"
+          tickets: "Itens de Backlog"
           filter: "Filtro"
           filters: "Filtros"
       attributes:

@@ -1,1 +1,21 @@
-Colocar algo aqui
+
+
+
+<div class="block">          
+	<div class="content">      
+		<div class="inner">           
+			  
+			<% @filters = Filter.where('user_id = ? and show = ?', current_user.id, true) %>
+			<table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">                 
+				<% @filters.each do |f| %>       
+				<tr>                                   
+				  <td><%= render :partial => '/filters/portlet', :locals => {:filter_id => f.id}%></td>   
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>                               
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>          
+

@@ -4,15 +4,11 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.xml
   def index
-    @columns = ['id', 'title']
-    
-    @filter = Filter.find(2)
-    @filter.where = params
-    @filter.save
     @tickets = Ticket.search(params, current_user.account_id).paginate(:page => params[:page])
     
-    if request.xhr?
-      render :json => json_for_jqgrid(@tickets, @columns)
+    if request.xhr?      
+      columns = ['id', 'title'] 
+      render :json => json_for_jqgrid(@tickets, columns)
     else
       respond_to do |format|
         format.html # index.html.erb

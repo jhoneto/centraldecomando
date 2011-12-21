@@ -1,0 +1,27 @@
+<div class="block">  
+	<h3>Dados do sprint</h3> 
+	<div class="content">
+		<p><b>Sprint:</b>&nbsp;&nbsp;<%= @sprint.sequence%></p>    
+		<p><b>Início:</b>&nbsp;&nbsp;<%= @sprint.date_of_beginning%></p>        
+		<p><b>Fim:</b>&nbsp;&nbsp;<%= @sprint.date_of_end%></p>
+	</div>
+</div>                     
+
+<div class="block">
+	<h3>Equipe</h3>
+	<div class="content" > 
+		<table>
+			<tr>             
+	          <th><b>Função</b></th>
+	          <th><b>Membro</b></th>         
+	        </tr>
+	        <% @team.each do |project_member| -%>
+	        <tr class="<%= cycle("odd", "even") %>">   
+	          <td  width="20%"><%= Role::ROLE[project_member.role]%></td>
+	          <td  width="63%"><%= project_member.user.name %></td>
+
+	        </tr>          
+	        <% end -%>
+	   </table>            
+	</div>
+</div>

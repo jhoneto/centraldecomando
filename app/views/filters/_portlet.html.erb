@@ -1,0 +1,27 @@
+ 
+<% @filter = Filter.find(filter_id)%>
+<% @result = @filter.model.constantize.dinamic_filter.search(@filter.where, current_user.account_id).paginate(:page => params[:page]) %> 
+<% @columns = @filter.columns[1..-2].split(',') %>
+<h2 class="title"><%= @filter.name %></h2>
+<table class="table">
+	<tr>                      
+	  <% @first = true %>
+	  <% @columns.each do |col| %>    
+	    <% if @first == true %>
+	      <%@first = false %> 
+	      <th class="first"><%= col %></th>
+	    <% else %>
+	      <th><%= col %></th>
+	    <% end %>
+	  <% end %>	             
+      
+    </tr>
+    <%  @result.each do |f| -%>
+    <tr class="<%= cycle("odd", "even") %>">
+      <% @columns.each do |col| %>
+	    <td><%= f[col] %></td>
+	  <% end %>
+    </tr>          
+    <% end -%>
+</table>
+<a>Ver todos</a>
