@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  layout "default"
+  layout "bootstrap_side_bar"
   before_filter :authorize
   # GET /tickets
   # GET /tickets.xml
@@ -38,7 +38,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html {render :new , :layout => 'bootstrap_full_content'}# new.html.erb
       format.xml  { render :xml => @ticket }
     end
   end

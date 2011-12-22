@@ -1,42 +1,29 @@
-<div class="block">
-  <h3>Ticket: <%= @ticket.id%> | Status: <%= @ticket.ticket_status.name %></h3>
-  <div class="content">
-   		<p>
-        <b><%= t("activerecord.attributes.ticket.project_id", :default => t("activerecord.labels.project_id", :default => "Project"))%>:</b>
-        <%= @ticket.project.name %>
-        </p>
-        <p>
-          <b><%= t("activerecord.attributes.ticket.client_id", :default => t("activerecord.labels.client_id", :default => "Client")) %>:</b>
-          <%= @ticket.client.name unless @ticket.client.nil? %>
-        </p>
+  <h4>ID: <%= @ticket.id%></h4>   
+  <dl> 
+	<dt>Status:</dt>
+	<dd><%= @ticket.ticket_status.name %></dd>  
+	<dt><%= t("activerecord.attributes.ticket.project_id", :default => "Project")%>:</dt>
+	<dd><%= @ticket.project.name %> </dd>   
+	<dt><%= t("activerecord.attributes.ticket.client_id", :default => "Client") %>:</dt>
+	<dd><%= @ticket.client.name unless @ticket.client.nil? %></dd>   
+	<dt><%= t("activerecord.attributes.ticket.date_of_registration", :default => "Date of registration") %>:</dt>
+	<dd><%= @ticket.date_of_registration%></dd>
+	<dt><%= t("activerecord.attributes.ticket.user_registration_id", :default => "User registration") %>:</dt>
+	<dd><%= @ticket.user_registration.name %></dd>
+	<dt><%= t("activerecord.attributes.ticket.user_owner_id",  :default => "User owner") %>:</dt>
+	<dd><%= @ticket.user_owner.name %></dd>
+  </dl>
 
-        <p>
-          <b><%= t("activerecord.attributes.ticket.date_of_registration", :default => t("activerecord.labels.date_of_registration", :default => "Date of registration")) %>:</b>
-          <%= @ticket.date_of_registration%>
-        </p>
-        <p>
-        <b><%= t("activerecord.attributes.ticket.user_registration_id", :default => t("activerecord.labels.user_registration_id", :default => "User registration")) %>:</b>
-          <%= @ticket.user_registration.name %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.ticket.user_owner_id", :default => t("activerecord.labels.user_owner_id", :default => "User owner")) %>:</b>
-          <%= @ticket.user_owner.name %>
-        </p>
-  </div>
-</div>
-<div class="block">
-  <h3>Alterar status para</h3>
+  <h5>Alterar status para</h5>
   <ul class="navigation">
 	<% @status.each do |s|%>
 			<li><%= link_to s.name, :action => "change_status", :id => @ticket, :status => s.id%></li>
 			<% end %>
   </ul>
-</div>
 
-<div class="block">
-  <h3>Outras ações</h3>
+
+
+  <h5>Outras ações</h5>
   <ul class="navigation">
 	<li><%= link_to t("web-app-theme.edit", :default=> "Edit"), edit_ticket_path(@ticket)%></li> 
   </ul>
-</div>

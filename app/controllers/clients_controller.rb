@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  layout "default"
+  layout "bootstrap_full_content"
   # GET /clients
   # GET /clients.xml
   def index

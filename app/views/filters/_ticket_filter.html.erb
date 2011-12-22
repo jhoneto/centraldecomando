@@ -1,32 +1,36 @@
-<fieldset id="" class="fieldset_group">
-	<div class="group">
-	  <%= label_tag :project, "Projeto", :class => :label %>
-      <%= select_tag :with_project, options_from_collection_for_select(Project.find_all_by_account_id(current_user.account_id), "id", "name", (f[:with_project] unless f.nil?)), {:include_blank => true}%>
-	</div>
-	<div class="group">
-	  <%= label_tag :client, "Cliente", :class => :label %>
-	  <%= select_tag :with_client, options_from_collection_for_select(Client.find_all_by_account_id(current_user.account_id), "id", "name", (f[:with_client] unless f.nil?)), {:include_blank => true}%>
-	</div>
-	<div class="group">
-	  <%= label_tag :type, "Tipo", :class => :label %>
-	  <%= select_tag :with_type, options_from_collection_for_select(TicketType.all, "id", "name", (f["with_type"] unless f.nil?)), {:include_blank => true}%>
-    </div>
-	<div class="group">
-	  <%= label_tag :status, "Status", :class => :label %>
-	  <%= select_tag :with_status, options_from_collection_for_select(TicketStatus.find_all_by_account_id(current_user.account_id),         "id", "name", (f[:with_status] unless f.nil?)), {:include_blank => true}%>
-	</div>
-	
-</fieldset>
+<h5>Filtro</h5>
+<div class="clearfix">
+  <label for="xlInput">Projeto</label>
+  <div class="input">
+    <%= select_tag :with_project, options_from_collection_for_select(Project.find_all_by_account_id(current_user.account_id), "id", "name", (f[:with_project] unless f.nil?)), {:include_blank => true, :class => "xlarge"}%>
+  </div>
+</div>   
+<div class="clearfix">
+  <label for="xlInput">Cliente</label>
+  <div class="input">
+    <%= select_tag :with_client, options_from_collection_for_select(Client.find_all_by_account_id(current_user.account_id), "id", "name", (f[:with_client] unless f.nil?)), {:include_blank => true, :class => "xlarge"}%>
+  </div>
+</div>
+<div class="clearfix">
+  <label for="xlInput">Tipo</label>
+  <div class="input">
+    <%= select_tag :with_type, options_from_collection_for_select(TicketType.all, "id", "name", (f["with_type"] unless f.nil?)), {:include_blank => true, :class => "xlarge"}%>
+  </div>
+</div>
+<div class="clearfix">
+  <label for="xlInput">Status</label>
+  <div class="input">
+    <%= select_tag :with_status, options_from_collection_for_select(TicketStatus.find_all_by_account_id(current_user.account_id),         "id", "name", (f[:with_status] unless f.nil?)), {:include_blank => true, :class => "xlarge"}%>
+  </div>
+</div> 
 
-<fieldset id="_colunas_" class="">
-	<legend> Colunas </legend>
-	<%= check_box_tag :column_id, "id" %> Código (ID)<br>
-	<%= check_box_tag :column_title, "title"%> Título <br>
-	<%= check_box_tag :column_client_name, "client_name"%> Cliente (Nome)<br>
-	<%= check_box_tag :column_project_name, "project_name"%> Projeto (Nome)<br>
-	<%= check_box_tag :column_ticket_status_name, "ticket_status_name"%> Status<br>
-	<%= check_box_tag :column_ticket_type_name, "ticket_type_name"%> Tipo<br>
-	
-</fieldset>
+<h5>Colunas</h5>                
+<%= check_box_tag :column_id, "id" %> Código (ID)<br>
+<%= check_box_tag :column_title, "title"%> Título <br>
+<%= check_box_tag :column_client_name, "client_name"%> Cliente (Nome)<br>
+<%= check_box_tag :column_project_name, "project_name"%> Projeto (Nome)<br>
+<%= check_box_tag :column_ticket_status_name, "ticket_status_name"%> Status<br>
+<%= check_box_tag :column_ticket_type_name, "ticket_type_name"%> Tipo<br>
+
 
     

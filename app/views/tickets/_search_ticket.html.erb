@@ -1,15 +1,10 @@
-<%= form_tag tickets_path, :method => :get,  :class => :form do %>
+<%= form_tag tickets_path, :method => :get,  :class => "form-stacked"  do %>
 
 
 	  <%= render :partial => 'search_fields' %>
 
+<div class="group navform wat-cf">    
+  <input type="submit" class="btn primary" value="Buscar">  
 
-
-<div class="group navform wat-cf">
-  <button class="button" type="submit">
-	<%= image_tag("web-app-theme/icons/filter.png", :alt => "Buscar") %> Buscar
-  </button>
-  
-  <%= link_to "Busca avançada", filters_path, :class => "text_button_padding link_button" %>
 </div>
 <% end %>

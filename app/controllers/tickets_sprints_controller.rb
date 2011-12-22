@@ -1,5 +1,5 @@
 class TicketsSprintsController < ApplicationController  
-  layout "default"
+  layout "bootstrap_full_content"
   
   def index         
     @sprint = Sprint.find(params[:sprint_id])

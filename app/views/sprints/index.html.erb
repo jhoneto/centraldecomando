@@ -1,67 +1,57 @@
-<div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", sprints_path  %></li>
-      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_sprint_path%></li>
-    </ul>
-  </div>          
-  <div class="content">          
-    <h2 class="title"><%= t("activerecord.attributes.sprint.project", :default => "All")  %>: <%= @project.name%> </h2>
-    <div class="inner">
-      <table class="table">
-        <tr>             
-          <th class="first">ID</th>
-                    <th>
-            <%= t("activerecord.attributes.sprint.project", :default => t("activerecord.labels.project", :default => "Project_id")) %>
-          </th>
-                    <th><%= t("activerecord.attributes.sprint.sequence", :default => "")  %></th>
-          <th><%= t("activerecord.attributes.sprint.date_of_beginning", :default => "")  %></th>
-          <th><%= t("activerecord.attributes.sprint.date_of_end", :default => "")  %></th>
-          <th><%= t("activerecord.attributes.sprint.status", :default => "")  %></th>
-          <th class="last">&nbsp;</th>
-        </tr>
-        <% @sprints.each do |sprint| -%>
-        <tr class="<%= cycle("odd", "even") %>">
-          <td>
-            <%= sprint.id %>
-          </td>
-                    <td>
-            <%= link_to sprint.project.name, sprint_path(sprint) %>
-          </td>
-          <td>
-	        <%= sprint.sequence%>
-	      </td>
-	      <td>
-	        <%= sprint.date_of_beginning%>
-	      </td>
-	      <td>
-	        <%= sprint.date_of_end%>
-	      </td>
-	      <td>
-	        <% if sprint.status == 1 %>
-	          Aberto
-	        <% else %>
-	          Encerrado
-	        <% end %>
-	      </td>
-                    
-          <td class="last">
-            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_sprint_path(sprint) %> |
+<ul class="tabs"> 
+	<li class="active"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", sprints_path  %></li>  
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_sprint_path %></li>
+</ul>   
+<h2 class="title"><%= t("bootstrap-rails.all", :default => "All")  %> Sprints
+<table class="bordered-table zebra-striped">
+    <thead>             
+      <th>#</th>   
+      	<th>
+<%= t("activerecord.attributes.sprint.project", :default => t("activerecord.labels.project", :default => "Project_id")) %>
+</th>
+      <th><%= t("activerecord.attributes.sprint.sequence", :default => "")  %></th>
+<th><%= t("activerecord.attributes.sprint.date_of_beginning", :default => "")  %></th>
+<th><%= t("activerecord.attributes.sprint.date_of_end", :default => "")  %></th>
+<th><%= t("activerecord.attributes.sprint.status", :default => "")  %></th>
+
+      <th class="last">&nbsp;</th>
+    </thead>                         
+    <tbody>
+      	<% @sprints.each do |sprint| -%>
+        <tr>
+          	<td>
+	            <%= sprint.id %>
+	          </td>
+	                    <td>
+	            <%= link_to sprint.project.name, sprint_path(sprint) %>
+	          </td>
+	          <td>
+		        <%= sprint.sequence%>
+		      </td>
+		      <td>
+		        <%= sprint.date_of_beginning%>
+		      </td>
+		      <td>
+		        <%= sprint.date_of_end%>
+		      </td>
+		      <td>
+		        <% if sprint.status == 1 %>
+		          Aberto
+		        <% else %>
+		          Encerrado
+		        <% end %>
+		      </td>
+          <td>     
+	        <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_sprint_path(sprint) %> |
             <%= link_to "Planejamento", sprint_tickets_sprints_path(sprint) %> |
-            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", sprint_path(sprint), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %> 
+            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", sprint_path(sprint), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
           </td>
-        </tr>          
+        </tr>
         <% end -%>
-      </table>
-      <div class="actions-bar wat-cf">
-        <div class="actions">
-        </div>
-        
-        <%= will_paginate @sprints  %>
-        
-      </div>
-    </div>
-  </div>
-</div>
+    </tbody>
+</table>
+             
+<%= will_paginate @sprints  %>
+
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

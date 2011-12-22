@@ -1,47 +1,32 @@
-<div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", clients_path  %></li>
-      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_client_path %></li>
-    </ul>
-  </div>          
-  <div class="content">          
-    <h2 class="title"><%= t("web-app-theme.list_of") %> <%= t("activerecord.models.clients")%></h2>
-    <div class="inner">
-      <table class="table">
-        <tr>             
-          <th class="first">ID</th>
-                    <th>
-            <%= t("activerecord.attributes.client.name", :default => t("activerecord.labels.name", :default => "Name")) %>
-          </th>
-                    
-          <th class="last">&nbsp;</th>
-        </tr>
-        <% @clients.each do |client| -%>
-        <tr class="<%= cycle("odd", "even") %>">
+<ul class="tabs"> 
+	<li class="active"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", clients_path  %></li>  
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_client_path %></li>
+</ul>   
+<h2 class="title"><%= t("bootstrap-rails.all", :default => "All")  %> Clients
+<table class="bordered-table zebra-striped">
+    <thead>             
+      <th>#</th>   
+            <th><%= t("activerecord.attributes.client.name", :default => "Name") %></th>
+            <th><%= t("bootstrap-rails.created_at", :default => "Created at")  %></th>
+      <th class="last">&nbsp;</th>
+    </thead>                         
+    <tbody>
+      	<% @clients.each do |client| -%>
+        <tr>
+          <td><%= client.id %></td>
+                    <td><%= link_to client.name, client_path(client) %></td>
+                    <td><%= client.created_at %></td>
           <td>
-            <%= client.id %>
+            <%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", client_path(client) %> |
+            <%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_client_path(client) %> |
+            <%= link_to "#{t("bootstrap-rails.delete", :default => "Delete")}", client_path(client), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
           </td>
-                    <td>
-            <%= link_to client.name, edit_client_path(client) %>
-          </td>
-                    
-          <td class="last">
-            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_client_path(client) %> |
-            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", client_path(client), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
-          </td>
-        </tr>          
+        </tr>
         <% end -%>
-      </table>
-      <div class="actions-bar wat-cf">
-        <div class="actions">
-        </div>
-        
-        <%= will_paginate @clients  %>
-        
-      </div>
-    </div>
-  </div>
-</div>
+    </tbody>
+</table>
+             
+
+
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

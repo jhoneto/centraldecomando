@@ -1,5 +1,4 @@
-<fieldset id="_comentarios_" class="" style="padding: 10px">
-	<legend>&nbsp;Comentários&nbsp;</legend>
+<h2>Comentários</h2>
 	
 	<% Comment.order("created_at desc").where("comment_type = ? and process_id = ?", type, id).each do |c| %>
 		Criado por: <%= c.user.name%> em <%= c.created_at.strftime('%d/%m/%Y %H:%M')%><br>
@@ -10,17 +9,14 @@
 		<br>
 	<% end %>
 	
-	<% form_for f, :remote => true do |f| -%>
+	<% form_for f, comments_path, :remote => true do |f| -%>
 	    <%= f.hidden_field :comment_type, :value => type %>
 	    <%= f.hidden_field :process_id, :value => id %> 
 	    <%= f.text_area :comment, :style => "width:100%; height: 100px;"%>	    
 	
-		<div class="group navform wat-cf">
-		  <button class="button" type="submit">
-		    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.add", :default => "Add")}") %> <%= t("web-app-theme.add", :default => "Add") %>
-		  </button>
-		</div>
+	   
+	    <input type="submit" class="btn success" value="Adicionar">
+	   	
+		
 	<% end -%>
-	
-</fieldset>
 

@@ -1,4 +1,4 @@
-  <script type="text/javascript">
+   <script type="text/javascript">
     tinyMCE.init({
 	        // General options
 			        mode : "textareas",
@@ -30,44 +30,55 @@
 			                staffid : "991234"
 			        }
 	});
-  </script>
+  </script> 
 
-  <div class="group">
-    <%= f.label :ticket_type_id, t("activerecord.attributes.ticket.ticket_type_id", :default => "Ticket type"), :class => :label %>
-    <%= f.select :ticket_type_id, options_from_collection_for_select(TicketType.all, :id, :name) %>
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.ticket.ticket_type_id", :default => "Ticket type") %></label>
+     <div class="input">
+       <%= f.select :ticket_type_id, options_from_collection_for_select(TicketType.all, :id, :name), {}, {:class => "xlarge" } %>
+     </div>
+  </div> 
+
+  <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.ticket.project_id", :default => "Project") %></label>
+     <div class="input">
+       <%= f.select :project_id, options_from_collection_for_select(Project.where("account_id = ?", current_user.account_id), :id, :name), {:include_blank => true}, {:class => "xlarge" } %>
+     </div>
+  </div>  
+
+  <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.ticket.client_id", :default => "Client") %></label>
+     <div class="input">
+    <%= f.select :client_id, options_from_collection_for_select(Client.where("account_id = ?", current_user.account_id), :id, :name), {:include_blank => true}, {:class => "xlarge"} %>
+     </div>
   </div>
 
-  <div class="group">
-    <%= f.label :project_id, t("activerecord.attributes.ticket.project_id", :default => "Project"), :class => :label %>
-    <%= f.select :project_id, options_from_collection_for_select(Project.where("account_id = ?", current_user.account_id), :id, :name) %>
+  <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.ticket.solicitant", :default => "Solicitant") %></label>
+     <div class="input">
+       <%= f.text_field :solicitant, :class => "xlarge span12" %>
+     </div>
   </div>
 
-  <div class="group">
-    <%= f.label :client_id, t("activerecord.attributes.ticket.client_id", :default => "Client"), :class => :label %>
-    <%= f.select :client_id, options_from_collection_for_select(Client.where("account_id = ?", current_user.account_id), :id, :name), {:include_blank => true} %>
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.ticket.title", :default => "Title") %></label>
+     <div class="input">
+       <%= f.text_field :title, :class => "xlarge span12" %>
+     </div>
   </div>
-
-  <div class="group">
-    <%= f.label :solicitant, t("activerecord.attributes.ticket.solicitant", :default => "Solicitant"), :class => :label %>
-    <%= f.text_field :solicitant, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.ticket.description", :default => "Description") %></label>
+     <div class="input">
+       <%= f.text_area :description, :class => "xlarge span12" %>
+     </div>
   </div>
+ 
+  
+  
+       
 
-  <div class="group">
-    <%= f.label :title, t("activerecord.attributes.ticket.title", :default => "Title"), :class => :label %>
-    <%= f.text_field :title, :class => 'text_field' %>
-  </div>
-
-  <div class="group">
-    <%= f.label :description, t("activerecord.attributes.ticket.description", :default => "Description"), :class => :label %>
-    <%= f.text_area :description, :class => 'text_area' %>
-  </div>
-
-        
-<div class="group navform wat-cf">
-  <button class="button" type="submit">
-    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
-  </button>
-  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
-	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), tickets_path, :class => "text_button_padding link_button" %>
+<div class="actions">
+  <input type="submit" class="btn large primary" value="Salvar">&nbsp;<%= link_to t("bootstrap-rails.cancel", :default => "Cancel"), tickets_path, :class => "btn large" %>
 </div>
+

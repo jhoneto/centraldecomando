@@ -1,26 +1,15 @@
-<div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      	<li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", sprints_path  %></li>
-	    <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_sprint_path %></li>
-	    <li class="active"><%= link_to "Planning", sprint_tickets_sprints_path %></li>
-    </ul>
-  </div>          
-  <div class="content"> 
-	        
-    <h2 class="title">Sprint: <%= @sprint.sequence%> (Projeto: <%=@sprint.project.name%>) </h2>
-    <div class="inner">  
-	    <div id="ticket_sprint_form">
-		    <%= render :partial => "form", :locals => {:sprint_id => @sprint.id}%>
-		  </div>
-		<br>
-	    <div id="lista">
-      	  <%= render :partial => "list"%>
-        </div>
-      
-    </div>
-    
-  </div>
+<ul class="tabs"> 
+	<li class="active"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", sprints_path  %></li>  
+</ul>   
+<h2 class="title"><%= t("bootstrap-rails.all", :default => "All")  %> Sprints   
+	<h5> Item de backlog</h5>   
+<div id="ticket_sprint_form">   
+	<%= render :partial => "form", :locals => {:sprint_id => @sprint.id}%>
 </div>
+<br>                         
+<h5> Backlog do sprint</h5>   
+<div id="lista">
+	<%= render :partial => "list"%>
+</div> 
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

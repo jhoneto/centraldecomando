@@ -1,31 +1,35 @@
-  <div class="group">
-    <%= f.label :sequence, t("activerecord.attributes.sprint.sequence", :default => "Sequence"), :class => :label %>
-    <%= f.text_field :sequence, :class => 'text_field' %>
-    <span class="description">Ex: Sprint 10</span>
-  </div>
 
-  <div class="group">
-    <%= f.label :date_of_beginning, t("activerecord.attributes.sprint.date_of_beginning", :default => "Date of beginning"), :class => :label %>
-    <%= f.date_select :date_of_beginning, :class => 'date_select' %>
-    <span class="description">Ex: a simple text</span>
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.sprint.sequence", :default => "Sequence") %></label>
+     <div class="input">
+       <%= f.text_field :sequence, :class => "xlarge" %>
+     </div>
   </div>
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.sprint.date_of_beginning", :default => "Date of beginning") %></label>
+     <div class="input">
+       <%= f.date_select :date_of_beginning, :class => "xlarge" %>
+     </div>
+  </div>
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.sprint.date_of_end", :default => "Date of end") %></label>
+     <div class="input">
+       <%= f.date_select :date_of_end, :class => "xlarge" %>
+     </div>
+  </div>
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.sprint.capacity", :default => "Capacity") %></label>
+     <div class="input">
+       <%= f.text_field :capacity, :class => "xlarge" %>
+     </div>
+  </div>
+       
 
-  <div class="group">
-    <%= f.label :date_of_end, t("activerecord.attributes.sprint.date_of_end", :default => "Date of end"), :class => :label %>
-    <%= f.date_select :date_of_end, :class => 'date_select' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :capacity, t("activerecord.attributes.sprint.capacity", :default => "Capacity"), :class => :label %>
-    <%= f.number_field :capacity, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-        
-<div class="group navform wat-cf">
-  <button class="button" type="submit">
-    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
-  </button>
-  <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
-	<%= link_to t("web-app-theme.cancel", :default => "Cancel"), sprints_path, :class => "text_button_padding link_button" %>
+<div class="actions">
+  <input type="submit" class="btn large primary" value="Salvar">&nbsp;<%= link_to t("bootstrap-rails.cancel", :default => "Cancel"), sprints_path, :class => "btn large" %>
 </div>
+

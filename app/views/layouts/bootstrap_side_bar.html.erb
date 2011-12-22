@@ -54,7 +54,7 @@
 		      <li class="<%= controller.controller_path == 'filters' ? 'active' : '' %>"><a href="<%= filters_path %>"><%=t("activerecord.models.filters", :default => "Filtros")%></a></li>
             
           </ul>
-          <p class="pull-right">Usuário: <a href="#"><%= current_user.name%></a></p>
+          <p class="pull-right"><span class="label user">Usuário: <%= current_user.name%></span> | <%= link_to t("web-app-theme.logout", :default => "Sair") , session_path, :method => :delete %></p>
         </div>
       </div>
     </div>

@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/jhoneto/bootstrap-rails.git
+  revision: f937e62784b260a1a925e8d9b5ba9bd772838fb7
+  specs:
+    bootstrap-rails (0.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -90,6 +96,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-rails!
   cancan (~> 1.6.5)
   clearance (~> 0.12.0)
   formtastic (~> 1.2.4)

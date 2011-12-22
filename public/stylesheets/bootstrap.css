@@ -2426,6 +2426,21 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 }
 .label.notice {
   background-color: #62cffc;
+} 
+.label.user {   
+  background-color: #004f6d;    
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#1f637d), to(#004f6d));
+  background-image: -moz-linear-gradient(top, #1f637d, #004f6d);
+  background-image: -ms-linear-gradient(top, #1f637d, #004f6d);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1f637d), color-stop(100%, #004f6d));
+  background-image: -webkit-linear-gradient(top, #1f637d, #004f6d);
+  background-image: -o-linear-gradient(top, #1f637d, #004f6d);
+  background-image: linear-gradient(top, #1f637d, #004f6d);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1f637d', endColorstr='#004f6d', GradientType=0);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 .media-grid {
   margin-left: -20px;

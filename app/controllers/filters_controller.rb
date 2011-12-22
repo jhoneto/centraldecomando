@@ -1,5 +1,5 @@
 class FiltersController < ApplicationController
-  layout "default"
+  layout "bootstrap_full_content"
   
   def index
     #@filter = Filter.find(2)

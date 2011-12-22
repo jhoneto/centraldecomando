@@ -7,42 +7,36 @@
         readonly : true
 });
 </script>
-<div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", tickets_path  %></li>
-      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_ticket_path %></li>
-      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", ticket_path %></li>
-    </ul>
-  </div>          
-  <div class="content">
-    <div class="inner">
-        <p>
-          <b><%= t("activerecord.attributes.ticket.ticket_type_id", :default => t("activerecord.labels.ticket_type_id", :default => "Ticket type")) %></b><br>
-          <%= @ticket.ticket_type.name %>
-        </p>
-        <p>
-          <b><%= t("activerecord.attributes.ticket.solicitant", :default => t("activerecord.labels.solicitant", :default => "Solicitant")) %>:</b><br>
-          <%= @ticket.solicitant %>
-        </p>
-        <p>
-          <b><%= t("activerecord.attributes.ticket.title", :default => t("activerecord.labels.title", :default => "Title")) %>:</b><br>
-          <%= @ticket.title %>
-        </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.ticket.description", :default => t("activerecord.labels.description", :default => "Description")) %>:</b><br>
-          <textarea id="description" style="width=300px"> <%= @ticket.description %> </textarea>
-        </p>
-        
-    
-      <div class="wat-cf">
-      </div>
-      <div id="comments">
+<ul class="tabs"> 
+	<li><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", tickets_path  %></li> 
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_ticket_path %></li>  
+	<li class="active"><%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", ticket_path %></li>
+</ul>    
+
+
+    <p>
+      <b><%= t("activerecord.attributes.ticket.ticket_type_id", :default => t("activerecord.labels.ticket_type_id", :default => "Ticket type")) %></b><br>
+      <%= @ticket.ticket_type.name %>
+    </p>
+    <p>
+      <b><%= t("activerecord.attributes.ticket.solicitant", :default => t("activerecord.labels.solicitant", :default => "Solicitant")) %>:</b><br>
+      <%= @ticket.solicitant %>
+    </p>
+    <p>
+      <b><%= t("activerecord.attributes.ticket.title", :default => t("activerecord.labels.title", :default => "Title")) %>:</b><br>
+      <%= @ticket.title %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.ticket.description", :default => t("activerecord.labels.description", :default => "Description")) %>:</b><br>
+      <textarea id="description" style="width=300px"> <%= @ticket.description %> </textarea>
+    </p>
+
+    <div id="comments">
       	<%= render :partial => "/comments/form", :locals => {:f => @comment, :id => @ticket.id, :type => 1}%>  
-      </div>
     </div>
-  </div>
-</div>
-
+     
+    
 <% content_for :sidebar, render(:partial => 'sidebarshow') -%>
+

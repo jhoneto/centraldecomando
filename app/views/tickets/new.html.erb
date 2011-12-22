@@ -1,17 +1,11 @@
-<div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", tickets_path  %></li>
-      <li class="active"><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_ticket_path %></li>
-    </ul>
-  </div>          
-  <div class="content">            
-    <h2 class="title"><%= t("web-app-theme.new", :default => "New")%>  Ticket</h2>
-    <div class="inner">
-      <%= form_for :ticket, :url => tickets_path, :html => { :class => :form } do |f| -%>
-		 <%= render :partial => "form", :locals => {:f => f} %>
+<ul class="tabs"> 
+	<li><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", tickets_path  %></li>  
+	<li class="active"><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_ticket_path %></li>
+</ul>
+<h2 class="title"><%= t("bootstrap-rails.new", :default => "New")%>  Ticket</h2> 
+<%= form_for :ticket, :url => tickets_path, :html => { :class => "form-stacked" } do |f| -%>
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>
 
-      <% end -%>
-    </div>
-  </div>
-</div>
+
+

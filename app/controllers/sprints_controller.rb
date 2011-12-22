@@ -1,5 +1,5 @@
 class SprintsController < ApplicationController
-  layout "default"
+  layout "bootstrap_full_content"
   # GET /sprints
   # GET /sprints.xml
   def index

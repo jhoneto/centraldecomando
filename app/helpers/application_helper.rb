@@ -15,7 +15,7 @@ module ApplicationHelper
 
     html = "<div id='fields_#{options[:name]}'>"
     html << hidden_field_tag(options[:field_id], options[:value_id], :class => 'text_field', :style => "width:10%", :id => "#{options[:name]}_id")
-    html << search_field_tag(options[:field_text], options[:value_text], :class => 'text_field', :readonly => options[:text_readonlyo], :style => "width:89%", :id => "#{options[:name]}_title", :ondblclick => "search_#{options[:name]}()")
+    html << search_field_tag(options[:field_text], options[:value_text], :class => 'xlarge', :readonly => options[:text_readonlyo], :style => "width:89%", :id => "#{options[:name]}_title", :ondblclick => "search_#{options[:name]}()")
     html << "</div>"
     html << "<div id=#{options[:name]}_window_search style='display: none'>"
     html << "<div id='search_#{options[:name]}'>"

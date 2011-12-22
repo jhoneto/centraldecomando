@@ -3,7 +3,7 @@
 <% @result = @filter.model.constantize.dinamic_filter.search(@filter.where, current_user.account_id).paginate(:page => params[:page]) %> 
 <% @columns = @filter.columns[1..-2].split(',') %>
 <h2 class="title"><%= @filter.name %></h2>
-<table class="table">
+<table class="bordered-table zebra-striped">
 	<tr>                      
 	  <% @first = true %>
 	  <% @columns.each do |col| %>    
