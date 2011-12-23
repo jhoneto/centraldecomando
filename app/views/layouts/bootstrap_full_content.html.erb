@@ -53,12 +53,7 @@
 		      <li class="<%= controller.controller_path == 'tickets' ? 'active' : '' %>"><a href="<%= tickets_path %>"><%=t("activerecord.models.ticket", :default => "Tickets")%></a></li>
 		      <li class="<%= controller.controller_path == 'filters' ? 'active' : '' %>"><a href="<%= filters_path %>"><%=t("activerecord.models.filters", :default => "Filtros")%></a></li>
 		      <li class="<%= controller.controller_path == 'charts' ? 'active' : '' %>"><a href="<%= charts_path %>"><%=t("activerecord.models.charts", :default => "Charts")%></a></li>  
-		      <li class="dropdown">                            
-			    <a href="#" class="dropdown-toggle">Configurações</a>
-			    <ul class="dropdown-menu">
-				  <li><%= link_to "Usuários", cc_users_path  %> </li>
-				</ul>
-			  </li>
+
             
           </ul>
           <p class="pull-right"><span class="label user">Usuário: <%= current_user.name%></span> | <%= link_to t("web-app-theme.users", :default => "Usuários"), cc_users_path  %>  | <%= link_to t("web-app-theme.logout", :default => "Sair") , session_path, :method => :delete %></p>
