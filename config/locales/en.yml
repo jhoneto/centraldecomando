@@ -5,7 +5,7 @@ en:
   date:
     formats:
       default: "%d/%m/%Y"
-  web-app-theme: 
+  bootstrap-rails: 
         save: Salvar
         cancel: Cancelar
         list: Lista
@@ -38,11 +38,17 @@ en:
           users: "Usuários"
           ticket: "Backlog"
           tickets: "Itens de Backlog"
-          filter: "Filtro"
-          filters: "Filtros"
+          filter: "Consulta"
+          filters: "Consultas"
+          chart: "Gráfico"
+          charts: "Gráficos"
       attributes:
           project:
               name: "Nome"
+              qty_sprint_days: "Quantidade de dias do sprint"        
+              start_sprint: "Dia de início do sprint"
+              include_saturday: "Incluir sábados"                
+              include_sunday: "Incluir domingos"
           client:
               name: "Nome"
           user:
