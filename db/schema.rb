@@ -10,10 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219221749) do
+ActiveRecord::Schema.define(:version => 20111222183824) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "charts", :force => true do |t|
+    t.string   "name",       :limit => 100,                    :null => false
+    t.integer  "account_id",                                   :null => false
+    t.integer  "chart_type",                                   :null => false
+    t.string   "model",      :limit => 50,                     :null => false
+    t.string   "params",     :limit => 500
+    t.string   "method",     :limit => 50,                     :null => false
+    t.integer  "user_id",                                      :null => false
+    t.boolean  "show",                      :default => false, :null => false
+    t.boolean  "sidebar",                   :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

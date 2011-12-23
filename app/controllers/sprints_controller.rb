@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class SprintsController < ApplicationController
   layout "bootstrap_full_content"
   # GET /sprints
@@ -89,6 +91,28 @@ class SprintsController < ApplicationController
       format.html { redirect_to(sprints_url) }
       format.xml  { head :ok }
     end
+  end  
+  
+  
+  def close 
+    @sprint = Sprint.find(params[:id]) 
+   
+     
+    respond_to do |format| 
+      if @sprint.close == true          
+        format.html { redirect_to(sprints_url, :notice => 'Sprint encerrado com sucesso.') }
+        format.xml  { head :ok } 
+      else               
+        format.html { redirect_to(sprints_url, :alert => 'Sprint não pode ser encerrado.') }
+        format.xml  { head :ok }
+      end
+    end
+  end   
+  
+  
+  def combo_sprints
+    sprints = Sprint.where("project_id = ?", params[:project_id]).paginate(:page => params[:page], :per_page => 10) 
+    render :partial => "combo_sprints", :locals => { :sprints => sprints } 
   end
   
   

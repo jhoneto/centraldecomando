@@ -1,7 +1,15 @@
 Centraldecomando::Application.routes.draw do
+  resources :charts
+
   resources :stories
 
-  resources :sprints do   
+  resources :sprints do
+    collection do
+        get 'combo_sprints'
+      end        
+    member do       
+      delete 'close'  
+    end
     resources :tickets_sprints 
   end
 

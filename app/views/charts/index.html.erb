@@ -1,0 +1,31 @@
+<ul class="tabs"> 
+	<li class="active"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", charts_path  %></li> 
+</ul>   
+<h2 class="title"><%= t("bootstrap-rails.all", :default => "All")  %> Charts
+<table class="bordered-table zebra-striped">
+    <thead>             
+      <th>#</th>   
+            <th><%= t("activerecord.attributes.chart.name", :default => "Name") %></th>
+            <th><%= t("bootstrap-rails.created_at", :default => "Created at")  %></th>
+      <th class="last">&nbsp;</th>
+    </thead>                         
+    <tbody>
+      	<% @charts.each do |chart| -%>
+        <tr>
+          <td><%= chart.id %></td>
+                    <td><%= link_to chart.name, chart_path(chart) %></td>
+                    <td><%= chart.created_at %></td>
+          <td>
+            <%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", chart_path(chart) %> |
+            <%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_chart_path(chart) %> |
+            <%= link_to "#{t("bootstrap-rails.delete", :default => "Delete")}", chart_path(chart), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>
+        <% end -%>
+    </tbody>
+</table>
+             
+
+
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

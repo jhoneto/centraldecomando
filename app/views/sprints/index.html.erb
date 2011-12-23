@@ -43,7 +43,8 @@
 		      </td>
           <td>     
 	        <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_sprint_path(sprint) %> |
-            <%= link_to "Planejamento", sprint_tickets_sprints_path(sprint) %> |
+            <%= link_to "Planejamento", sprint_tickets_sprints_path(sprint) %> |        
+            <%= link_to "Encerrar", close_sprint_path(sprint), :method => :delete, :confirm => "Deseja realmente encerrar esse sprint?" %> |
             <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", sprint_path(sprint), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
           </td>
         </tr>

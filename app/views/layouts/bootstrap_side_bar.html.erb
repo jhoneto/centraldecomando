@@ -68,7 +68,23 @@
         </div>
       </div>
       <div class="content">   
-        <!-- Main hero unit for a primary marketing message or call to action -->
+        <% unless flash[:notice].blank? %>
+		  <div class="alert-message info">
+		    <%= content_tag :div, flash[:notice] %>
+		  </div>
+		<% end %>
+
+		<% unless flash[:error].blank? %>
+		  <div class="alert-message error">
+		    <%= content_tag :div, flash[:error] %>
+		  </div>
+		<% end %>
+
+		<% unless flash[:alert].blank? %>
+		  <div class="alert-message warning">
+		    <%= content_tag :div, flash[:alert] %>
+		  </div>
+		<% end %>
         <%= yield %>
         <footer>
           <p>&copy; Company 2011</p>

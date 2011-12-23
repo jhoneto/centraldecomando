@@ -1,0 +1,2 @@
+Selecionar sprint
+<%= select_tag :chart_sprint_id, options_from_collection_for_select(sprints.nil? ? [] : sprints, "id", "sequence", nil), {:include_blank => true, :class => "mini"}%> 

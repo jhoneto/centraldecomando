@@ -27,6 +27,15 @@ class Ticket < ActiveRecord::Base
       :select => "tickets.*, clients.name client_name, projects.name project_name, ticket_types.name ticket_type_name, ticket_status.name ticket_status_name",
       :joins => ("left outer join clients on clients.id = client_id inner join projects on projects.id = project_id inner join ticket_types on ticket_types.id = ticket_type_id inner join ticket_status on ticket_status.id = ticket_status_id")
     }
+  } 
+  
+  # Scope para gráfico por tipo de item
+  scope :chart_by_type, lambda{
+    {
+      :select => "count(t.*)",
+      :joins => ("inner join ticket_types  on tickets.ticket_type_id = ticket_types.id
+                  inner join tickets_sprints  on tickets.id = tickets_sprints.ticket_id")
+    }
   }
   
   def self.search(parameters, account)

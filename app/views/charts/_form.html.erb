@@ -1,0 +1,43 @@
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.chart.name", :default => "Name") %></label>
+     <div class="input">
+       <%= f.text_field :name, :class => "xlarge" %>
+     </div>
+  </div> 
+  <div class="row">
+	<div class="span6"> 
+		<div class="clearfix"> 
+	      <label for="xlInput"><%= t("activerecord.attributes.chart.show", :default => "Show") %></label>
+	      <div class="input">
+	        <%= f.check_box :show, :class => "xlarge" %>
+	      </div>
+	    </div>     
+	</div> 
+	<div class="span6">
+		<div class="clearfix">
+		     <label for="xlInput"><%= t("activerecord.attributes.chart.sidebar", :default => "Sidebar") %></label>
+		     <div class="input">
+		       <%= f.check_box :sidebar, :class => "xlarge" %>
+		     </div>
+		  </div>
+	</div>
+  </div>            
+
+  <%= f.hidden_field :chart_type, :class => "xlarge" %>
+  
+  <%= render :partial => ChartType::CHART_PARTIAL[@chart.chart_type], :locals => {:f => f} %>  
+
+ 
+  
+
+ 
+   
+ 
+   
+       
+
+<div class="actions">
+  <input type="submit" class="btn large primary" value="Salvar">&nbsp;<%= link_to t("bootstrap-rails.cancel", :default => "Cancel"), charts_path, :class => "btn large" %>
+</div>
+
