@@ -48,7 +48,11 @@ en:
               qty_sprint_days: "Quantidade de dias do sprint"        
               start_sprint: "Dia de início do sprint"
               include_saturday: "Incluir sábados"                
-              include_sunday: "Incluir domingos"
+              include_sunday: "Incluir domingos" 
+          project_member:
+              user_id: "Usuário"          
+              role: "Função"
+              week_hours: "Horas semanais"
           client:
               name: "Nome"
           user:

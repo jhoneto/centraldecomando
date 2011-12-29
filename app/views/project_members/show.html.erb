@@ -1,39 +1,35 @@
-<div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", project_members_path  %></li>
-      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_project_member_path %></li>
-      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", project_member_path %></li>
-    </ul>
-  </div>          
-  <div class="content">
-    <div class="inner">
-      
-        <p>
-          <b><%= t("activerecord.attributes.project_member.project_id", :default => t("activerecord.labels.project_id", :default => "Project")) %>:</b>
-          <%= @project_member.project_id %>
-        </p>
+<ul class="tabs"> 
+	<li><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", project_members_path  %></li> 
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_project_member_path %></li>  
+	<li class="active"><%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", project_member_path %></li>
+</ul>    
 
-        <p>
-          <b><%= t("activerecord.attributes.project_member.user_id", :default => t("activerecord.labels.user_id", :default => "User")) %>:</b>
-          <%= @project_member.user_id %>
-        </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.project_member.role", :default => t("activerecord.labels.role", :default => "Role")) %>:</b>
-          <%= @project_member.role %>
-        </p>
+    <p>
+      <b><%= t("activerecord.attributes.project_member.project_id", :default =>"Project") %>:</b>
+      <%= @project_member.project_id %>
+    </p>
 
-        <p>
-          <b><%= t("activerecord.attributes.project_member.week_hours", :default => t("activerecord.labels.week_hours", :default => "Week hours")) %>:</b>
-          <%= @project_member.week_hours %>
-        </p>
-      <div class="wat-cf">
-        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_project_member_path(@project_member), :class => "button" %> 
-        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), project_member_path(@project_member), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
-      </div>      
-    </div>
-  </div>
-</div>
+    <p>
+      <b><%= t("activerecord.attributes.project_member.user_id", :default =>"User") %>:</b>
+      <%= @project_member.user_id %>
+    </p>
 
+    <p>
+      <b><%= t("activerecord.attributes.project_member.role", :default =>"Role") %>:</b>
+      <%= @project_member.role %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.project_member.week_hours", :default =>"Week hours") %>:</b>
+      <%= @project_member.week_hours %>
+    </p>
+                  
+
+<div class="actions">
+	<%= link_to t("ootstrap-rails.edit", :default=> "Edit"), edit_project_member_path(@project_member), :class => "btn large primary" %>
+    <%= link_to t("ootstrap-rails.delete", :default => "Delete"), project_member_path(@project_member), :method => "delete", :class => "btn large", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+</div>      
+    
 <% content_for :sidebar, render(:partial => 'sidebar') -%>
+

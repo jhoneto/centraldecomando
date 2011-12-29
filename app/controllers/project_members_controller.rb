@@ -1,6 +1,6 @@
 class ProjectMembersController < ApplicationController
   
-  layout "default" 
+  layout "bootstrap_full_content" 
   
   def index         
     @project = Project.find(params[:project_id])

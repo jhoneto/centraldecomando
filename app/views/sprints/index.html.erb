@@ -2,13 +2,11 @@
 	<li class="active"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", sprints_path  %></li>  
 	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_sprint_path %></li>
 </ul>   
-<h2 class="title"><%= t("bootstrap-rails.all", :default => "All")  %> Sprints
+<h2 class="title">Sprints do projeto <%= @project.name%>
 <table class="bordered-table zebra-striped">
     <thead>             
       <th>#</th>   
-      	<th>
-<%= t("activerecord.attributes.sprint.project", :default => t("activerecord.labels.project", :default => "Project_id")) %>
-</th>
+    
       <th><%= t("activerecord.attributes.sprint.sequence", :default => "")  %></th>
 <th><%= t("activerecord.attributes.sprint.date_of_beginning", :default => "")  %></th>
 <th><%= t("activerecord.attributes.sprint.date_of_end", :default => "")  %></th>
@@ -23,11 +21,9 @@
 	            <%= sprint.id %>
 	          </td>
 	                    <td>
-	            <%= link_to sprint.project.name, sprint_path(sprint) %>
+	            <%= link_to sprint.sequence, sprint_path(sprint) %>
 	          </td>
-	          <td>
-		        <%= sprint.sequence%>
-		      </td>
+
 		      <td>
 		        <%= sprint.date_of_beginning%>
 		      </td>
@@ -42,10 +38,10 @@
 		        <% end %>
 		      </td>
           <td>     
-	        <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_sprint_path(sprint) %> |
+	        <%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_sprint_path(sprint) %> |
             <%= link_to "Planejamento", sprint_tickets_sprints_path(sprint) %> |        
             <%= link_to "Encerrar", close_sprint_path(sprint), :method => :delete, :confirm => "Deseja realmente encerrar esse sprint?" %> |
-            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", sprint_path(sprint), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+            <%= link_to "#{t("bootstrap-rails.delete", :default => "Delete")}", sprint_path(sprint), :method => :delete, :confirm => "#{t("bootstrap-rails.confirm", :default => "Are you sure?")}" %>
           </td>
         </tr>
         <% end -%>

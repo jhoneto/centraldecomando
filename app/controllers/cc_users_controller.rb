@@ -1,5 +1,5 @@
 class CcUsersController < ApplicationController
-  layout "default"
+  layout "bootstrap_full_content"
   before_filter :authorize
   
   def index
