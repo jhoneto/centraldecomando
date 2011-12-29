@@ -1,0 +1,9 @@
+<%= f.hidden_field :model, :class => "xlarge", :value => "Ticket" %>       
+<%= f.hidden_field :method, :class => "xlarge", :value => "chart_by_status" %>                  
+<%= render :partial => 'filter_project_sprint' %>            
+<div class="clearfix">
+  <label for="xlInput">Responsável</label>
+  <div class="input">
+    <%= select_tag :chart_user_id, options_from_collection_for_select(User.find_all_by_account_id(current_user.account_id), "id", "name", nil), {:include_blank => true, :class => "xlarge"}%>
+  </div>
+</div>

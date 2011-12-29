@@ -2,6 +2,7 @@
   <h5>Gráficos</h5>
   <ul class="navigation">
     <li><%= link_to "Desempenho", new_chart_path(:chart_type => ChartType::DESEMPENHO)  %></li>
-    <li><%= link_to "Por tipo de item", new_chart_path(:chart_type => ChartType::POR_TIPO_ITEM)  %></li>
+    <li><%= link_to "Por tipo de item", new_chart_path(:chart_type => ChartType::POR_TIPO_ITEM)  %></li>  
+    <li><%= link_to "Por status de item", new_chart_path(:chart_type => ChartType::POR_STATUS_ITEM)  %></li>
   </ul>
 </div>

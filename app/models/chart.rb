@@ -17,7 +17,82 @@ class Chart < ActiveRecord::Base
     send chart.method, chart
   end
   
-  private       
+  private
+  
+  def self.chart_by_status(chart)  
+    where = "project_id = ? and ticket_status_id = ?"
+     
+     
+    categories = []   
+    first = true
+    graf = LazyHighCharts::HighChart.new('graph') do |f|
+      f.options[:chart][:defaultSeriesType] = "column"      
+      f.options[:title][:text] = "Por tipo de item do backlog"
+      option = chart.params["chart_sprint_option"]      
+      
+      if chart.params["chart_user_id"] != ""
+        where += " and user_owner_id = ?"
+      end
+      
+      if option != "1" 
+        where += " and tickets_sprints.sprint_id = ?"
+      end
+
+      TicketStatus.all.each do |tt| 
+        data = []    
+        
+        params = []
+        params << chart.params["chart_project_id"]
+        params << tt.id  
+       
+
+        if chart.params["chart_user_id"] != ""
+          params << chart.params["chart_user_id"]
+        end
+        
+        if option == "1"       
+          if chart.params["chart_sprint_option"] != "" 
+            data << chart.model.constantize.where(where, *params ).count(); 
+          else               
+            where += " and tickets_sprints.sprint_id = ?"
+            # Gráfico por sprint  
+            Sprint.where("project_id = ?", chart.params["chart_project_id"]).each do |s| 
+              params[3] << s.id
+              if first == true
+                categories << s.sequence
+              end
+              data << chart.model.constantize.chart_by_status.where(where, *params).count()
+            end
+          end
+        end
+        if option == "2"
+          Sprint.where("id = ?", chart.params["chart_sprint_id"]).each do |s|   
+            params[3] << s.id
+            if first == true
+              categories << s.sequence
+            end
+            data << chart.model.constantize.chart_by_status.where(where, *params).count()
+          end
+        end  
+        if option == "3"
+          Sprint.limit(chart.params["chart_last_sprints"]).where("project_id = ?", chart.params["chart_project_id"]).each do |s|   
+            params[3] << s.id 
+            if first == true
+              categories << s.sequence
+            end
+            data << chart.model.constantize.chart_by_status.where(where, *params).count()
+          end
+        end          
+        f.series(:name=>tt.name, :data=>data)
+        first = false
+      end 
+      # Todos projeto     
+     
+      f.options[:xAxis][:categories] = categories 
+    end
+    
+    graf
+  end       
   
   def self.chart_by_type(chart)   
     categories = []   
