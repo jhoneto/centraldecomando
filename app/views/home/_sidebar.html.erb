@@ -4,9 +4,12 @@
 
 <div class="block">
   <h5>Atribuídas à mim</h5>
-  <div class="content" >  
-	     <div id="chart-01"></div> 
-     ￼  <%= high_chart("my_id", @h) %>
+  <div class="content" >         
+    <% Chart.where("user_id = ? and sidebar = true", current_user.id).each do |c|%>     
+      <h5><%= c.name %></h5>
+      <%= high_chart(c.name, Chart.execute_chart(c.id)) %>
+    <% end %>  
+     ￼  
       
   </div>
 </div>

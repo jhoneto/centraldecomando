@@ -26,7 +26,7 @@ class Chart < ActiveRecord::Base
     categories = []   
     first = true
     graf = LazyHighCharts::HighChart.new('graph') do |f|
-      f.options[:chart][:defaultSeriesType] = "column"      
+      f.options[:chart][:defaultSeriesType] = "bar"      
       f.options[:title][:text] = "Por tipo de item do backlog"
       option = chart.params["chart_sprint_option"]      
       
