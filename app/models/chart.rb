@@ -104,7 +104,7 @@ class Chart < ActiveRecord::Base
       TicketType.all.each do |tt| 
         data = []
         if option == "1"       
-          if chart.params["chart_sprint_option"].nil? 
+          if chart.params["chart_group_sprint"] != "on"
             data << chart.model.constantize.where("project_id = ? and ticket_type_id = ?", chart.params["chart_project_id"], tt.id).count(); 
           else
             # Gráfico por sprint  
@@ -153,7 +153,7 @@ class Chart < ActiveRecord::Base
       option = chart.params["chart_sprint_option"]        
       # Todos os sprints
       if option == "1"   
-        if chart.params["chart_sprint_option"].nil? 
+        if chart.params["chart_group_sprint"] != "on" 
           data_total << chart.model.constantize.chart_performance.where("sprints.project_id = ?", chart.params["chart_project_id"]).count 
           data_closed << chart.model.constantize.chart_performance.where("closed = true and project_id = ?", chart.params["chart_project_id"]).count 
           f.options[:xAxis][:categories] = [""]
