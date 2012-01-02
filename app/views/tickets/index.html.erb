@@ -5,17 +5,21 @@
 <h2 class="title"><%= t("bootstrap-rails.all", :default => "All")  %> Tickets
 <table class="bordered-table zebra-striped">
     <thead>             
-      <th>#</th>   
-            <th><%= t("activerecord.attributes.ticket.title", :default => "Title") %></th>
-            <th><%= t("bootstrap-rails.created_at", :default => "Created at")  %></th>
+      <th>#</th>                           
+      <th><%= t("activerecord.attributes.ticket.title", :default => "Title") %></th>     
+      <th>Projeto</th>
+      <th>Status</th> 
+      <th>Responsável</th>
       <th class="last">&nbsp;</th>
     </thead>                         
     <tbody>
       	<% @tickets.each do |ticket| -%>
         <tr>
-          <td><%= ticket.id %></td>
-                    <td><%= link_to ticket.title, ticket_path(ticket) %></td>
-                    <td><%= ticket.created_at %></td>
+          <td><%= ticket.id %></td>        
+          <td><%= link_to ticket.title, ticket_path(ticket) %></td>
+          <td><%= ticket.project.name %>
+	      <td><%= ticket.ticket_status.name %></td>
+	      <td><%= ticket.user_owner.name %></td> 
           <td>
             <%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", ticket_path(ticket) %> |
             <%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_ticket_path(ticket) %> |

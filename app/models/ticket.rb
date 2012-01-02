@@ -1,4 +1,6 @@
-class Ticket < ActiveRecord::Base
+class Ticket < ActiveRecord::Base     
+  has_paper_trail
+  
   before_create :set_date_of_registration
   belongs_to :project
   belongs_to :client
@@ -13,7 +15,9 @@ class Ticket < ActiveRecord::Base
   validates_presence_of :ticket_status_id
   validates_presence_of :title
   validates_presence_of :description
-  validates_presence_of :project
+  validates_presence_of :project     
+  
+  default_scope :order => "id ASC"
   
   scope :with_title_or_description, lambda {|parameter| where("upper(title) like upper(?) or upper(description) like upper(?)", "%#{parameter}%", "%#{parameter}%")}
   scope :with_project, lambda{|parameter| where("project_id = ?", parameter)}

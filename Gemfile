@@ -14,7 +14,8 @@ gem "cancan", "~> 1.6.5"
 gem "jqgrid_for_rails", "~> 1.0.1"
 gem "will_paginate", "~> 3.0.0"     
 gem 'lazy_high_charts'
-gem 'bootstrap-rails', :git => 'git://github.com/jhoneto/bootstrap-rails.git'
+gem 'bootstrap-rails', :git => 'git://github.com/jhoneto/bootstrap-rails.git' 
+gem 'paper_trail', '~> 2.5.0' 
 group :development, :test do
   gem 'web-app-theme', '>= 0.7.0'
 end

@@ -13,7 +13,11 @@ Centraldecomando::Application.routes.draw do
     resources :tickets_sprints 
   end
 
-  resources :tickets
+  resources :tickets do
+    member do
+      get 'change_user_owner'
+    end
+  end
 
   resources :clients
 

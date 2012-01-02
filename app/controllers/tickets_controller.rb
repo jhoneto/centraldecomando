@@ -100,5 +100,11 @@ class TicketsController < ApplicationController
     ticket = Ticket.find_by_id(params[:id])
     ticket.update_attributes(:ticket_status_id => params[:status ])
     redirect_to(:controller => "tickets", :action => "show", :id => params[:id])
+  end 
+  
+  def change_user_owner                   
+    ticket = Ticket.find_by_id(params[:id])
+    ticket.update_attributes(:user_owner_id => current_user.id)
+    redirect_to(:controller => "tickets", :action => "show", :id => params[:id])
   end
 end

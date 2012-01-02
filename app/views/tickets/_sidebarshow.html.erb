@@ -11,19 +11,19 @@
 	<dt><%= t("activerecord.attributes.ticket.user_registration_id", :default => "User registration") %>:</dt>
 	<dd><%= @ticket.user_registration.name %></dd>
 	<dt><%= t("activerecord.attributes.ticket.user_owner_id",  :default => "User owner") %>:</dt>
-	<dd><%= @ticket.user_owner.name %></dd>
+	<dd><%= @ticket.user_owner.name %>&nbsp;&nbsp;<%= link_to "Atribuir à mim", change_user_owner_ticket_path(@ticket) %></dd>
   </dl>
 
   <h5>Alterar status para</h5>
   <ul class="navigation">
 	<% @status.each do |s|%>
-			<li><%= link_to s.name, :action => "change_status", :id => @ticket, :status => s.id%></li>
-			<% end %>
+	  <li><%= link_to s.name, :action => "change_status", :id => @ticket, :status => s.id%></li>
+	<% end %>
   </ul>
 
 
 
   <h5>Outras ações</h5>
   <ul class="navigation">
-	<li><%= link_to t("web-app-theme.edit", :default=> "Edit"), edit_ticket_path(@ticket)%></li> 
+	<li><%= link_to t("bootstrap-rails.edit", :default=> "Edit"), edit_ticket_path(@ticket)%></li> 
   </ul>
