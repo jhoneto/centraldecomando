@@ -46,7 +46,7 @@ class Ticket < ActiveRecord::Base
   scope :chart_by_status, lambda{
     {
       :select => "count(t.*)",
-      :joins => ("inner join ticket_types  on tickets.ticket_status_id = ticket_status.id
+      :joins => ("inner join ticket_status  on tickets.ticket_status_id = ticket_status.id
                   inner join tickets_sprints  on tickets.id = tickets_sprints.ticket_id")
     }
   }

@@ -27,18 +27,18 @@ class Chart < ActiveRecord::Base
     first = true
     graf = LazyHighCharts::HighChart.new('graph') do |f|
       f.options[:chart][:defaultSeriesType] = "bar"      
-      f.options[:title][:text] = "Por tipo de item do backlog"
+      f.options[:title][:text] = "Por status de item do backlog"
       option = chart.params["chart_sprint_option"]      
       
       if chart.params["chart_user_id"] != ""
         where += " and user_owner_id = ?"
       end
       
-      if option != "1" 
+      if option != "1" || chart.params["chart_group_sprint"] == "on"  
         where += " and tickets_sprints.sprint_id = ?"
       end
 
-      TicketStatus.all.each do |tt| 
+      TicketStatus.find_all_by_account_id(chart.account_id).each do |tt| 
         data = []    
         
         params = []
@@ -51,15 +51,15 @@ class Chart < ActiveRecord::Base
         end
         
         if option == "1"       
-          if chart.params["chart_sprint_option"] != "" 
+          if chart.params["chart_group_sprint"] != "on" 
             data << chart.model.constantize.where(where, *params ).count(); 
           else               
-            where += " and tickets_sprints.sprint_id = ?"
-            # Gráfico por sprint  
-            Sprint.where("project_id = ?", chart.params["chart_project_id"]).each do |s| 
-              params[3] << s.id
+            #where += " and tickets_sprints.sprint_id = ?"
+            # Gráfico por sprint 
+            Sprint.where("project_id = ?", chart.params["chart_project_id"]).each do |s|
+              params[2] = s.id  
               if first == true
-                categories << s.sequence
+                categories << s.sequence             
               end
               data << chart.model.constantize.chart_by_status.where(where, *params).count()
             end
@@ -67,7 +67,7 @@ class Chart < ActiveRecord::Base
         end
         if option == "2"
           Sprint.where("id = ?", chart.params["chart_sprint_id"]).each do |s|   
-            params[3] << s.id
+            params[2] = s.id
             if first == true
               categories << s.sequence
             end
@@ -76,7 +76,7 @@ class Chart < ActiveRecord::Base
         end  
         if option == "3"
           Sprint.limit(chart.params["chart_last_sprints"]).where("project_id = ?", chart.params["chart_project_id"]).each do |s|   
-            params[3] << s.id 
+            params[2] = s.id 
             if first == true
               categories << s.sequence
             end
