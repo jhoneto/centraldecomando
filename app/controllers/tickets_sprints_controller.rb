@@ -19,6 +19,7 @@ class TicketsSprintsController < ApplicationController
       @ticket_sprint.sprint_id = params[:sprint_id] 
       @ticket_sprint.estimate = params[:estimate]
       if @ticket_sprint.save       
+        puts '################1'
         @sprint = Sprint.find(params[:sprint_id])    
         @tickets_sprints = @sprint.tickets_sprints.paginate(:page => params[:page], :per_page => 10)
       end
