@@ -29,14 +29,20 @@ Centraldecomando::Application.routes.draw do
   
   resources :comments  
   
-  resources :user_profiles
+  resources :user_profiles  
+  
+  resources :cc_users do       
+    member do
+      post 'alter_password'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
   match 'home' => 'home#index', :as => :home
   #match 'cc_users' => 'cc_users#index', :as => :cc_users
   resource :session, :controller => 'sessions'
-  resources :cc_users
+  
   match 'user' => 'cc_users#edit'
   match '/tickets/change_status/:id' => 'tickets#change_status'
   #match '/sprints/planning/:id' => 'sprints#planning', :as => :planning

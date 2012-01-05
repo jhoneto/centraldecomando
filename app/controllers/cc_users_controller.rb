@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class CcUsersController < ApplicationController
   layout "bootstrap_full_content"
   before_filter :authorize
@@ -68,6 +70,18 @@ class CcUsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(cc_users_path) }
       format.xml  { head :ok }
+    end
+  end   
+  
+  def alter_password    
+    respond_to do |format| 
+      if (params[:password_new] == params[:password_confirmation])   
+        user = User.find(current_user.id)
+        user.update_password(params[:password_new])
+        format.html { redirect_to(home_path, :notice => 'Senha modificada com sucesso.') }
+      else
+        format.html { redirect_to(home_path, :alert => 'Nova senha não confere com a confirmação.') } 
+      end                    
     end
   end
 end

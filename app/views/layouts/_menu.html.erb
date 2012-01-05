@@ -1,3 +1,5 @@
+<%= render :partial => "cc_users/alter_password" %> 
+
 <div class="topbar"  data-dropdown="dropdown">
       <div class="topbar-inner">
         <div class="container-fluid">
@@ -24,8 +26,8 @@
 		
 		      <li class="dropdown">
                 <a href="#" class="dropdown-toggle">Configurações</a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Minha conta</a></li>
+                <ul class="dropdown-menu">                       
+                  <li><a href="#" data-controls-modal="modal-alter-password" data-backdrop="true" data-keyboard="true">Alterar senha</a></li>
                   <li><a href="#">Fluxo do item de backlog</a></li>
                 </ul>
               </li>
