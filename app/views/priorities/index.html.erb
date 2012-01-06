@@ -1,0 +1,31 @@
+<ul class="tabs"> 
+	<li class="active"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", priorities_path  %></li>  
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_priority_path %></li>
+</ul>   
+<h2 class="title"><%= t("activerecord.models.priorties", :default => "All")  %> 
+<table class="bordered-table zebra-striped">
+    <thead>             
+      <th>#</th>   
+            <th>Name</th>
+            <th>Ícone</th>
+      <th class="last">&nbsp;</th>
+    </thead>                         
+    <tbody>
+      	<% @priorities.each do |priority| -%>
+        <tr>
+          <td><%= priority.id %></td>
+          <td><%= link_to priority.name, edit_priority_path(priority) %></td>
+          <td><%= image_tag priority.icon.url %></td>
+          <td>
+            <%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_priority_path(priority) %> |
+            <%= link_to "#{t("bootstrap-rails.delete", :default => "Delete")}", priority_path(priority), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>
+        <% end -%>
+    </tbody>
+</table>
+             
+
+
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

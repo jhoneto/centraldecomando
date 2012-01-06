@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120102180401) do
+ActiveRecord::Schema.define(:version => 20120106181440) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :null => false
@@ -58,6 +58,18 @@ ActiveRecord::Schema.define(:version => 20120102180401) do
     t.integer  "account_id"
     t.string   "columns",    :limit => 1000
     t.boolean  "show",                       :default => false
+  end
+
+  create_table "priorities", :force => true do |t|
+    t.integer  "account_id",        :null => false
+    t.string   "name",              :null => false
+    t.integer  "value",             :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   create_table "project_members", :force => true do |t|
@@ -146,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20120102180401) do
     t.integer  "ticket_type_id"
     t.integer  "ticket_status_id"
     t.string   "solicitant",           :limit => 100
+    t.integer  "priority_id"
   end
 
   create_table "tickets_sprints", :force => true do |t|

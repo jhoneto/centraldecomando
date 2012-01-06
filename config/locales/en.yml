@@ -12,6 +12,7 @@ en:
         list_of: Lista de
         edit: Editar
         new: Novo
+        newa: Nova
         show: Mostrar
         delete: Excluir
         confirm: Deseja realmente excluir esse registro?
@@ -42,6 +43,8 @@ en:
           filters: "Consultas"
           chart: "Gráfico"
           charts: "Gráficos"
+          priority: "Prioridade"
+          priorties: "Prioridades"
       attributes:
           project:
               name: "Nome"
@@ -77,6 +80,7 @@ en:
               date_of_registration: "Data de criação"
               user_registration_id: "Cadastrado por"
               user_owner_id: "Responsável"
+              priority_id: "Prioridade"
           sprint:
               project: Projeto
               project_id: Projeto
@@ -92,4 +96,8 @@ en:
               project_id: Projeto
               complexity: Complexidade
               priority: Prioridade
+          priority:
+              name: Nome
+              value: Prioridade
+              icon: Ícone
         

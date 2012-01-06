@@ -20,7 +20,8 @@
                 <a href="#" class="dropdown-toggle">Cadastros</a>
                 <ul class="dropdown-menu">                                                                
 	              <li class="<%= controller.controller_path == 'clients' ? 'active' : '' %>"><a href="<%= clients_path %>"><%=t("activerecord.models.clients", :default => "Clients")%></a></li>
-                  <li><%= link_to t("web-app-theme.users", :default => "Usuários"), cc_users_path  %></li>
+                  <li><%= link_to t("web-app-theme.users", :default => "Usuários"), cc_users_path  %></li>  
+                  <li><%= link_to t("activerecord.models.priority", :default => "Priority"), priorities_path  %></li>
                 </ul>
               </li> 
 		

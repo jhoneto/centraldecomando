@@ -40,6 +40,7 @@ GEM
     clearance (0.12.0)
       diesel (~> 0.1.4)
       rails (>= 3.0)
+    cocaine (0.2.1)
     diesel (0.1.5)
       railties
     erubis (2.6.6)
@@ -64,6 +65,11 @@ GEM
     mime-types (1.16)
     paper_trail (2.5.0)
       rails (~> 3)
+    paperclip (2.4.5)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     pg (0.11.0)
     polyglot (0.3.1)
     rack (1.2.3)
@@ -106,6 +112,7 @@ DEPENDENCIES
   jquery-rails (~> 1.0.12)
   lazy_high_charts
   paper_trail (~> 2.5.0)
+  paperclip (~> 2.4.5)
   pg (~> 0.11.0)
   rails (= 3.0.9)
   web-app-theme (>= 0.7.0)

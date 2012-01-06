@@ -13,7 +13,8 @@ gem "formtastic", "~> 1.2.4"
 gem "cancan", "~> 1.6.5"
 gem "jqgrid_for_rails", "~> 1.0.1"
 gem "will_paginate", "~> 3.0.0"     
-gem 'lazy_high_charts'
+gem 'lazy_high_charts'                  
+gem "paperclip", "~> 2.4.5"
 gem 'bootstrap-rails', :git => 'git://github.com/jhoneto/bootstrap-rails.git' 
 gem 'paper_trail', '~> 2.5.0' 
 group :development, :test do

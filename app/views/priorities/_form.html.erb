@@ -1,0 +1,28 @@
+
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.priority.name", :default => "Name") %></label>
+     <div class="input">
+       <%= f.text_field :name, :class => "xlarge" %>
+     </div>
+  </div>
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.priority.value", :default => "Value") %></label>
+     <div class="input">
+       <%= f.text_field :value, :class => "xlarge" %>
+     </div>
+  </div>
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.priority.icon", :default => "Icon") %></label>
+     <div class="input">
+       <%= f.file_field :icon %>
+     </div>
+  </div>
+  
+       
+
+<div class="actions">
+  <input type="submit" class="btn large primary" value="Salvar">&nbsp;<%= link_to t("bootstrap-rails.cancel", :default => "Cancel"), priorities_path, :class => "btn large" %>
+</div>
+

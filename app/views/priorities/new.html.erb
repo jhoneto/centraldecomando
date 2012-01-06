@@ -1,0 +1,11 @@
+<ul class="tabs"> 
+	<li><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", priorities_path  %></li>  
+	<li class="active"><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_priority_path %></li>
+</ul>
+<h2 class="title"><%= t("bootstrap-rails.newa", :default => "New")%>  <%= t("activerecord.models.priority", :default => "Priority")%></h2> 
+<%= form_for :priority, :url => priorities_path, :html => { :class => "form-stacked", :multipart => true } do |f| -%>
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>
+
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

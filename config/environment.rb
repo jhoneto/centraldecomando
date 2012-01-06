@@ -7,7 +7,7 @@ Centraldecomando::Application.initialize!
 Date::DATE_FORMATS.merge!(:default => "%d/%m/%Y")
 
 
-
+#config.gem 'paperclip', :source => 'http://rubygems.org'
         
 
 module ActionView

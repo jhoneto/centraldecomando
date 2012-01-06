@@ -1,4 +1,6 @@
 Centraldecomando::Application.routes.draw do
+  resources :priorities
+
   resources :charts
 
   resources :stories

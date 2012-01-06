@@ -1,0 +1,50 @@
+<ul class="tabs"> 
+	<li><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", priorities_path  %></li> 
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_priority_path %></li>  
+	<li class="active"><%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", priority_path %></li>
+</ul>    
+
+
+    <p>
+      <b><%= t("activerecord.attributes.priority.account_id", :default =>"Account") %>:</b>
+      <%= @priority.account_id %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.priority.name", :default =>"Name") %>:</b>
+      <%= @priority.name %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.priority.value", :default =>"Value") %>:</b>
+      <%= @priority.value %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.priority.icon_file_name", :default =>"Icon file name") %>:</b>
+      <%= @priority.icon_file_name %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.priority.icon_content_type", :default =>"Icon content type") %>:</b>
+      <%= @priority.icon_content_type %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.priority.icon_file_size", :default =>"Icon file size") %>:</b>
+      <%= @priority.icon_file_size %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.priority.icon_updated_at", :default =>"Icon updated at") %>:</b>
+      <%= @priority.icon_updated_at %>
+    </p>
+                  
+
+<div class="actions">
+	<%= link_to t("ootstrap-rails.edit", :default=> "Edit"), edit_priority_path(@priority), :class => "btn large primary" %>
+    <%= link_to t("ootstrap-rails.delete", :default => "Delete"), priority_path(@priority), :method => "delete", :class => "btn large", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+</div>      
+    
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
+

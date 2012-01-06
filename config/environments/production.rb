@@ -56,4 +56,6 @@ Centraldecomando::Application.configure do
     :password             => 'hmltnnt3007',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
+    
+  Paperclip.options[:command_path] = '/Users/hamilton/ImageMagick-6.7.3'
 end

@@ -5,7 +5,8 @@
 <h2 class="title"><%= t("bootstrap-rails.all", :default => "All")  %> Tickets
 <table class="bordered-table zebra-striped">
     <thead>             
-      <th>#</th>                           
+      <th>#</th>
+      <th>&nbsp;</th>                           
       <th><%= t("activerecord.attributes.ticket.title", :default => "Title") %></th>     
       <th>Projeto</th>
       <th>Status</th> 
@@ -15,7 +16,8 @@
     <tbody>
       	<% @tickets.each do |ticket| -%>
         <tr>
-          <td><%= ticket.id %></td>        
+          <td><%= ticket.id %></td>
+          <td><%= image_tag ticket.priority_id.nil? ? 'priority/question.png' : ticket.priority.icon.url %></td>        
           <td><%= link_to ticket.title, ticket_path(ticket) %></td>
           <td><%= ticket.project.name %>
 	      <td><%= ticket.ticket_status.name %></td>

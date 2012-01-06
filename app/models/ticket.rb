@@ -7,7 +7,8 @@ class Ticket < ActiveRecord::Base
   belongs_to :user_registration, :class_name => "User", :foreign_key => "user_registration_id"
   belongs_to :user_owner, :class_name => "User", :foreign_key => "user_owner_id"
   belongs_to :ticket_type, :class_name => "TicketType", :foreign_key => "ticket_type_id"
-  belongs_to :ticket_status, :class_name => "TicketStatus", :foreign_key => "ticket_status_id"
+  belongs_to :ticket_status, :class_name => "TicketStatus", :foreign_key => "ticket_status_id"  
+  belongs_to :priority, :class_name => "Priority", :foreign_key => "priority_id"
   
   validates_presence_of :user_owner_id
   validates_presence_of :user_registration_id
@@ -24,7 +25,7 @@ class Ticket < ActiveRecord::Base
   scope :with_status, lambda{|parameter| where("ticket_status_id = ?", parameter)}
   scope :with_type, lambda{|parameter| where("ticket_type_id = ?", parameter)}
   scope :with_client, lambda{|parameter| where("client_id = ?", parameter)}
-  
+  scope :with_priority, lambda{|parameter| where("priority_id = ?", parameter)}
   # Scope para filtro dinamico
   scope :dinamic_filter, lambda{ 
     {
