@@ -3,7 +3,7 @@ class ChartsController < ApplicationController
   # GET /charts
   # GET /charts.xml
   def index
-    @charts = Chart.find_by_user(current_user.id)
+    @charts = Chart.find_all_by_user_id(current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb

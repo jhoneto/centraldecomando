@@ -3,7 +3,7 @@ class PrioritiesController < ApplicationController
   # GET /priorities
   # GET /priorities.xml
   def index
-    @priorities = Priority.all
+    @priorities = Priority.where("account_id = ?", current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
