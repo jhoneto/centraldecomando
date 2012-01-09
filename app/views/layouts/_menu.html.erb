@@ -34,7 +34,7 @@
               </li>
 
           </ul>  
-          
+          <%= render :partial => 'layouts/search_ticket' %>
           <p class="pull-right"><span class="label user">Usuário: <%= current_user.name%></span>  | <%= link_to t("web-app-theme.logout", :default => "Sair") , session_path, :method => :delete %></p>
         </div>
       </div>

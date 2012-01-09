@@ -25,7 +25,10 @@ class Ticket < ActiveRecord::Base
   scope :with_status, lambda{|parameter| where("ticket_status_id = ?", parameter)}
   scope :with_type, lambda{|parameter| where("ticket_type_id = ?", parameter)}
   scope :with_client, lambda{|parameter| where("client_id = ?", parameter)}
-  scope :with_priority, lambda{|parameter| where("priority_id = ?", parameter)}
+  scope :with_priority, lambda{|parameter| where("priority_id = ?", parameter)}     
+  scope :with_id_or_title, lambda{|parameter| where("cast(id as text) = ? or upper(title) like upper(?)", parameter, "%#{parameter}%")}
+  scope :with_id, lambda{|parameter| where("cast(id as text) = ?", parameter)}
+  
   # Scope para filtro dinamico
   scope :dinamic_filter, lambda{ 
     {
