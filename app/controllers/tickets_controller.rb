@@ -35,8 +35,8 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   # GET /tickets/new.xml
   def new
-    @ticket = Ticket.new
-
+    @ticket = Ticket.new    
+    @ticket.specification_id = params[:specification] unless params[:specification].nil?
     respond_to do |format|
       format.html {render :new , :layout => 'bootstrap_full_content'}# new.html.erb
       format.xml  { render :xml => @ticket }

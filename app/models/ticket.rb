@@ -8,7 +8,8 @@ class Ticket < ActiveRecord::Base
   belongs_to :user_owner, :class_name => "User", :foreign_key => "user_owner_id"
   belongs_to :ticket_type, :class_name => "TicketType", :foreign_key => "ticket_type_id"
   belongs_to :ticket_status, :class_name => "TicketStatus", :foreign_key => "ticket_status_id"  
-  belongs_to :priority, :class_name => "Priority", :foreign_key => "priority_id"
+  belongs_to :priority, :class_name => "Priority", :foreign_key => "priority_id" 
+  belongs_to :specification, :class_name => "Specification", :foreign_key => "specification_id"
   
   validates_presence_of :user_owner_id
   validates_presence_of :user_registration_id

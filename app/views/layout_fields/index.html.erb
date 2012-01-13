@@ -1,0 +1,35 @@
+<ul class="tabs"> 
+	<li class="active"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", layout_layout_fields_path  %></li>  
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_layout_layout_field_path %></li>
+</ul>   
+<h2 class="title">Campos do layout:&nbsp;<%= @layout.name%>
+<table class="bordered-table zebra-striped">
+    <thead>             
+      <th>#</th>   
+      <th>Título</th>
+      <th>Tipo</th>    
+      <th>Ordem</th>
+      <th class="last">&nbsp;</th>
+    </thead>                         
+    <tbody>
+      	<% @layout_fields.each_with_index do |layout_field, index| -%>
+        <tr>
+          <td><%= layout_field.id %></td>
+          <td><%= link_to layout_field.label, edit_layout_layout_field_path(@layout, layout_field) %></td>
+          <td><%= FieldType::FIELD_TYPE[layout_field.field_type] %></td>     
+          <td><%= layout_field.order %></td>
+          <td>                                                                              
+	        <%= link_to image_tag("arrow_up_blue.png", :title => "Subir"), change_order_layout_layout_field_path(@layout, layout_field, :op => '_up') unless index == 0 %> |  
+	        <%= link_to image_tag("arrow_down_blue.png", :title => "Descer"), change_order_layout_layout_field_path(@layout, layout_field, :op => '_down') unless index == (@layout_fields.length - 1) %> |        
+            <%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_layout_layout_field_path(@layout, layout_field) %> |
+            <%= link_to "#{t("bootstrap-rails.delete", :default => "Delete")}", layout_layout_field_path(@layout, layout_field), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>
+        <% end -%>
+    </tbody>
+</table>
+             
+
+
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

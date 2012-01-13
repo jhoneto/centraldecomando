@@ -44,7 +44,7 @@ en:
           chart: "Gráfico"
           charts: "Gráficos"
           priority: "Prioridade"
-          priorties: "Prioridades"
+          priorties: "Prioridades" 
       attributes:
           project:
               name: "Nome"
@@ -99,5 +99,17 @@ en:
           priority:
               name: Nome
               value: Prioridade
-              icon: Ícone
+              icon: Ícone    
+          layout:
+              name: Nome
+              active: Ativo    
+          layout_field:
+              label: Título
+              field_type: Tipo
+              visible: Visível 
+          specification:
+              project_id: Projeto
+              layout_id: Layout
+              index: Índice
+              title: Título
         

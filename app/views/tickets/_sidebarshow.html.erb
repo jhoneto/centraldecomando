@@ -21,9 +21,14 @@
 	<% end %>
   </ul>
 
-
-
   <h5>Outras ações</h5>
   <ul class="navigation">
 	<li><%= link_to t("bootstrap-rails.edit", :default=> "Edit"), edit_ticket_path(@ticket)%></li> 
   </ul>
+  
+  <% unless @ticket.specification_id.nil?%> 
+    <h5>Especificação</h5>
+    <ul class="navigation">
+	  <li><%= link_to @ticket.specification.title, specification_specification_fields_path(@ticket.specification)%></li> 
+   </ul>
+  <% end %>

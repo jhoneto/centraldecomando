@@ -1,4 +1,17 @@
 Centraldecomando::Application.routes.draw do
+
+  resources :specifications do                
+    resources :specification_fields 
+  end
+
+  resources :layouts do
+    resources :layout_fields do 
+      member do
+        get 'change_order'
+      end
+    end
+  end
+
   resources :priorities
 
   resources :charts
@@ -41,7 +54,8 @@ Centraldecomando::Application.routes.draw do
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  match 'home' => 'home#index', :as => :home
+  match 'home' => 'home#index', :as => :home       
+  match 'home_po' => 'home#index_po', :as => :home_po
   #match 'cc_users' => 'cc_users#index', :as => :cc_users
   resource :session, :controller => 'sessions'
   

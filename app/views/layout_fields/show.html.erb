@@ -1,0 +1,40 @@
+<ul class="tabs"> 
+	<li><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", layout_fields_path  %></li> 
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_layout_field_path %></li>  
+	<li class="active"><%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", layout_field_path %></li>
+</ul>    
+
+
+    <p>
+      <b><%= t("activerecord.attributes.layout_field.layout_id", :default =>"Layout") %>:</b>
+      <%= @layout_field.layout_id %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.layout_field.label", :default =>"Label") %>:</b>
+      <%= @layout_field.label %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.layout_field.field_type", :default =>"Field type") %>:</b>
+      <%= @layout_field.field_type %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.layout_field.order", :default =>"Order") %>:</b>
+      <%= @layout_field.order %>
+    </p>
+
+    <p>
+      <b><%= t("activerecord.attributes.layout_field.visible", :default =>"Visible") %>:</b>
+      <%= @layout_field.visible %>
+    </p>
+                  
+
+<div class="actions">
+	<%= link_to t("ootstrap-rails.edit", :default=> "Edit"), edit_layout_field_path(@layout_field), :class => "btn large primary" %>
+    <%= link_to t("ootstrap-rails.delete", :default => "Delete"), layout_field_path(@layout_field), :method => "delete", :class => "btn large", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+</div>      
+    
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
+

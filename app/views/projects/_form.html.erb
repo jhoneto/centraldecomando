@@ -51,7 +51,13 @@
 	          </div>                
 			</div>
 		</div>              
-	 </div>
+	    <div class="clearfix">
+	      <label for="xlInput"><%= t("activerecord.attributes.project.layout_id", :default => "Layout") %></label>
+	      <div class="input">                                    
+	        <%= f.collection_select(:layout_id, Layout.order(:name).where("account_id = ?", current_user.account_id), :id, :name,  {:prompt => "Selecione um layout de especificação"},  {:class => "xlarge" })%>
+	      </div>
+	    </div>
+	</div>
   </div>          
 
 <div class="actions">

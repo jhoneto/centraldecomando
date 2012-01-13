@@ -1,0 +1,39 @@
+
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.specification.project_id", :default => "Project") %></label>
+     <div class="input">
+       	<div class="input">
+	       <%= f.collection_select(:project_id, Project.where("account_id = ?", current_user.account_id), :id, :name,  {:prompt => "Selecione um projeto"},  {:class => "xlarge" })%> 
+	     </div>
+     </div>
+  </div>     
+
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.specification.layout_id", :default => "Layout") %></label>
+     <div class="input">
+       	<div class="input">
+	       <%= f.collection_select(:layout_id, Layout.where("account_id = ?", current_user.account_id), :id, :name,  {:prompt => "Selecione um layout"},  {:class => "xlarge" })%> 
+	     </div>
+     </div>
+  </div>
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.specification.index", :default => "Index") %></label>
+     <div class="input">
+       <%= f.text_field :index, :class => "xlarge" %>
+     </div>
+  </div>
+ 
+   <div class="clearfix">
+     <label for="xlInput"><%= t("activerecord.attributes.specification.title", :default => "Title") %></label>
+     <div class="input">
+       <%= f.text_field :title, :class => "xlarge" %>
+     </div>
+  </div>
+       
+
+<div class="actions">
+  <input type="submit" class="btn large primary" value="Salvar">&nbsp;<%= link_to t("bootstrap-rails.cancel", :default => "Cancel"), specifications_path, :class => "btn large" %>
+</div>
+

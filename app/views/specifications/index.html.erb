@@ -1,0 +1,49 @@
+<ul class="tabs"> 
+	<li class="active"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", specifications_path  %></li>  
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_specification_path %></li>
+</ul>   
+<h2 class="title">Especificações   
+<%= form_tag specifications_path, :method => :get,  :class => "form-stacked"  do %>   
+  <div class="row">                       
+	<div class="span3">  
+	  <div class="clearfix">
+	    <label for="xlInput">Projeto</label>
+		<div class="input">       
+		<%= select_tag :with_project, options_from_collection_for_select(Project.find_all_by_account_id(current_user.account_id), "id", "name", params[:with_project]), {:include_blank => true, :class => 'span3'}%>
+        </div>
+	  </div>
+    </div>
+    <div class="span4">     
+	  <label for="xlInput">&nbsp;</label>    
+	  <input type="submit" class="btn primary" value="Buscar"> 
+	</div>
+  </div>
+<% end %>
+<table class="bordered-table zebra-striped">
+    <thead> 
+	  <th>Projeto</th>    
+      <th>Índice</th>
+      <th>Título</th>
+      <th class="last">&nbsp;</th>
+    </thead>                         
+    <tbody>
+      	<% @specifications.each do |specification| -%>
+        <tr>
+	      <td><%= specification.project.name %></td>                            
+          <td><%= specification.index %></td>
+          <td><%= specification.title %></td>
+          <td>
+            <%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", specification_specification_fields_path(specification) %> |
+            <%= link_to "Nova tarefa", new_ticket_path(:specification => specification.id) %> |
+            <%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_specification_path(specification) %> |
+            <%= link_to "#{t("bootstrap-rails.delete", :default => "Delete")}", specification_path(specification), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          </td>
+        </tr>
+        <% end -%>
+    </tbody>
+</table>
+             
+
+
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

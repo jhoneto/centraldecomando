@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120106181440) do
+ActiveRecord::Schema.define(:version => 20120113004223) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :null => false
@@ -60,6 +60,25 @@ ActiveRecord::Schema.define(:version => 20120106181440) do
     t.boolean  "show",                       :default => false
   end
 
+  create_table "layout_fields", :force => true do |t|
+    t.integer  "layout_id",                                   :null => false
+    t.string   "label",      :limit => 100,                   :null => false
+    t.integer  "field_type",                                  :null => false
+    t.integer  "order",                                       :null => false
+    t.boolean  "visible",                   :default => true, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "layouts", :force => true do |t|
+    t.integer  "account_id",                                :null => false
+    t.string   "name",        :limit => 100,                :null => false
+    t.boolean  "active",                                    :null => false
+    t.integer  "layout_type",                :default => 1, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "priorities", :force => true do |t|
     t.integer  "account_id",        :null => false
     t.string   "name",              :null => false
@@ -90,6 +109,32 @@ ActiveRecord::Schema.define(:version => 20120106181440) do
     t.integer  "start_sprint"
     t.boolean  "include_saturday"
     t.boolean  "include_sunday"
+    t.integer  "layout_id"
+  end
+
+  create_table "specification_fields", :force => true do |t|
+    t.integer  "specification_id",                :null => false
+    t.string   "label",            :limit => 100, :null => false
+    t.integer  "field_type",                      :null => false
+    t.integer  "order",                           :null => false
+    t.string   "value_text"
+    t.text     "value_memo"
+    t.decimal  "value_number"
+    t.date     "value_date"
+    t.boolean  "value_boolean"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "layout_field_id",                 :null => false
+  end
+
+  create_table "specifications", :force => true do |t|
+    t.integer  "account_id",               :null => false
+    t.integer  "project_id",               :null => false
+    t.string   "index",      :limit => 30, :null => false
+    t.string   "title",                    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "layout_id",                :null => false
   end
 
   create_table "sprints", :force => true do |t|
@@ -159,6 +204,7 @@ ActiveRecord::Schema.define(:version => 20120106181440) do
     t.integer  "ticket_status_id"
     t.string   "solicitant",           :limit => 100
     t.integer  "priority_id"
+    t.integer  "specification_id"
   end
 
   create_table "tickets_sprints", :force => true do |t|

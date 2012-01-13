@@ -12,5 +12,9 @@ class HomeController < ApplicationController
         f.series(:name=>'Geral', :data=>[115, 20, 150])
       end
       
+  end 
+  
+  def index_po  
+    render :layout => "bootstrap_po"
   end
 end

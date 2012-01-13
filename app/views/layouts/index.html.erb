@@ -1,0 +1,31 @@
+<ul class="tabs"> 
+	<li class="active"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", layouts_path  %></li>  
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_layout_path %></li>
+</ul>   
+<h2 class="title">Layouts de documentos
+<table class="bordered-table zebra-striped">
+    <thead>             
+      <th>#</th>   
+      <th><%= t("activerecord.attributes.layout.name", :default => "Name") %></th> 
+      <th class="last">&nbsp;</th>
+    </thead>                         
+    <tbody>
+      	<% @layouts.each do |layout| -%>
+        <tr>
+          <td><%= layout.id %></td>
+          <td><%= link_to layout.name, layout_path(layout) %></td>
+          <td>
+            <%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", layout_path(layout) %> |
+            <%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_layout_path(layout) %> | 
+            <%= link_to "Campos", layout_layout_fields_path(layout)%>
+          </td>
+        </tr>
+        <% end -%>
+    </tbody>
+</table>    
+<%= will_paginate @layouts %>   
+             
+
+
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

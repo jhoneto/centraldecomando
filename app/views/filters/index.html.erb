@@ -14,7 +14,7 @@
       	<% @filters.each do |filter| -%>
         <tr>
           <td><%= filter.id %></td>
-                    <td><%= link_to filter.name, filter_path(filter) %></td>
+                    <td><%= link_to filter.name, execute_filter_path(filter) %></td>
                     <td><%= filter.created_at %></td>
           <td>
             <%= link_to "Executar", execute_filter_path(filter) %> |

@@ -1,0 +1,11 @@
+<ul class="tabs"> 
+	<li><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", specifications_path  %></li>  
+	<li class="active"><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_specification_path %></li>
+</ul>
+<h2 class="title">Nova Especificação</h2> 
+<%= form_for :specification, :url => specifications_path, :html => { :class => "form-stacked" } do |f| -%>
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>
+
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
