@@ -1,7 +1,9 @@
 class Ticket < ActiveRecord::Base     
   has_paper_trail
   
-  before_create :set_date_of_registration
+  before_create :set_date_of_registration  
+  after_update  :send_message_update
+  
   belongs_to :project
   belongs_to :client
   belongs_to :user_registration, :class_name => "User", :foreign_key => "user_registration_id"
@@ -42,7 +44,7 @@ class Ticket < ActiveRecord::Base
   scope :chart_by_type, lambda{
     {
       :select => "count(t.*)",
-      :joins => ("inner join ticket_status  on tickets.ticket_type_id = ticket_types.id
+      :joins => ("inner join ticket_types  on tickets.ticket_type_id = ticket_types.id
                   inner join tickets_sprints  on tickets.id = tickets_sprints.ticket_id")
     }
   }     
@@ -54,7 +56,18 @@ class Ticket < ActiveRecord::Base
       :joins => ("inner join ticket_status  on tickets.ticket_status_id = ticket_status.id
                   inner join tickets_sprints  on tickets.id = tickets_sprints.ticket_id")
     }
-  }
+  }  
+  
+  
+  def send_message_update       
+    pms = ProjectMember.where('project_id = ?', self.project_id)
+    pms.each do |pm|         
+      if pm.role == Role::SCRUM_MASTER || pm.role == Role::DEVELOPER
+        user = User.find(pm.user_id)
+        CentralMailer.alter_ticket(user, self).deliver
+      end
+    end
+  end
   
   def self.search(parameters, account)
     ticket_query = self.scoped
@@ -81,7 +94,9 @@ class Ticket < ActiveRecord::Base
     busca = busca.where('ticket_status_id = ?', options[:ticket_status_id]) unless (options[:ticket_status_id].nil? || options[:ticket_status_id] == '')
     busca = busca.where('ticket_type_id = ?', options[:ticket_type_id]) unless (options[:ticket_type_id].nil? || options[:ticket_type_id] == '')
     busca.all
-  end
+  end     
+  
+  
   
   
 end

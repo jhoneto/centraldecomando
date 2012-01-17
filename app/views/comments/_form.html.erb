@@ -8,15 +8,15 @@
 		<hr style="height: 1px; color: #000; background-color: #000;"/>
 		<br>
 	<% end %>
+	                                                         
+	<%= form_tag( comments_path, :remote => true, :method => :post ) do %>
+	    <%= hidden_field_tag :comment_type, type %>
+	    <%= hidden_field_tag :process_id, id %> 
+	    <%= text_area_tag :comment, '', :style => "width:100%; height: 100px;"%>	    
 	
-	<% form_for f, comments_path, :remote => true do |f| -%>
-	    <%= f.hidden_field :comment_type, :value => type %>
-	    <%= f.hidden_field :process_id, :value => id %> 
-	    <%= f.text_area :comment, :style => "width:100%; height: 100px;"%>	    
-	
-	   
-	    <input type="submit" class="btn success" value="Adicionar">
+	    <br>
+	    <input type="submit" class="btn" value="Adiconar">
 	   	
 		
-	<% end -%>
+	<% end %>
 

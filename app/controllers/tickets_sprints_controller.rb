@@ -12,19 +12,16 @@ class TicketsSprintsController < ApplicationController
   
   def save
       
-    if params[:id] == ''   
-      puts '################'                       
+    if params[:id] == ''                             
       @ticket_sprint = TicketSprint.new
       @ticket_sprint.ticket_id = params[:ticket_id]
       @ticket_sprint.sprint_id = params[:sprint_id] 
       @ticket_sprint.estimate = params[:estimate]
-      if @ticket_sprint.save       
-        puts '################1'
+      if @ticket_sprint.save     
         @sprint = Sprint.find(params[:sprint_id])    
         @tickets_sprints = @sprint.tickets_sprints.paginate(:page => params[:page], :per_page => 10)
       end
     else       
-      puts '%%%%%%%%%%%%%%%%%%%%'
       @ticket_sprint = TicketSprint.find(params[:id])
       @ticket_sprint.ticket_id = params[:ticket_id]
       @ticket_sprint.sprint_id = params[:sprint_id] 

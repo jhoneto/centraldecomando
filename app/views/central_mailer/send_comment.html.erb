@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>O item de backlog #<%= link_to(@ticket.id, url_for(:controller => 'tickets', :action => 'show', :id => @ticket.id, :only_path => false, :host => 'centraldecomando.com.br'))%> foi modificado.</h1>
+    <p>
+      Status: <%= @ticket.ticket_status.name %>
+    </p>
+    <p>
+      Título: <%= @ticket.title %>
+    </p>                                                      
+    <p>
+	  Comentário: <%= @comment.comment %>
+	</p>
+  </body>
+</html>

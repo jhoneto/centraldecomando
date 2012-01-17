@@ -1,2 +1,2 @@
 /*Replace the html of the div post_lists with the updated new one*/
-  $("#comments").html("<%= escape_javascript( render(:partial => "form", :locals => {:f => @comment, :id => @id, :type => 1}) ) %>");
+  $("#comments").html("<%= escape_javascript( render(:partial => "form", :locals => { :id => @id, :type => 1}) ) %>");
