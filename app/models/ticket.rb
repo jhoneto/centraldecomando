@@ -2,7 +2,7 @@ class Ticket < ActiveRecord::Base
   has_paper_trail
   
   before_create :set_date_of_registration  
-  after_update  :send_message_update
+  #after_update  :send_message_update
   
   belongs_to :project
   belongs_to :client
