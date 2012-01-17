@@ -2,7 +2,7 @@ class Specification < ActiveRecord::Base
   belongs_to :project, :class_name => "Project", :foreign_key => "project_id"     
   has_many :specification_fields, :class_name => "SpecificationField", :foreign_key => "specification_id"  
   
-  before_create :set_layout
+  #before_create :set_layout
   after_create  :create_fields
   
   scope :with_project, lambda{|parameter| where("project_id = ?", parameter)}
