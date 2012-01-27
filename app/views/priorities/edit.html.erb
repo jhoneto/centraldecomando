@@ -5,7 +5,7 @@
 </ul>
 <h2 class="title"><%= t("bootstrap-rails.newa", :default => "New")%>  <%= t("activerecord.models.priority", :default => "Priority")%></h2>                           
 
-<%= form_for @priority, :url => priority_path(@priority), :html => { :class => "form-stacked" } do |f| -%>
+<%= form_for @priority, :url => priority_path(@priority), :html => { :class => "form-stacked", :multipart => true } do |f| -%>
     <%= render :partial => "form", :locals => {:f => f} %>
 <% end -%>                        
 

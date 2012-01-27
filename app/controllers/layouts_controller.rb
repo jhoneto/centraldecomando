@@ -3,7 +3,7 @@ class LayoutsController < ApplicationController
   # GET /layouts
   # GET /layouts.xml
   def index
-    @layouts = Layout.where("account_id = ?", current_user.id).paginate(:page => params[:page]) 
+    @layouts = Layout.where("account_id = ?", current_user.account_id).paginate(:page => params[:page]) 
 
     respond_to do |format|
       format.html # index.html.erb

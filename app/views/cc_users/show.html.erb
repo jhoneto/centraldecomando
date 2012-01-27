@@ -52,8 +52,8 @@
                   
 
 <div class="actions">
-	<%= link_to t("ootstrap-rails.edit", :default=> "Edit"), edit_cc_user_path(@user), :class => "btn large primary" %>
-    <%= link_to t("ootstrap-rails.delete", :default => "Delete"), cc_user_path(@user), :method => "delete", :class => "btn large", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+	<%= link_to t("bootstrap-rails.edit", :default=> "Edit"), edit_cc_user_path(@user), :class => "btn large primary" %>
+    <%= link_to t("bootstrap-rails.delete", :default => "Delete"), cc_user_path(@user), :method => "delete", :class => "btn large", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
 </div>      
     
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

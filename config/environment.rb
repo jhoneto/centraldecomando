@@ -4,9 +4,9 @@ require File.expand_path('../application', __FILE__)
 # Initialize the rails application
 Centraldecomando::Application.initialize!
 
-Date::DATE_FORMATS.merge!(:default => "%d/%m/%Y")
-
-
+#Time::DATE_FORMATS[:data_br] = "%d/%m/%Y" 
+Date::DATE_FORMATS.merge!(:default => "%d/%m/%Y")          
+Time::DATE_FORMATS.merge!(:default => "%d/%m/%Y") 
 #config.gem 'paperclip', :source => 'http://rubygems.org'
         
 

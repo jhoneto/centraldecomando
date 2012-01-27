@@ -2,7 +2,7 @@ class Ticket < ActiveRecord::Base
   has_paper_trail
   
   before_create :set_date_of_registration  
-  #after_update  :send_message_update
+  after_update  :send_message_update
   
   belongs_to :project
   belongs_to :client
@@ -21,7 +21,7 @@ class Ticket < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :project     
   
-  default_scope :order => "id ASC"
+  default_scope :order => "id DESC"
   
   scope :with_title_or_description, lambda {|parameter| where("upper(title) like upper(?) or upper(description) like upper(?)", "%#{parameter}%", "%#{parameter}%")}
   scope :with_project, lambda{|parameter| where("project_id = ?", parameter)}

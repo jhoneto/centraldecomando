@@ -34,7 +34,7 @@
 <div class="page-header">
   <h2><%= @specification.title%></h2>
 </div>
-<%= form_tag specification_specification_fields_path, :method => :post,  :class => "form-stacked"  do %> 
+<%= form_tag specification_specification_fields_path, :method => :post,  :class => "form-stacked",  :multipart => true  do %> 
   <% @specification_fields.each do |specification_field| -%>   
      <div class="clearfix">
      <label for="xlInput"><%= specification_field.label%></label>
@@ -48,8 +48,15 @@
 		 <%= text_field_tag "field_#{specification_field.id}", specification_field.value_date, :class => 'datepicker' %>  
 	   <% when FieldType::NUMBER %>
 		 <%= number_field_tag "field_#{specification_field.id}" %>
-	   <% when FieldType::IMAGE %>
-		 <%= text_field_tag "field_#{specification_field.id}" %>
+	   <% when FieldType::IMAGE %> 
+
+	       <%= form_for specification_field, :url => specification_specification_field_path(@specification, specification_field), :html => { :class => "form-stacked", :multipart => true  } do |f| -%>
+		     <%= f.file_field :value_image %>
+		     <input type="submit" class="btn large primary" value="Salvar">
+   		   <% end -%>  
+ 
+	                         
+	    
 	   <% end %>
        
      </div>

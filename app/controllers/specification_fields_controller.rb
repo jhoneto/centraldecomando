@@ -55,7 +55,11 @@ class SpecificationFieldsController < ApplicationController
        when FieldType::MEMO
          field.value_memo = value
        when FieldType::DATE
-         field.value_date = value   
+         field.value_date = value
+       when FieldType::IMAGE
+         puts "************"
+         puts value
+         field.value_image = File.new(value)   
        end
        field.save
      end
@@ -66,12 +70,14 @@ class SpecificationFieldsController < ApplicationController
 
   # PUT /specification_fields/1
   # PUT /specification_fields/1.xml
-  def update
+  def update            
+    puts "$$$$$$$$"    
+    @specification = Specification.find(params[:specification_id])
     @specification_field = SpecificationField.find(params[:id])
 
     respond_to do |format|
       if @specification_field.update_attributes(params[:specification_field])
-        format.html { redirect_to(@specification_field, :notice => 'Specification field was successfully updated.') }
+        format.html { redirect_to(specification_specification_fields_path(@specification)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

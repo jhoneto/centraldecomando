@@ -30,7 +30,9 @@
 			                staffid : "991234"
 			        }
 	});
-  </script> 
+  </script>     
+
+   <%= render "shared/error_messages", :target => @ticket %>
 
    <div class="clearfix">
      <label for="xlInput"><%= t("activerecord.attributes.ticket.ticket_type_id", :default => "Ticket type") %></label>

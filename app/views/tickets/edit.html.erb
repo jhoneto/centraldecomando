@@ -3,7 +3,7 @@
 	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_ticket_path %></li>  
 	<li class="active"><%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_ticket_path %></li>
 </ul>
-<h2 class="title"><%= t("bootstrap-rails.edit", :default => "Edit") %> Ticket</h2>                            
+<h2 class="title"><%= t("bootstrap-rails.edit", :default => "Edit") %> Item de backlog</h2>                            
 
 <%= form_for @ticket, :url => ticket_path(@ticket), :html => { :class => "form-stacked" } do |f| -%>
     <%= render :partial => "form", :locals => {:f => f} %>

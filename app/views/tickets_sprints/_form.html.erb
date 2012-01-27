@@ -1,4 +1,4 @@
-
+    <%= render "shared/error_messages", :target => @ticket_sprint %>
 	<%= form_tag( save_ticket_sprint_path(@sprint.id), :method => :post, :remote => true, :class => "form-stacked" ) do %>   
 	  <%= hidden_field_tag :sprint_id,  @sprint.id, :class => 'text_field' %>  
 	  <%= hidden_field_tag :id,  @ticket_sprint.id, :class => 'text_field' %>     
@@ -6,22 +6,7 @@
 		<div class="span8">   
 			<div class="clearfix">
 			     <label for="xlInput">Item do backlog</label>
-			     <div class="input">
-			       	<%= raw(generic_search_window_tag({:name => "ticket_find", 
-							                            :url => "tickets", 
-							                            :search => "/tickets/search_fields", 
-							                            :caption => "Itens de backlog",  
-							                            :columns => [ {:name => 'id', :index => 'id', :width => '50'}, 
-								                                      {:name => 'title', :index => 'title', :width => '500'}], 
-								                        :captions => ['ID', 'Título'], 
-								                        :id => 'id', 
-								                        :description => 'title',
-								                        :field_id => :ticket_id,
-								                        :field_text => :ticket_title, 
-								                        :value_id  => @ticket_sprint.ticket_id,
-								                        :value_text => @ticket_sprint.ticket_title,
-								                        :text_readonly => true}))%>
-			     </div>
+			     <%= render :partial => "search", :locals => {:project_id => @sprint.project_id} %>  
 			  </div>       
 		</div>
 	    <div class="span6">

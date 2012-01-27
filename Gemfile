@@ -17,6 +17,7 @@ gem 'lazy_high_charts'
 gem "paperclip", "~> 2.4.5"
 gem 'bootstrap-rails', :git => 'git://github.com/jhoneto/bootstrap-rails.git' 
 gem 'paper_trail', '~> 2.5.0' 
+gem 'rake', '~> 0.9.2'
 group :development, :test do
   gem 'web-app-theme', '>= 0.7.0'
 end

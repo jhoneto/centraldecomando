@@ -1,24 +1,24 @@
 <ul class="tabs">                                      
 	<li class="first"><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", sprints_path  %></li>
-    <li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_sprint_path %></li>
-    <li class="active"><%= link_to "Planning", sprint_tickets_sprints_path %></li>
+	<li><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_sprint_path %></li>
+	<li class="active"><%= link_to "Planning", sprint_tickets_sprints_path %></li>
 </ul>   
 <h2 class="title">Backlog do sprint <%= @sprint.sequence%>   
 	<h5> Item de backlog</h5>   
-<div id="ticket_sprint_form">   
+	<div id="ticket_sprint_form">   
 	<%= render :partial => "form", :locals => {:sprint_id => @sprint.id}%>
 </div>
 <br>                         
-<h5> Backlog do sprint</h5>   
+<h5> Backlog do sprint&nbsp;&nbsp;&nbsp;&nbsp;<small>Total estimado: <%= @sprint.estimated%></small></h5>  
 <div id="lista">
-	<%= render :partial => "list"%>  
+<%= render :partial => "list"%>  
 </div>                               
 <div class="actions-bar wat-cf">
-       <div class="actions">
-       </div>
+	<div class="actions">
+	</div>
 
-       <%= will_paginate @tickets_sprints  %>
+	<%= will_paginate @tickets_sprints  %>
 
-     </div>
+</div>
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

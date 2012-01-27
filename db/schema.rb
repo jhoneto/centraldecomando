@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120113004223) do
+ActiveRecord::Schema.define(:version => 20120126200649) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :null => false
@@ -113,10 +113,10 @@ ActiveRecord::Schema.define(:version => 20120113004223) do
   end
 
   create_table "specification_fields", :force => true do |t|
-    t.integer  "specification_id",                :null => false
-    t.string   "label",            :limit => 100, :null => false
-    t.integer  "field_type",                      :null => false
-    t.integer  "order",                           :null => false
+    t.integer  "specification_id",                        :null => false
+    t.string   "label",                    :limit => 100, :null => false
+    t.integer  "field_type",                              :null => false
+    t.integer  "order",                                   :null => false
     t.string   "value_text"
     t.text     "value_memo"
     t.decimal  "value_number"
@@ -124,7 +124,11 @@ ActiveRecord::Schema.define(:version => 20120113004223) do
     t.boolean  "value_boolean"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "layout_field_id",                 :null => false
+    t.integer  "layout_field_id",                         :null => false
+    t.string   "value_image_file_name"
+    t.string   "value_image_content_type"
+    t.integer  "value_image_file_size"
+    t.datetime "value_image_updated_at"
   end
 
   create_table "specifications", :force => true do |t|
@@ -138,14 +142,15 @@ ActiveRecord::Schema.define(:version => 20120113004223) do
   end
 
   create_table "sprints", :force => true do |t|
-    t.integer  "project_id",        :null => false
-    t.string   "sequence",          :null => false
-    t.date     "date_of_beginning", :null => false
-    t.date     "date_of_end",       :null => false
-    t.integer  "status",            :null => false
+    t.integer  "project_id",                                      :null => false
+    t.string   "sequence",                                        :null => false
+    t.date     "date_of_beginning",                               :null => false
+    t.date     "date_of_end",                                     :null => false
+    t.integer  "status",                                          :null => false
     t.integer  "capacity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "estimated",         :precision => 5, :scale => 2
   end
 
   create_table "stories", :force => true do |t|

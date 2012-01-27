@@ -1,6 +1,6 @@
 <% if target.errors.any? %> 
 <div class="alert-message block-message error">   
-	<p><strong><%= pluralize(target.errors.count, "error") %> prohibited this record from being saved:</strong></p>   
+	<p><strong>Erro ao tentar salvar o registro</strong></p>   
   <ul>  
   <% target.errors.full_messages.each do |msg| %>  
     <li><%= msg %></li>  

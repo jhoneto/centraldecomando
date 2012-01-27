@@ -62,7 +62,7 @@ class TicketsController < ApplicationController
         format.html { redirect_to(@ticket, :notice => 'Ticket was successfully created.') }
         format.xml  { render :xml => @ticket, :status => :created, :location => @ticket }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout => 'bootstrap_full_content' }
         format.xml  { render :xml => @ticket.errors, :status => :unprocessable_entity }
       end
     end

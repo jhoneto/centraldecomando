@@ -2,7 +2,7 @@
 	<li><%= link_to "#{t("bootstrap-rails.list", :default => "List")}", clients_path  %></li>  
 	<li class="active"><%= link_to "#{t("bootstrap-rails.new", :default => "New")}", new_client_path %></li>
 </ul>
-<h2 class="title"><%= t("bootstrap-rails.new", :default => "New")%>  Client</h2> 
+<h2 class="title"><%= t("bootstrap-rails.new", :default => "New")%>  Cliente</h2> 
 <%= form_for :client, :url => clients_path, :html => { :class => "form-stacked" } do |f| -%>
   <%= render :partial => "form", :locals => {:f => f} %>
 <% end -%>

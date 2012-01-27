@@ -2,6 +2,11 @@ class Specification < ActiveRecord::Base
   belongs_to :project, :class_name => "Project", :foreign_key => "project_id"     
   has_many :specification_fields, :class_name => "SpecificationField", :foreign_key => "specification_id"  
   
+  validates_presence_of :project_id, :on => :create
+  validates_presence_of :index, :on => :create
+  validates_presence_of :title, :on => :create
+  validates_presence_of :layout_id, :on => :create
+  
   #before_create :set_layout
   after_create  :create_fields
   
