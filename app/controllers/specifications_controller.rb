@@ -1,5 +1,5 @@
 class SpecificationsController < ApplicationController       
-  layout "bootstrap_po"
+  layout "bootstrap_full_content"
   # GET /specifications
   # GET /specifications.xml
   def index

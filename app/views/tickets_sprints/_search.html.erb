@@ -30,45 +30,46 @@ function gridReload(filtro){
 	$('#tickets_list').jqGrid('setGridParam', {url:'/tickets?' + filtro , page:1 }).trigger('reloadGrid');
 }
 
-</script>    
+</script>  
 
-<div class="input">
-	<div class="input-prepend">    
-		<%= hidden_field_tag :ticket_id,  @ticket_sprint.ticket_id, :id => :ticket_id%>
-		<span class="add-on" data-controls-modal="modal-search-ticket" data-backdrop="true" data-keyboard="true"><%= image_tag "web-app-theme/icons/search.png", :title => "title", :class => "class" %></span>                                                             
-		<%= text_field_tag :ticket_title, @ticket_sprint.ticket_title, :class => "xlarge", :id => :ticket_title%> 
-	</div>
-</div>
-<div id="modal-search-ticket" class="modal hide fade" style='width: 650px'>
-	<div class="modal-header">
-		<h3>Itens de backlog</h3>
-	</div>
-	<div class="modal-body">
-		<div id="search_ticket_sprint">
-			<%= hidden_field_tag :with_project,  project_id%>
-			<%= hidden_field_tag :with_status,  TicketStatus.find_by_account_id_and_initial(current_user.account_id, true).id%>
-			<div class="row form-stacked">
-				<div class="span5">
-					<div class="clearfix">
-						<label for="xlInput">ID ou Título&nbsp;&nbsp;</label>
-						<div class="input">
-							<%= text_field_tag :with_id_or_title, '', {:class => "xlarge" } %>
-						</div>
-					</div>
-				</div>                       
-				<div class="span2">
-					<label for="xlInput">&nbsp;&nbsp;</label>
-					<button id="btn_search" class ="btn primary">Buscar</button>
-				</div>
+
+		<div class="input">
+			<div class="input-prepend">    
+				<%= hidden_field_tag :ticket_id,  @ticket_sprint.ticket_id, :id => :ticket_id%>
+				<span class="add-on" data-controls-modal="modal-search-ticket" data-backdrop="true" data-keyboard="true"><%= image_tag "web-app-theme/icons/search.png", :title => "title", :class => "class" %></span>                                                             
+				<%= text_field_tag :ticket_title, @ticket_sprint.ticket_title, :class => "xlarge", :id => :ticket_title%> 
 			</div>
 		</div>
-		<br>
-		<table id="tickets_list"></table>
-		<div id="tickets_pager">  </div>
-		<%= raw(search_tickets_for_sprint_jqgrid(project_id))%>
-	</div>
-	<div class="modal-footer">                                                                              
-		<button id="add_search" class ="btn primary" data-controls-modal="modal-search-ticket">Adicionar</button>
-		<button id="close_search" class ="btn secondary" data-controls-modal="modal-search-ticket">Sair</button>
-	</div>     
-</div>
+		<div id="modal-search-ticket" class="modal hide fade" style='width: 650px'>
+			<div class="modal-header">
+				<h3>Itens de backlog</h3>
+			</div>
+			<div class="modal-body">
+				<div id="search_ticket_sprint">
+					<%= hidden_field_tag :with_project,  project_id%>
+					<%= hidden_field_tag :with_status,  TicketStatus.find_by_account_id_and_initial(current_user.account_id, true).id%>
+					<div class="row form-stacked">
+						<div class="span5">
+							<div class="clearfix">
+								<label for="xlInput">ID ou Título&nbsp;&nbsp;</label>
+								<div class="input">
+									<%= text_field_tag :with_id_or_title, '', {:class => "xlarge" } %>
+								</div>
+							</div>
+						</div>                       
+						<div class="span2">
+							<label for="xlInput">&nbsp;&nbsp;</label>
+							<button id="btn_search" class ="btn primary">Buscar</button>
+						</div>
+					</div>
+				</div>
+				<br>
+				<table id="tickets_list"></table>
+				<div id="tickets_pager">  </div>
+				<%= raw(search_tickets_for_sprint_jqgrid(project_id))%>
+			</div>
+			<div class="modal-footer">                                                                              
+				<button id="add_search" class ="btn primary" data-controls-modal="modal-search-ticket">Adicionar</button>
+				<button id="close_search" class ="btn secondary" data-controls-modal="modal-search-ticket">Sair</button>
+			</div>     
+		</div>

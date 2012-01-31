@@ -1,9 +1,15 @@
 Centraldecomando::Application.routes.draw do
-
-  resources :specifications do                
-    resources :specification_fields 
+  
+  resources :cc_users do       
+    member do
+      post 'alter_password'
+    end
   end
-
+  
+  resources :charts
+  resources :clients
+  resources :comments
+  resources :filters
   resources :layouts do
     resources :layout_fields do 
       member do
@@ -11,13 +17,13 @@ Centraldecomando::Application.routes.draw do
       end
     end
   end
-
   resources :priorities
-
-  resources :charts
-
-  resources :stories
-
+  resources :projects do 
+    resources :project_members
+  end
+  resources :specifications do                
+    resources :specification_fields 
+  end
   resources :sprints do
     collection do
         get 'combo_sprints'
@@ -27,30 +33,17 @@ Centraldecomando::Application.routes.draw do
     end
     resources :tickets_sprints 
   end
-
+  
+  resources :stories
   resources :tickets do
     member do
       get 'change_user_owner'
     end
   end
-
-  resources :clients
-
-  resources :projects do 
-    resources :project_members
-  end
-  
-  resources :filters
-  
-  resources :comments  
-  
+  resources :ticket_hours
   resources :user_profiles  
   
-  resources :cc_users do       
-    member do
-      post 'alter_password'
-    end
-  end
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

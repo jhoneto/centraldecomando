@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120126200649) do
+ActiveRecord::Schema.define(:version => 20120127130028) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :null => false
@@ -170,6 +170,17 @@ ActiveRecord::Schema.define(:version => 20120126200649) do
     t.integer  "story_id",                      :null => false
     t.integer  "sprint_id",                     :null => false
     t.boolean  "closed",     :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ticket_hours", :force => true do |t|
+    t.integer  "ticket_id",                                     :null => false
+    t.integer  "sprint_id",                                     :null => false
+    t.date     "day",                                           :null => false
+    t.decimal  "hours_worked",    :precision => 3, :scale => 1
+    t.decimal  "remaining_hours", :precision => 3, :scale => 1
+    t.integer  "user_id",                                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,5 +1,5 @@
 class LayoutFieldsController < ApplicationController       
-  layout "bootstrap_po"
+  layout "bootstrap_full_content"
   # GET /layout_fields
   # GET /layout_fields.xml
   def index       

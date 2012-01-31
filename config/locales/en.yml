@@ -48,7 +48,9 @@ en:
           chart: "Gráfico"
           charts: "Gráficos"
           priority: "Prioridade"
-          priorties: "Prioridades" 
+          priorties: "Prioridades"
+          specifications: "Especificações"
+          layouts: "Modelos de documentos" 
       attributes:
           project:
               name: "Nome"

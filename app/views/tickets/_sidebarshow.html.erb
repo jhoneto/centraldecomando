@@ -23,7 +23,9 @@
 
   <h5>Outras ações</h5>
   <ul class="navigation">
-	<li><%= link_to t("bootstrap-rails.edit", :default=> "Edit"), edit_ticket_path(@ticket)%></li> 
+	<li><%= link_to t("bootstrap-rails.edit", :default=> "Edit"), edit_ticket_path(@ticket)%></li>
+	<li><a href='#' data-controls-modal="modal-register-work" data-backdrop="true" data-keyboard="true">Registrar trabalho</a></li>
+	<%= render :partial => "ticket_hours/form", :locals => {:ticket_id => @ticket.id, :ticket_sprint => @ticket_sprint} %>
   </ul>
   
   <% unless @ticket.specification_id.nil?%> 

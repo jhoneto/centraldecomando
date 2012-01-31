@@ -1,0 +1,59 @@
+<script> 
+  $(function(){
+	$('#close').click(function(){
+	   $('#modal-register-work').modal('hide'); 
+	});
+	$("#new_ticket_hour").validate({
+		messages: {
+			"ticket_hour[day]": "Obrigatório",
+			"ticket_hour[hours_worked]": "Obrigatório",
+			"ticket_hour[remaining_hours]": "Obrigatório" 
+		}
+	});
+})
+</script>
+<div id="modal-register-work" class="modal hide fade">
+	<div class="modal-header">
+	    <h3>Registro de trabalho</h3>
+	</div>
+	<div class="modal-body">
+		<div class="well">
+			<b> Dados do sprint</b><br>
+			Sprint: <%= ticket_sprint.sprint.sequence unless ticket_sprint.nil?%><br>
+			Valor estimado: <%= ticket_sprint.estimate unless ticket_sprint.nil?%>
+		</div>
+		<%= form_for TicketHour.new, :url => ticket_hours_path, :remote => true, :html => { :class => "form-stacked" } do |f| -%>
+		<%= f.hidden_field :ticket_id, :value => ticket_id %>
+		<div class="row">
+			<div class="span2">
+				<div class="clearfix">
+					<label for="xlInput">Data</label>
+				    <div class="input">
+				      <%= f.text_field :day, :class => "span2 datepicker required" %>   
+				    </div>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="clearfix">
+					<label for="xlInput">Horas trabalhadas</label>
+				    <div class="input">
+				     <%= f.number_field :hours_worked, :class => "span3 required" %>
+				    </div>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="clearfix">
+					<label for="xlInput">Horas restante</label>
+				    <div class="input">
+				     <%= f.number_field :remaining_hours, :class => "span3 required" %>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="modal-footer">
+		<input type="submit" class="btn primary" value="Adicionar">
+		<button id="close_search" class ="btn secondary"  data-controls-modal="modal-register-work">Sair</button>
+	</div>     
+	<% end -%> 
+</div>

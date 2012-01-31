@@ -4,7 +4,7 @@ class TicketSprint < ActiveRecord::Base
   belongs_to :sprint, :class_name => "Sprint", :foreign_key => "sprint_id" 
   
   after_save :update_capacity
-  after_destroy :update_capactiy
+  after_destroy :update_capacity
   
   attr_reader :ticket_title
   
@@ -21,7 +21,7 @@ class TicketSprint < ActiveRecord::Base
     }
   }  
   
-  def update_capactiy
+  def update_capacity
     sprint = Sprint.find(self.sprint_id)
     estimated = TicketSprint.where("sprint_id = ?", self.sprint_id).sum(:estimate)
     sprint.estimated = estimated

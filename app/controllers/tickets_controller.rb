@@ -21,10 +21,9 @@ class TicketsController < ApplicationController
   # GET /tickets/1.xml
   def show
     @ticket = Ticket.find(params[:id])
-    
     @status = TicketStatus.get_next_status(@ticket, current_user.account_id)
-    
     @comment = Comment.new
+    @ticket_sprint = TicketSprint.joins(:sprint).where("ticket_id = ? and sprints.status = 1", @ticket.id)[0]
 
     respond_to do |format|
       format.html # show.html.erb

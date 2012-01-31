@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 class SpecificationFieldsController < ApplicationController   
-  layout "bootstrap_po"
+  layout "bootstrap_full_content"
   # GET /specification_fields
   # GET /specification_fields.xml
   def index           

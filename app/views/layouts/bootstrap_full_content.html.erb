@@ -18,22 +18,25 @@
 	<%= stylesheet_link_tag "ui.jqgrid" %>
 	  <%= stylesheet_link_tag "ui-custom/jquery-ui-1.8.16.custom" %>
                 
-     	<%= javascript_include_tag 'bootstrap/bootstrap-alerts'%>
+    <%= javascript_include_tag :defaults, :cache => true %>         
+
+    <%= javascript_include_tag 'bootstrap/bootstrap-alerts'%>
     <%= javascript_include_tag 'bootstrap/bootstrap-buttons'%>
     <%= javascript_include_tag 'bootstrap/bootstrap-dropdown'%>
     <%= javascript_include_tag 'bootstrap/bootstrap-modal'%>
+    <%= javascript_include_tag 'bootstrap/bootstrap-twipsy'%>
     <%= javascript_include_tag 'bootstrap/bootstrap-popover'%>
     <%= javascript_include_tag 'bootstrap/bootstrap-scrollspy'%>
     <%= javascript_include_tag 'bootstrap/bootstrap-tabs'%>
-    <%= javascript_include_tag 'bootstrap/bootstrap-twipsy'%>
 
 
 
-	  <%= javascript_include_tag :defaults, :cache => true %>
-	  <%= javascript_include_tag '/javascripts/i18n/grid.locale-en.js' %>
-	  <%= javascript_include_tag '/javascripts/jquery.jqGrid.min.js' %>
-	  <%= javascript_include_tag '/javascripts/tiny_mce/tiny_mce'%>   
-	  <%= javascript_include_tag :high_charts %>
+    <%= javascript_include_tag '/javascripts/i18n/grid.locale-en.js' %>
+    <%= javascript_include_tag '/javascripts/jquery.jqGrid.min.js' %>
+    <%= javascript_include_tag '/javascripts/tiny_mce/tiny_mce'%>
+    <%= javascript_include_tag 'jquery.validate' %>
+
+	<%= javascript_include_tag :high_charts %>
 	<%= csrf_meta_tag %>
     <style type="text/css">
       body {
@@ -54,24 +57,7 @@
 
     <div class="container">
       
-      <div class="content">   
-        <% unless flash[:notice].blank? %>
-		  <div class="alert-message info">
-		    <%= content_tag :div, flash[:notice] %>
-		  </div>
-		<% end %>
-
-		<% unless flash[:error].blank? %>
-		  <div class="alert-message error">
-		    <%= content_tag :div, flash[:error] %>
-		  </div>
-		<% end %>
-
-		<% unless flash[:alert].blank? %>
-		  <div class="alert-message warning">
-		    <%= content_tag :div, flash[:alert] %>
-		  </div>
-		<% end %>
+      <div class="content">
         <%= yield %>
         <footer>
           <p>&copy; Company 2011</p>
