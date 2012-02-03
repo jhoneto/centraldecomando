@@ -22,7 +22,9 @@ class TicketSprint < ActiveRecord::Base
   }  
   
   def update_capacity
+    puts "&&&&&&&&&&&&&&&&&&&&"
     sprint = Sprint.find(self.sprint_id)
+    puts sprint.id
     estimated = TicketSprint.where("sprint_id = ?", self.sprint_id).sum(:estimate)
     sprint.estimated = estimated
     sprint.save

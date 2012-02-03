@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 class SprintsController < ApplicationController
+  load_and_authorize_resource
   layout "bootstrap_full_content"
   # GET /sprints
   # GET /sprints.xml

@@ -1,17 +1,17 @@
 class TicketsSprintsController < ApplicationController  
+  load_and_authorize_resource :except => [:save]
   layout "bootstrap_full_content"
-  
+
   def index
     @sprint = Sprint.find(params[:sprint_id])
     @tickets_sprints = @sprint.tickets_sprints.paginate(:page => params[:page], :per_page => 10)
     @ticket_sprint = TicketSprint.new
     @team = ProjectMember.where("project_id = ?", @sprint.project_id)
   end                 
-  
-  
+
+
   def save
-      
-    if params[:id] == ''                             
+    if params[:id] == '0'                          
       @ticket_sprint = TicketSprint.new
       @ticket_sprint.ticket_id = params[:ticket_id]
       @ticket_sprint.sprint_id = params[:sprint_id] 
@@ -20,7 +20,7 @@ class TicketsSprintsController < ApplicationController
         @sprint = Sprint.find(params[:sprint_id])    
         @tickets_sprints = @sprint.tickets_sprints.paginate(:page => params[:page], :per_page => 10)
       end
-    else       
+    else
       @ticket_sprint = TicketSprint.find(params[:id])
       @ticket_sprint.ticket_id = params[:ticket_id]
       @ticket_sprint.sprint_id = params[:sprint_id] 
@@ -31,12 +31,12 @@ class TicketsSprintsController < ApplicationController
       end
     end
   end    
-  
+
   def edit   
     @sprint = Sprint.find(params[:sprint_id])    
     @ticket_sprint = TicketSprint.find(params[:id]) 
   end   
-  
+
   def destroy
     @ticket_sprint = TicketSprint.find(params[:id])
     @ticket_sprint.destroy
@@ -45,6 +45,6 @@ class TicketsSprintsController < ApplicationController
     @sprint = Sprint.find(params[:sprint_id])
     @tickets_sprints = @sprint.tickets_sprints.paginate(:page => params[:page], :per_page => 10)
   end        
-  
-  
+
+
 end

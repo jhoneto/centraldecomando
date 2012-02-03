@@ -1,4 +1,5 @@
 class SpecificationsController < ApplicationController       
+  load_and_authorize_resource
   layout "bootstrap_full_content"
   # GET /specifications
   # GET /specifications.xml

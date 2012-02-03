@@ -1,5 +1,5 @@
 class ProjectMembersController < ApplicationController
-  
+  load_and_authorize_resource
   layout "bootstrap_full_content" 
   
   def index         

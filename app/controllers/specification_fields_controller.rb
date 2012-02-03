@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 class SpecificationFieldsController < ApplicationController   
+  load_and_authorize_resource
   layout "bootstrap_full_content"
   # GET /specification_fields
   # GET /specification_fields.xml
@@ -39,6 +40,7 @@ class SpecificationFieldsController < ApplicationController
   # GET /specification_fields/1/edit
   def edit
     @specification_field = SpecificationField.find(params[:id])
+    @specification = Specification.find(params[:specification_id])
   end
 
   # POST /specification_fields
@@ -58,8 +60,8 @@ class SpecificationFieldsController < ApplicationController
          field.value_date = value
        when FieldType::IMAGE
          puts "************"
-         puts value
-         field.value_image = File.new(value)   
+         puts value 
+         field.value_image = value
        end
        field.save
      end

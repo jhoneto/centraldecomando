@@ -1,0 +1,20 @@
+<script> 
+$(function(){
+	$('#modal-add-image').modal('show');
+	$('#close').click(function(){
+		$('#modal-add_image').modal('hide'); 
+	});
+})
+</script>
+<div id="modal-add-image" class="modal fade">
+	<div class="modal-header">
+		<h3>Alterar senha</h3>
+	</div>              
+	<%= form_for @specification_field, :url => specification_specification_field_path(@specification, @specification_field), :html => { :class => "form-stacked", :multipart => true } do |f| -%>
+	<%= f.file_field :value_image%>                        
+	<div class="modal-footer">
+		<input type="submit" class="btn primary" value="Salvar">   
+		<a href='#' id="close" class ="btn secondary">Sair</a>
+	</div>     
+	<% end -%> 
+</div>

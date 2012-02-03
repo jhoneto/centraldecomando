@@ -1,4 +1,5 @@
 class LayoutsController < ApplicationController 
+  load_and_authorize_resource
   layout "bootstrap_full_content"
   # GET /layouts
   # GET /layouts.xml

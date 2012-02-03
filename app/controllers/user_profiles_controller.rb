@@ -1,5 +1,5 @@
 class UserProfilesController < ApplicationController    
-  
+  load_and_authorize_resource
   layout "default"   
   
   def edit

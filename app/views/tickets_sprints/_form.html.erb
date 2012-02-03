@@ -1,7 +1,7 @@
     <%= render "shared/error_messages", :target => @ticket_sprint %>
 	<%= form_tag( save_ticket_sprint_path(@sprint.id), :method => :post, :remote => true, :class => "form-stacked" ) do %>   
 	  <%= hidden_field_tag :sprint_id,  @sprint.id, :class => 'text_field' %>  
-	  <%= hidden_field_tag :id,  @ticket_sprint.id, :class => 'text_field' %>     
+	  <%= hidden_field_tag :id,  @ticket_sprint.id.nil? ? 0 : @ticket_sprint.id, :class => 'text_field' %>     
 	  <div class="row">                      
 		<div class="span8">   
 			<div class="clearfix">

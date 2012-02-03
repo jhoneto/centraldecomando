@@ -1,4 +1,5 @@
-class LayoutFieldsController < ApplicationController       
+class LayoutFieldsController < ApplicationController 
+  load_and_authorize_resource
   layout "bootstrap_full_content"
   # GET /layout_fields
   # GET /layout_fields.xml

@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   layout "bootstrap_full_content"
-  
+  load_and_authorize_resource
   # GET /projects
   # GET /projects.xml
   def index

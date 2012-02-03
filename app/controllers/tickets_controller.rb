@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  load_and_authorize_resource
   layout "bootstrap_side_bar"
   before_filter :authorize
   # GET /tickets
