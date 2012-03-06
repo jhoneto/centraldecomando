@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
     false
   end
 
-  def self.authenticate(username, password) 
-    return nil unless user = find_by_username(username) 
-    return user if user.authenticated?(password) 
-  end
+  #def self.authenticate(username, password) 
+  #  return nil unless user = find_by_username(username) 
+  #  return user if user.authenticated?(password) 
+  #end
   
   
   def create_account

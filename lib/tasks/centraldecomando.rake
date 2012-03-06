@@ -7,7 +7,7 @@ namespace :cc do
     account = Account.create({:name => "Conta default"})
     user = User.create({:email => "jhamilton.oliveira@gmail.com", :username => "admin",
                         :name => "Administrador", :account_id => account.id,
-                        :password => "admin"})
+                        :password => "admin", :admin => true})
   end
   
   task :criar_status => :environment do

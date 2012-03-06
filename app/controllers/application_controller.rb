@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authorize
   
-  def authenticate(params)
-    User.authenticate(params[:session][:username],
-                      params[:session][:password])
-  end
+  #def authenticate(params)
+  #  User.authenticate(params[:session][:username],
+  #                    params[:session][:password])
+  #end
 end

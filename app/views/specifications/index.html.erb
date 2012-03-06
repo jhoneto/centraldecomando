@@ -33,7 +33,8 @@
           <td><%= specification.index %></td>
           <td><%= specification.title %></td>
           <td>
-            <%= link_to "#{t("bootstrap-rails.show", :default => "Show")}", specification_specification_fields_path(specification) %> |
+            <%= link_to "Editar documento", specification_specification_fields_path(specification) %> |
+            <%= link_to "Visualizar documento", specification_specification_field_path(specification, 0) %> |
             <%= link_to "Nova tarefa", new_ticket_path(:specification => specification.id) %> |
             <%= link_to "#{t("bootstrap-rails.edit", :default => "Edit")}", edit_specification_path(specification) %> |
             <%= link_to "#{t("bootstrap-rails.delete", :default => "Delete")}", specification_path(specification), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>

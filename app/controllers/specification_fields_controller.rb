@@ -18,11 +18,12 @@ class SpecificationFieldsController < ApplicationController
   # GET /specification_fields/1
   # GET /specification_fields/1.xml
   def show
-    @specification_field = SpecificationField.find(params[:id])
-
+    puts "***********************"
+    #@specification_field = SpecificationField.find(params[:id])
+    @specification = Specification.find(params[:specification_id])
+    @specification_fields = @specification.specification_fields
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @specification_field }
     end
   end
 
