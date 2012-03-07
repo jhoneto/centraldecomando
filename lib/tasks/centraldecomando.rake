@@ -3,6 +3,13 @@ require 'rake'
 
 namespace :cc do
   
+  task :criar_nova_conta, [:email, :name, :username] => :environment do |t, args|
+    account = Account.create({:name => "Conta default"}) 
+    user = User.create({:email => args.email, :username => args.username,
+                        :name => args.name, :account_id => account.id,
+                        :password => "admin", :admin => true})
+  end
+  
   task :criar_conta_inicial => :environment do
     account = Account.create({:name => "Conta default"})
     user = User.create({:email => "jhamilton.oliveira@gmail.com", :username => "admin",
