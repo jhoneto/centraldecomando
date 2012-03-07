@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 class CcUsersController < ApplicationController
-  load_and_authorize_resource
+  #load_and_authorize_resource
   layout "bootstrap_full_content"
   before_filter :authorize
   
