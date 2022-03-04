@@ -9,4 +9,6 @@ class ApplicationController < ActionController::Base
   #end
 
   # adicoonando ...
+
+  # outra linha
 end
